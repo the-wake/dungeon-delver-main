@@ -18,6 +18,28 @@
       color: #05386B;
       
   }
+
+  .emblem {
+      width: 55px;
+      height: 55px;
+      margin-right: 9px;
+      margin-bottom: 7px;
+  }
+
+  .nav-brand {
+    font-size: 24px !important;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 600; 
+    color: #05386B !important; 
+    position: relative;
+    padding-left: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .capitalD {
+      font-size: 38px;
+      font-weight: 900 !important;
+  }
   
   .nav :hover {
       color: #05386B !important;
