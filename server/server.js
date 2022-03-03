@@ -7,7 +7,7 @@ const http = require('http');
 const db = require('./config/connection.js');
 const path = require('path');
 
-// const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 
 async function startApolloServer() {
@@ -45,7 +45,7 @@ async function startApolloServer() {
     console.log('Mongoose DB connection established.')
   });
 
-  await new Promise(resolve => httpServer.listen({ port: 3001 }, resolve));
+  await new Promise(resolve => httpServer.listen({ port: PORT }, resolve));
   console.log(`🚀 Server ready at http://localhost:3001${server.graphqlPath}`);
   return { server, app };
 }
