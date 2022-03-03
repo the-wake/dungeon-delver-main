@@ -1,0 +1,20 @@
+@media all and (min-width: 480px) {
+    .signUp {
+      padding: 60px 0;
+    }
+  
+    .signUp form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .success-message {
+        padding: 15px;
+        color: rgb(76, 74, 216);
+      }
+    
+      .error {
+        border-style: solid;
+        border: 2px solid #ffa4a4;
+      }
+  }
