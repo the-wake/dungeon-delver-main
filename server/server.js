@@ -1,30 +1,29 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } = require('apollo-server-core');
+// const { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } = require('apollo-server-core');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth.js');
 const http = require('http');
 const db = require('./config/connection.js');
-// const path = require('path');
+const path = require('path');
 
 // const PORT = process.env.PORT || 3001;
-// const app = express();
 
 
-async function startApolloServer() {
+async function startApolloServer(typeDefs, resolvers) {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer }),
-      process.env.NODE_ENV === 'production'
-      ? ApolloServerPluginLandingPageDisabled()
-      : ApolloServerPluginLandingPageGraphQLPlayground(),
-      ],
+    // plugins: [ApolloServerPluginDrainHttpServer({ httpServer }),
+    //   // process.env.NODE_ENV === 'production'
+    //   // ? ApolloServerPluginLandingPageDisabled()
+    //   // : ApolloServerPluginLandingPageGraphQLPlayground(),
+    //   ],
   });
-
+  
   await server.start();
 
   // Additional middleware can be mounted at this point to run before Apollo.
@@ -32,14 +31,14 @@ async function startApolloServer() {
   // app.get(express.urlencoded({ extended: false }));
   // app.get(express.json());
 
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  // });
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 
-  app.get('*');
+  // app.get('*');
 
   // Mount Apollo middleware here.
-  server.applyMiddleware({ app, path: '/graphql', cors: false });
+  server.applyMiddleware({ app, path: '/graphql' });
 
   db.once('open', () => {
     console.log('Mongoose DB connection established.')
@@ -50,7 +49,7 @@ async function startApolloServer() {
   return { server, app };
 }
 
-startApolloServer();
+startApolloServer(typeDefs, resolvers);
 
 // server.applyMiddleware({ app });
 
