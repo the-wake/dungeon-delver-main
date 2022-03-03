@@ -13,13 +13,13 @@ const Campaigns = () => {
         
             
             <ListGroup defaultActiveKey="#link1">
-                <ListGroup.Item action href="/campaigns">
+                <ListGroup.Item action href="">
                  
                 </ListGroup.Item>
-                <ListGroup.Item action href="/dungeons">
+                <ListGroup.Item action href="">
                  
                 </ListGroup.Item>
-                <ListGroup.Item action href="/creatures">
+                <ListGroup.Item action href="">
                
                 </ListGroup.Item>
             </ListGroup>
