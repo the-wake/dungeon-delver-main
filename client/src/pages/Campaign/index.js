@@ -1,6 +1,6 @@
 import { Button, Container, Row, ListGroup } from 'react-bootstrap';
 
-const Campaigns = () => {
+const Campaign = () => {
 
 
     return ( 
@@ -36,4 +36,4 @@ const Campaigns = () => {
 
 
  
-export default Campaigns;
+export default Campaign;

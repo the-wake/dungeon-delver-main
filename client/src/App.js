@@ -11,8 +11,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import LandingPage from './pages/LandingPage';
-import Campaigns from './pages/Campaigns';
-import Dungeons from './pages/Dungeons';
+import Campaign from './pages/Campaign';
+import Dungeon from './pages/Dungeon';
 import Creatures from './pages/Creatures';
 
 
@@ -26,8 +26,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/landingpage" element={<LandingPage/>} />
-        <Route path="/campaigns" element={<Campaigns/>} />
-        <Route path="/dungeons" element={<Dungeons/>} />
+        <Route path="/campaigns" element={<Campaign/>} />
+        <Route path="/dungeons" element={<Dungeon/>} />
         <Route path="/creatures" element={<Creatures/>} />
       </Routes>
      <Footer />

@@ -43,7 +43,7 @@ const CampaignForm = () => {
             const { data } = await addCampaign({
                 variables: {
                     //not really sure about these yet
-                    // name,
+                    // campaignText,
                     // ??: Auth.getProfile().data.username,
                 },
             });
