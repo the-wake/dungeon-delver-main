@@ -7,22 +7,28 @@ import "./style.css"
 const NavBar = () => {
     return (
         <div>
-            <Navbar className='nav-main' bg="" variant="light">
-                <Container>
-                    <Navbar.Brand className="nav-brand" href="#home">
-                        <img className="emblem"
+            
+            <Navbar collapseOnSelect expand='lg' className='nav-main' bg="" variant="light">
+                <Container fluid>
+                    <Navbar.Brand className="nav-brand" href="/">
+                       <img className="emblem"
                             src={`${process.env.PUBLIC_URL}/assets/images/icons8-dungeons-and-dragons-256.png`}
                         />
                         <span className='capitalD'>D</span>ungeon <span className='capitalD'>D</span>elver</Navbar.Brand>
+                        
                 </Container>
-                <Container>
+                <Container fluid>
+                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+                    <Navbar.Collapse id='responsive-navbar-nav'>
                     <Nav className="nav me-auto">
                         <Nav.Link className="nav-item" as={Link} to="/">Home</Nav.Link>
                         <Nav.Link className="nav-item" as={Link} to="/login">Login</Nav.Link>
                         <Nav.Link className="nav-item" as={Link} to="/signup">Sign Up</Nav.Link>
                     </Nav>
+                    </Navbar.Collapse>
                 </Container>
             </Navbar>
+            
         </div>
 
 
