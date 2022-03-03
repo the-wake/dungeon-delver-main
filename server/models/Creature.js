@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { boolean } = require('yargs');
 
 // This auto-generates _id, right?
 const creatureSchema = new Schema({
@@ -34,6 +33,6 @@ const creatureSchema = new Schema({
   }
 });
 
-const Creature = model('Creature', creatureSchema);
+const Creature = model('creature', creatureSchema);
 
 module.export = Creature;

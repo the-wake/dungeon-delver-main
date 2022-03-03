@@ -1,35 +1,41 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  input BookInput {
-    authors: [String]
-    description: String
-    title: String!
-    bookId: String! 
-    image: String
-    link: String
-  }
 
   type User {
     _id: ID
-    username: String
-    email: String
-    bookCount: Int
-    savedBooks: [Book]!
+    userName: String!
+    email: String!
+    campaigns: [Campaign]
   }
 
-  type Book {
-    bookId: String!
-    authors: [String]
-    description: String!
-    title: String!
-    image: String
-    link: String
+  type Campaign {
+    name: String
+    is_active: Boolean 
   }
 
-  type Auth {
-    token: ID!
-    user: User
+  type Dungeon {
+    name: String
+    is_active: Boolean
+    campaign: Campaign    
+  }
+
+  type Room {
+    name: String
+    blurb: String
+    is_active: Boolean
+    dungeon: Dungeon
+    
+  }
+
+  type Creature {
+    name: String
+    hp: Number
+    loot: String
+    key_npc: Boolean
+    is_alive: Boolean
+    is_active: Boolean
+    room: Room
   }
 
   type Query {
