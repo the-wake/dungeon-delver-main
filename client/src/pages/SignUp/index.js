@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Form, Button, Container} from 'react-bootstrap';
+
 import "./style.css";
 
 
@@ -53,22 +53,21 @@ const SignUp = () => {
     };
 
     return (
-
         <Container>
             <div className='signUp'>
-            
+
                 <Form onSubmit={handleFormSubmit}>
                     <Form.Group size="lg" className="mb-3" controlId="formBasicUsername">
-                <div>
-                    {/* test validation */}
-            {submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null}
-            </div>
+                        <div>
+                            {/* test validation */}
+                            {submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null}
+                        </div>
                         <Form.Label>Username</Form.Label>
                         <Form.Control
                             autoFocus
                             onChange={handleChange}
                             value={signUpState.name}
-                            id="username"
+                            // id="username"
                             className="form-input"
                             type="text"
                             placeholder="Username"
@@ -80,11 +79,11 @@ const SignUp = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
-                      
+
                         <Form.Control
                             onChange={handleChange}
                             value={signUpState.email}
-                            id="email"
+                            // id="email"
                             className="form-input"
                             type="email"
                             placeholder="Email"
@@ -93,11 +92,11 @@ const SignUp = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                      
+
                         <Form.Control
                             onChange={handleChange}
                             value={signUpState.password}
-                            id="password"
+                            // id="password"
                             className="form-input"
                             type="password"
                             placeholder="*******"
@@ -108,6 +107,7 @@ const SignUp = () => {
                         Submit
                     </Button>
                 </Form>
+
             </div>
         </Container>
     );
