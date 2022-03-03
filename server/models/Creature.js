@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { boolean } = require('yargs');
 
 // This auto-generates _id, right?
 const creatureSchema = new Schema({

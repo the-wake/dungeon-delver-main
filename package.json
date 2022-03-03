@@ -22,5 +22,8 @@
   "homepage": "https://github.com/the-wake/dungeon-delver#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "mongoose": "^6.2.4"
   }
 }
