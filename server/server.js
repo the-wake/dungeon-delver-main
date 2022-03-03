@@ -9,13 +9,14 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 
+const app = express();
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 
 async function startApolloServer() {
-  const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,
@@ -26,9 +27,9 @@ async function startApolloServer() {
       // process.env.NODE_ENV === 'production'
       // ? ApolloServerPluginLandingPageDisabled()
       // : ApolloServerPluginLandingPageGraphQLPlayground(),
-      ],
+    ],
   });
-  
+
   await server.start();
 
   // Additional middleware can be mounted at this point to run before Apollo.
