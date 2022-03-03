@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
       <h1>Hello.</h1>
     </div>
   )
+
 }
 
 export default Home;
