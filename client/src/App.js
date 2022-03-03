@@ -10,6 +10,10 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import LandingPage from './pages/LandingPage';
+import Campaigns from './pages/Campaigns';
+import Dungeons from './pages/Dungeons';
+import Creatures from './pages/Creatures';
 
 
 function App() {
@@ -19,8 +23,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="login" element={<Login/>} />
-        <Route path="signup" element={<SignUp/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/landingpage" element={<LandingPage/>} />
+        <Route path="/campaigns" element={<Campaigns/>} />
+        <Route path="/dungeons" element={<Dungeons/>} />
+        <Route path="/creatures" element={<Creatures/>} />
       </Routes>
      <Footer />
     </div>
