@@ -19,6 +19,6 @@ const dungeonSchema = new Schema({
   }
 });
 
-const Dungeon = model('Dungeon', dungeonSchema);
+const Dungeon = model('dungeon', dungeonSchema);
 
 module.export = Dungeon;

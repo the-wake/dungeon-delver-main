@@ -22,6 +22,6 @@ const roomSchema = new Schema({
   }
 });
 
-const Room = model('Room', roomSchema);
+const Room = model('room', roomSchema);
 
 module.export = Room;
