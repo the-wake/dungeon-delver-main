@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-// const { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } = require('apollo-server-core');
+const { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } = require('apollo-server-core');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth.js');
 const http = require('http');
@@ -10,18 +10,19 @@ const path = require('path');
 // const PORT = process.env.PORT || 3001;
 
 
-async function startApolloServer(typeDefs, resolvers) {
+async function startApolloServer() {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware,
-    // plugins: [ApolloServerPluginDrainHttpServer({ httpServer }),
-    //   // process.env.NODE_ENV === 'production'
-    //   // ? ApolloServerPluginLandingPageDisabled()
-    //   // : ApolloServerPluginLandingPageGraphQLPlayground(),
-    //   ],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer }),
+      // Uncomment these lines if you want to return to the GraphQL playground instead of the sandbox.
+      // process.env.NODE_ENV === 'production'
+      // ? ApolloServerPluginLandingPageDisabled()
+      // : ApolloServerPluginLandingPageGraphQLPlayground(),
+      ],
   });
   
   await server.start();
@@ -49,19 +50,10 @@ async function startApolloServer(typeDefs, resolvers) {
   return { server, app };
 }
 
-startApolloServer(typeDefs, resolvers);
+startApolloServer();
 
 // server.applyMiddleware({ app });
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '../client/build')));
 // }
-
-
-
-// db.once('open', () => {
-//   app.listen(PORT, () => {
-//     console.log(`API server running on port ${PORT}!`);
-//     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-//   });
-// });
