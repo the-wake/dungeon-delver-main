@@ -12,7 +12,7 @@ const NavBar = () => {
                 <Container fluid>
                     <Navbar.Brand className="nav-brand" href="/">
                        <img className="emblem"
-                            src={`${process.env.PUBLIC_URL}/assets/images/icons8-dungeons-and-dragons-256.png`} alt="Dungeons and Dragons icon"
+                            src={`${process.env.PUBLIC_URL}/assets/images/icons8-dungeons-and-dragons-512.png`} alt="Dungeons and Dragons icon"
                         />
                         <span className='capitalD'>D</span>ungeon <span className='capitalD'>D</span>elver</Navbar.Brand>
                         

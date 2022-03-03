@@ -1,6 +1,8 @@
+import "./style.css";
+
 const Footer = () => {
     return (
-        <footer className="text-center">
+        <footer aria-label="footer" className="text-center">
             <p>Copyright © 2022 | DungeonDelver</p>
         </footer>
     );

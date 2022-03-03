@@ -1,0 +1,76 @@
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+
+.form-container {
+  margin-top: 20px;
+  width: 360px;
+  background-color: white;
+  margin: auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 10px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.success-message {
+  font-family: "Roboto", sans-serif;
+  background-color: #3f89f8;
+  padding: 15px;
+  color: white;
+}
+
+.form-input {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+input {
+  background: #f2f2f2;
+}
+
+.error {
+  border-style: solid;
+  border: 2px solid #ffa4a4;
+}
+
+button {
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+} */
+
+
+@media all and (min-width: 480px) {
+    .signUp {
+      padding: 60px 0;
+    }
+  
+    .signUp form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .success-message {
+        font-family: "Roboto", sans-serif;
+       
+        padding: 15px;
+        color: rgb(76, 74, 216);
+      }
+    
+      .error {
+        border-style: solid;
+        border: 2px solid #ffa4a4;
+      }
+  }
