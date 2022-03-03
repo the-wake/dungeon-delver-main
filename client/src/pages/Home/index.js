@@ -1,12 +1,13 @@
-import { Button, Container} from 'react-bootstrap';
+
+import React from 'react';
 
 const Home = () => {
-    return ( 
-      <div>
-       
-   
-      </div>
-     );
+  return (
+    <div>
+      <h1>Hello.</h1>
+    </div>
+  )
+
 }
- 
+
 export default Home;
