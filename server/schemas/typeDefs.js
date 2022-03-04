@@ -9,32 +9,37 @@ const typeDefs = gql`
   }
 
   type Campaign {
-    name: String
-    is_active: Boolean 
+    name: String!
+    is_active: Boolean !
   }
 
   type Dungeon {
-    name: String
-    is_active: Boolean
-    campaign: Campaign    
+    name: String!
+    is_active: Boolean!
+    campaign: Campaign!
   }
 
   type Room {
-    name: String
+    name: String!
     blurb: String
-    is_active: Boolean
-    dungeon: Dungeon
+    is_active: Boolean!
+    dungeon: Dungeon!
     
   }
 
   type Creature {
     name: String
-    hp: Number
+    hp: Int
     loot: String
     key_npc: Boolean
-    is_alive: Boolean
-    is_active: Boolean
+    is_alive: Boolean!
+    is_active: Boolean!
     room: Room
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   type Query {

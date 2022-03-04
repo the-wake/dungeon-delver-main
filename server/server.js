@@ -11,10 +11,19 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+app.get(express.urlencoded({ extended: false }));
+app.get(express.json());
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+// The wildcard route has been throwing some errors, so it's disabled for now.
+// app.get('*');
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
 
 async function startApolloServer() {
   const httpServer = http.createServer(app);
@@ -33,15 +42,6 @@ async function startApolloServer() {
   await server.start();
 
   // Additional middleware can be mounted at this point to run before Apollo.
-
-  // app.get(express.urlencoded({ extended: false }));
-  // app.get(express.json());
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-
-  // app.get('*');
 
   // Mount Apollo middleware here.
   server.applyMiddleware({ app, path: '/graphql' });
