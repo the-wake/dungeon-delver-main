@@ -8,7 +8,7 @@ export const ADD_CAMPAIGN = gql`
         }
     }`;
 
-export const EDIT_CAMPAIGN = gql``
+// export const EDIT_CAMPAIGN = gql``
   
 export const REMOVE_CAMPAIGN = gql`
     mutation removeCampaign($campaign: String!) {
@@ -30,7 +30,7 @@ export const ADD_DUNGEON = gql`
         }
     }`;
 
-export const EDIT_DUNGEON = gql``
+// export const EDIT_DUNGEON = gql``
 
 export const REMOVE_DUNGEON = gql`
     mutation removeDungeon($dungeon: String!) {
@@ -55,7 +55,7 @@ export const ADD_ROOM = gql`
         }
     }`;
 
-export const EDIT_ROOM = gql``
+// export const EDIT_ROOM = gql``
 
 export const REMOVE_ROOM = gql`
     mutation removeRoom($room: String!) {
@@ -88,7 +88,7 @@ export const ADD_CREATURE = gql`
         }
     }`;
 
-export const EDIT_CREATURE = gql``
+// export const EDIT_CREATURE = gql``
 
 export const REMOVE_CREATURE = gql`
     mutation removeCreature($creature: String!) {
