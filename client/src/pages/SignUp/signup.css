@@ -19,3 +19,9 @@
         border: 2px solid #ffa4a4;
       }
   }
+
+      .dice {
+        margin: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
