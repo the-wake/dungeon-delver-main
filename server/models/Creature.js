@@ -30,9 +30,13 @@ const creatureSchema = new Schema({
     type: Boolean,
     required: true,
     default: true,
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
-const Creature = model('creature', creatureSchema);
+const Creature = model('Creature', creatureSchema);
 
-module.export = Creature;
+module.exports = Creature;
