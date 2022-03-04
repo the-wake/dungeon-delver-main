@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import Auth from '../../utils/auth'
 
-import "./style.css"
+import "./navbar.css"
 
 
 const NavBar = () => {
