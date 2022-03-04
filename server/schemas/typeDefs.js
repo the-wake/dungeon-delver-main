@@ -8,6 +8,11 @@ const typeDefs = gql`
     campaigns: [Campaign]
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Campaign {
     name: String
     is_active: Boolean 
@@ -29,7 +34,7 @@ const typeDefs = gql`
 
   type Creature {
     name: String
-    hp: Number
+    hp: Int
     loot: String
     key_npc: Boolean
     is_alive: Boolean
