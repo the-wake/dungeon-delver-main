@@ -1,14 +1,20 @@
 import { gql } from '@apollo/client';
 
 export const ADD_CAMPAIGN = gql`
-    mutation addCampaign($name: String!, $is_active: Boolean) {
+    mutation addCampaign($name: String!, $is_active: Boolean!) {
         addCampaign(name: $name, is_active: $is_active) {
             name
             is_active
         }
     }`;
 
-export const EDIT_CAMPAIGN = gql``
+// export const EDIT_CAMPAIGN = gql`
+//     mutation editCampaign($_id, Int!, $name: String, $is_active: Boolean) {
+//         editCampaign(id: $_id, name: $name, is_active: $is_active) {
+//             name
+//             is_active
+//         }
+    // }`
   
 export const REMOVE_CAMPAIGN = gql`
     mutation removeCampaign($campaign: String!) {
@@ -30,7 +36,8 @@ export const ADD_DUNGEON = gql`
         }
     }`;
 
-export const EDIT_DUNGEON = gql``
+// export const EDIT_DUNGEON = gql`
+//     mutation editDungeon()`
 
 export const REMOVE_DUNGEON = gql`
     mutation removeDungeon($dungeon: String!) {
@@ -55,7 +62,7 @@ export const ADD_ROOM = gql`
         }
     }`;
 
-export const EDIT_ROOM = gql``
+// export const EDIT_ROOM = gql``
 
 export const REMOVE_ROOM = gql`
     mutation removeRoom($room: String!) {
@@ -88,7 +95,7 @@ export const ADD_CREATURE = gql`
         }
     }`;
 
-export const EDIT_CREATURE = gql``
+// export const EDIT_CREATURE = gql``
 
 export const REMOVE_CREATURE = gql`
     mutation removeCreature($creature: String!) {
