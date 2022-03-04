@@ -1,0 +1,60 @@
+* {
+    -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+  }
+
+#firstJumbo {
+    background-image: url(../../../public/assets/images/wallpaper-5815589_1280.png);
+    background-size: cover;
+    -webkit-background-composite: cover;
+    min-height: 400px;
+    background-repeat: no-repeat;
+    color: black;
+    /* box-shadow: 0 4px 2px -2px rgb(5, 0, 0) inset; */
+    /* box-shadow: inset 0 8px 6px -6px black; */
+
+}
+
+#secondJumbo {
+    background-image: url(../../../public/assets/images/Forest_alt_by_adampaquette-d966m8r.jpg);
+    background-size: cover;
+    -webkit-background-composite: cover;
+    min-height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    box-shadow: 0 0 6px 6px rgb(0, 0, 0) inset;
+}
+
+
+#thirdJumbo {
+    background-image: url(../../../public/assets/images/fantasy-5201844_1280.png);
+    background-size: cover;
+    -webkit-background-composite: cover;
+    min-height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    box-shadow: 0 0 6px 6px rgb(0, 0, 0) inset;
+}
+
+
+#fourthJumbo {
+    background-image: url(../../../public/assets/images/1200px-Environments-22-cave.png);
+    background-size: cover;
+    -webkit-background-composite: cover;
+    min-height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    box-shadow: 0 0 6px 6px rgb(0, 0, 0) inset;
+}
+
+.display-1 {
+    font-size: 200px;
+}
+

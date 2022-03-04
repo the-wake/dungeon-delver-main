@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button, Container} from 'react-bootstrap';
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import AuthService from '../../utils/auth';
 
+// client\src\utils\auth.js
 
-// import Auth from '../utils/auth';
 
 const Login = (props) => {
-
     const [loginState, setLoginState] = useState({
         email: '',
         password: ''
     });
+
+    const [login, { error, data }] = useMutation(LOGIN_USER);
 
   
 
@@ -29,17 +32,17 @@ const Login = (props) => {
     //submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(loginState);
+        console.log(loginState);
 
-        // try {
-        //     const { data } = login({
-        //         variables: { ...loginState },
-        //     });
+        try {
+            const { data } = await login({
+                variables: { ...loginState },
+            });
 
-        //     Auth.login(data.login.token);
-        // } catch (error) {
-        //     console.error(error);
-        // }
+            AuthService.login(data.login.token);
+        } catch (error) {
+            console.error(error);
+        }
 
         setLoginState({
             email: '',
@@ -57,6 +60,7 @@ const Login = (props) => {
         <div className='signUp'>
 
             <Form onSubmit={handleFormSubmit}>
+          <h2 className='text-center'>Login</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
 
@@ -82,13 +86,20 @@ const Login = (props) => {
                         type="password"
                         placeholder="*******"
                         name="password" />
+                {error ? (
+                    <div>
+                        <p className='error-text'>Please check your email or password</p>
+                    </div>
+                ) : null}        
                 </Form.Group>
 
                 <Button variant="primary" block-size="lg" type="submit">
                     Submit
                 </Button>
+                <Container className='mt-3'>
+                <Link to="/signup">Sign up instead</Link>
+                </Container>
             </Form>
-
         </div>
     </Container>
 );
