@@ -53,7 +53,7 @@ const Login = (props) => {
             password: '',
         });
 
-        window.location = "/campaigns"
+        window.location = "/landingpage"
     };
 
 

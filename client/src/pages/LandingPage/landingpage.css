@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cormorant+Garamond&display=swap");
+
+h1, h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+}
+
+.selectCard {
+    margin: 0 auto;
+    max-width: 320px;
+}
