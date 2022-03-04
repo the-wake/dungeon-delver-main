@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import { Form, Button, Container} from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -11,20 +11,16 @@ import "./style.css";
 
 const SignUp = (props) => {
 
-    // let navigate = useNavigate();
-
-// useEffect(() => {
-//    if (loggedIn){
-//       return navigate("/");
-//    }
-// },[loggedIn]);
-
     const [signUpState, setSignUpState] = useState({
-        username: "",
+        username: '',
         email: '',
         password: ''
     });
-    const [addUser, {error, data }] = useMutation(ADD_USER);
+    const [addUser, { error, data }] = useMutation(ADD_USER);
+
+    const navigate = useNavigate();
+
+
 
     //test validation
     // const [valid, setValid] = useState(false);
@@ -45,21 +41,31 @@ const SignUp = (props) => {
         // console.log(signUpState);
 
         try {
-            const {data}  = await addUser({
+            const { data } = await addUser({
                 variables: { ...signUpState },
             });
             // console.log(data)
             AuthService.login(data.addUser.token);
+         
 
         } catch (error) {
             console.error(error);
         }
 
-        // if (signUpState.username && signUpState.email && signUpState.password) {
-        //     setValid(true);
-        // }
-        // setSubmitted(true);
+        //will redirect after sign up/log in
+        // window.location = "/campaigns"
+        
+    
     };
+
+    //to redirect user to the campaign page
+    // let navigate = useNavigate();
+    // useEffect(() => {
+    //     if (signUpState) {
+    //         return navigate("/campaigns");
+    //     }
+    // }, [navigate, signUpState]);
+
 
     return (
         <Container>
@@ -111,19 +117,19 @@ const SignUp = (props) => {
                             type="password"
                             placeholder="*******"
                             name="password" />
-                            {error ? (
-                    <div>
-                        <p className='error-text'>Please enter a valid email and password</p>
-                    </div>
-                ) : null}  
+                        {error ? (
+                            <div>
+                                <p className='error-text'>Please enter a valid email and password</p>
+                            </div>
+                        ) : null}
                     </Form.Group>
 
                     <Button variant="primary" block-size="lg" type="submit">
                         Submit
                     </Button>
                     <Container className='mt-3'>
-                <Link to="/login">Log in instead</Link>
-                </Container>
+                        <Link to="/login">Log in instead</Link>
+                    </Container>
                 </Form>
             </div>
         </Container>

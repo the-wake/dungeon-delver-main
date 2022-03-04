@@ -32,7 +32,6 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -43,7 +42,6 @@ const authLink = setContext((_, { headers }) => {
 
 
 const client = new ApolloClient({
-  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -64,6 +62,7 @@ function App() {
         <Route path="/campaigns" element={<Campaign/>} />
         <Route path="/dungeons" element={<Dungeon/>} />
         <Route path="/creatures" element={<Creatures/>} />
+        <Route path="*" element={<Home/>} />
       </Routes>
      <Footer />
     </div>
