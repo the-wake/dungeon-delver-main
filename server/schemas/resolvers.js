@@ -34,6 +34,9 @@ const resolvers = {
       console.log(rooms);
       return rooms;
     },
+    // getCreatures: async (parent, { room }, context) => {
+    //   const creatures = await Creature.find()
+    // }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -75,6 +78,11 @@ const resolvers = {
       const room = await Room.create({ name, blurb, dungeon, is_active, user });
       console.log(room);
       return room;
+    },
+    addCreature: async (parent, { name, room, hp, loot, key_npc, is_alive, is_active }, { user }) => {
+      const creature = await Creature.create({ name, room, hp, loot, key_npc, is_alive, is_active, user });
+      console.log (creature);
+      return creature;
     },
   },
 };

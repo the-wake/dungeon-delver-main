@@ -1,14 +1,20 @@
 import { gql } from '@apollo/client';
 
 export const ADD_CAMPAIGN = gql`
-    mutation addCampaign($name: String!, $is_active: Boolean) {
+    mutation addCampaign($name: String!, $is_active: Boolean!) {
         addCampaign(name: $name, is_active: $is_active) {
             name
             is_active
         }
     }`;
 
-// export const EDIT_CAMPAIGN = gql``
+// export const EDIT_CAMPAIGN = gql`
+//     mutation editCampaign($_id, Int!, $name: String, $is_active: Boolean) {
+//         editCampaign(id: $_id, name: $name, is_active: $is_active) {
+//             name
+//             is_active
+//         }
+    // }`
   
 export const REMOVE_CAMPAIGN = gql`
     mutation removeCampaign($campaign: String!) {
