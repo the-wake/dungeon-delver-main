@@ -17,7 +17,7 @@ const resolvers = {
     },
     getCampaigns: async (parent, args, context) => {
       console.log(context.user);
-      const campaigns = await Campaign.find({ user: context.user._id }).populate('user');
+      const campaigns = await Campaign.find({}).populate('user');
       // console.log(campaigns);
       return campaigns;
     }
