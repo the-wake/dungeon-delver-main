@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import Auth from '../../utils/auth'
 
 import "./style.css"
 
 
 const NavBar = () => {
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+    };
     return (
         <div>
             
@@ -22,13 +27,22 @@ const NavBar = () => {
                     <Navbar.Collapse id='responsive-navbar-nav'>
                     <Nav className="nav me-auto">
                         <Nav.Link className="nav-item" as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link className="nav-item" as={Link} to="/login">Login</Nav.Link>
+                        {/* <Nav.Link className="nav-item" as={Link} to="/login">Login</Nav.Link>
+                        <Nav.Link className="nav-item" as={Link} to="/signup">Sign Up</Nav.Link> */}
+                        {Auth.loggedIn() ? ( 
+                        <>
+                        <Nav.Link className="nav-item" onClick={logout} as={Link} to="/">Logout</Nav.Link>
+                        </>
+                        ) : (
+                            <>
+                            <Nav.Link className="nav-item" as={Link} to="/login">Login</Nav.Link>
                         <Nav.Link className="nav-item" as={Link} to="/signup">Sign Up</Nav.Link>
+                        </>
+                        )}
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            
         </div>
 
 
