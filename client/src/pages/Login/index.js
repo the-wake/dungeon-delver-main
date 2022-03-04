@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
-import { Form, Button, Container} from 'react-bootstrap';
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
+import { Link } from 'react-router-dom';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import AuthService from '../../utils/auth';
+
+import "./style.css";
 
 
-// import Auth from '../utils/auth';
+
+// client\src\utils\auth.js
+
 
 const Login = (props) => {
-
     const [loginState, setLoginState] = useState({
         email: '',
         password: ''
     });
 
-  
+    const [login, { error, data }] = useMutation(LOGIN_USER);
+
+
 
 
 
@@ -29,17 +36,17 @@ const Login = (props) => {
     //submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(loginState);
+        console.log(loginState);
 
-        // try {
-        //     const { data } = login({
-        //         variables: { ...loginState },
-        //     });
+        try {
+            const { data } = await login({
+                variables: { ...loginState },
+            });
 
-        //     Auth.login(data.login.token);
-        // } catch (error) {
-        //     console.error(error);
-        // }
+            AuthService.login(data.login.token);
+        } catch (error) {
+            console.error(error);
+        }
 
         setLoginState({
             email: '',
@@ -47,51 +54,66 @@ const Login = (props) => {
         });
     };
 
-    
-    
-    
-    
+
+
+
+
     return (
-        
-    <Container>
-        <div className='signUp'>
 
-            <Form onSubmit={handleFormSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
+        <Container>
+            <Row>
+                <Col>
+                <img className='wizard' src={`${process.env.PUBLIC_URL}/assets/images/wizard-4417430_1280.png`} alt="Great wizard" />
+                </Col>
 
-                    <Form.Control
-                        autoFocus
-                        onChange={handleChange}
-                        value={loginState.email}
-                        // id="email"
-                        className="form-input"
-                        type="email"
-                        placeholder="Email"
-                        name="email" />
-                </Form.Group>
+                <Col className='signUp'>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
 
-                    <Form.Control
-                        onChange={handleChange}
-                        value={loginState.password}
-                        // id="password"
-                        className="form-input"
-                        type="password"
-                        placeholder="*******"
-                        name="password" />
-                </Form.Group>
+                    <Form onSubmit={handleFormSubmit}>
+                        <h2 className='text-center'>Login</h2>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
 
-                <Button variant="primary" block-size="lg" type="submit">
-                    Submit
-                </Button>
-            </Form>
+                            <Form.Control
+                                autoFocus
+                                onChange={handleChange}
+                                value={loginState.email}
+                                // id="email"
+                                className="form-input"
+                                type="email"
+                                placeholder="Email"
+                                name="email" />
+                        </Form.Group>
 
-        </div>
-    </Container>
-);
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+
+                            <Form.Control
+                                onChange={handleChange}
+                                value={loginState.password}
+                                // id="password"
+                                className="form-input"
+                                type="password"
+                                placeholder="*******"
+                                name="password" />
+                            {error ? (
+                                <div>
+                                    <p className='error-text'>Please check your email or password</p>
+                                </div>
+                            ) : null}
+                        </Form.Group>
+
+                        <Button variant="primary" block-size="lg" type="submit">
+                            Submit
+                        </Button>
+                        <Container className='mt-3'>
+                            <Link to="/signup">Sign up instead</Link>
+                        </Container>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
+    );
 
 };
 
