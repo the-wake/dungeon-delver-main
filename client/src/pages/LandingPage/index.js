@@ -1,36 +1,39 @@
-import { Button, Container, Row, ListGroup } from 'react-bootstrap';
-
+import { Button, Container, Row, Col, ListGroup, Card } from 'react-bootstrap';
+import "./landingpage.css"
 
 const LandingPage = () => {
 
 
-    function alertClicked() {
-        alert('You clicked the third ListGroupItem');
-    }
 
 
     return (
-        <div>
-            <Container>
-                <h1>Welcome to dungeon delver!</h1>
-            </Container>
-            <Container>
-                <Row>
+        <Container>
+            <Col className="text-center mt-4">
+                <h1>Welcome, Dungeon Delver!</h1>
+            </Col>
+            <Col>
+                <Row className="text-center mt-3">
                     <h2>Where would you like to go?</h2>
                 </Row>
+                <Col>
+                <Card className='selectCard'>
                 <ListGroup defaultActiveKey="#link1">
                     <ListGroup.Item action href="/campaigns">
                         Campaigns
                     </ListGroup.Item>
+                    </ListGroup>
+                    </Card>
+                    <ListGroup> </ListGroup>
                     <ListGroup.Item action href="/dungeons">
                         Dungeons
                     </ListGroup.Item>
                     <ListGroup.Item action href="/creatures">
                         Creatures
                     </ListGroup.Item>
-                </ListGroup>
-            </Container>
-        </div>
+            
+                </Col>
+            </Col>
+        </Container>
     );
 }
 
