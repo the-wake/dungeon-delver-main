@@ -52,6 +52,8 @@ const Login = (props) => {
             email: '',
             password: '',
         });
+
+        window.location = "/campaigns"
     };
 
 

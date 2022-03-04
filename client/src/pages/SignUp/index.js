@@ -53,7 +53,7 @@ const SignUp = (props) => {
         }
 
         //will redirect after sign up/log in
-        // window.location = "/campaigns"
+        window.location = "/campaigns"
         
     
     };

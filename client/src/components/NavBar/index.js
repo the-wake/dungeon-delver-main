@@ -9,6 +9,7 @@ const NavBar = () => {
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
+        window.location = "/"
     };
     return (
         <div>
@@ -32,6 +33,7 @@ const NavBar = () => {
                         {Auth.loggedIn() ? ( 
                         <>
                         <Nav.Link className="nav-item" onClick={logout} as={Link} to="/">Logout</Nav.Link>
+                        <Nav.Link className="nav-item" as={Link} to="/campaigns">Campaigns</Nav.Link>
                         </>
                         ) : (
                             <>
