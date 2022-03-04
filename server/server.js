@@ -14,16 +14,16 @@ const app = express();
 app.get(express.urlencoded({ extended: false }));
 app.get(express.json());
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-
 // The wildcard route has been throwing some errors, so it's disabled for now.
 // app.get('*');
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 async function startApolloServer() {
   const httpServer = http.createServer(app);
