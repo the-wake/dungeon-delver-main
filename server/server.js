@@ -14,7 +14,7 @@ const app = express();
 app.get(express.urlencoded({ extended: false }));
 app.get(express.json());
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
