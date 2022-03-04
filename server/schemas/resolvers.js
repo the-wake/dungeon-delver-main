@@ -4,6 +4,11 @@ const { User, Campaign, Creature, Dungeon, Room } = require('../models');
 
 const resolvers = {
   Query: {
+    allUsers: async (parent, args) => {
+      const users = await User.find();
+      console.log(users);
+      return users;
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('campaigns');
@@ -40,11 +45,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
-
-
-// addUser: async (parent, args) => {
-//   console.log(args);
-//   const user = await new User({ username: args.username, email: args.email, password: args.password });
-//   // const token = signToken(user);
-//   return user.save();
