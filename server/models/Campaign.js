@@ -15,6 +15,6 @@ const campaignSchema = new Schema({
   }
 });
 
-const Campaign = model('Campaign', campaignSchema);
+const Campaign = model('campaign', campaignSchema);
 
 module.export = Campaign;

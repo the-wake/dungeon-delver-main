@@ -33,6 +33,6 @@ const creatureSchema = new Schema({
   }
 });
 
-const Creature = model('Creature', creatureSchema);
+const Creature = model('creature', creatureSchema);
 
 module.export = Creature;
