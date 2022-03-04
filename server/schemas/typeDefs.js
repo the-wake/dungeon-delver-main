@@ -1,16 +1,21 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  input UserInput {
+    username: String!
+    email: String!
+  }
+
   type User {
     _id: ID
     username: String!
     email: String!
-    campaigns: [Campaign]
   }
 
   type Campaign {
     name: String!
-    is_active: Boolean !
+    is_active: Boolean!
+    user: User
   }
 
   type Dungeon {
@@ -45,11 +50,13 @@ const typeDefs = gql`
   type Query {
     allUsers: [User]
     me: User
+    getCampaigns: [Campaign]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addCampaign(name: String!, is_active: Boolean!, user: ID!): Campaign
   }
 `;
 

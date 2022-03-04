@@ -15,6 +15,12 @@ const resolvers = {
       }
       throw new AuthenticationError('Please log in first.');
     },
+    getCampaigns: async (parent, args, context) => {
+      console.log(context.user);
+      const campaigns = await Campaign.find({ user: context.user._id }).populate('user');
+      // console.log(campaigns);
+      return campaigns;
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -41,6 +47,13 @@ const resolvers = {
 
       return { token, user };
     },
+    addCampaign: async (parent, args, context) => {
+      console.log(args);
+      const campaign = await Campaign.create(args);
+      // Change last arg to context.user.
+      console.log(campaign);
+      return campaign;
+    }
   }
 };
 

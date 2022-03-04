@@ -19,9 +19,13 @@ const roomSchema = new Schema({
     type: Boolean,
     required: true,
     default: true,
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
-const Room = model('room', roomSchema);
+const Room = model('Room', roomSchema);
 
-module.export = Room;
+module.exports = Room;

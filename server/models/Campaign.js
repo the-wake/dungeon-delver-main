@@ -5,16 +5,20 @@ const campaignSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     trim: true,
   },
   is_active: {
     type: Boolean,
     required: true,
     default: true,
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
-const Campaign = model('campaign', campaignSchema);
+const Campaign = model('Campaign', campaignSchema);
 
-module.export = Campaign;
+module.exports = Campaign;
