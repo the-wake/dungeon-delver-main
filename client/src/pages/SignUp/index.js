@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import AuthService from '../../utils/auth';
-import "./style.css";
+import "./signup.css";
 
 
 
@@ -53,7 +53,7 @@ const SignUp = (props) => {
         }
 
         //will redirect after sign up/log in
-        // window.location = "/campaigns"
+        window.location = "/landingpage"
         
     
     };

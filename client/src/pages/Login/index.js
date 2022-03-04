@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import AuthService from '../../utils/auth';
 
-import "./style.css";
+import "./login.css";
 
 
 
@@ -52,6 +52,8 @@ const Login = (props) => {
             email: '',
             password: '',
         });
+
+        window.location = "/landingpage"
     };
 
 

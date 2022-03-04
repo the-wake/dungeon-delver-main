@@ -1,0 +1,19 @@
+[
+    {
+        "username": "test",
+        "email": "test@test.com",
+        "password": "testtest1"
+    },
+
+    {
+        "username": "Cloud",
+        "email": "cloud@strife.com",
+        "password": "bustersword"
+    },
+
+    {
+        "username": "Donkey",
+        "email": "donkey@kong.com",
+        "password": "dixeyhasthecoolesthair"
+    }
+]
