@@ -8,11 +8,6 @@ const typeDefs = gql`
     campaigns: [Campaign]
   }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
-
   type Campaign {
     name: String!
     is_active: Boolean !
