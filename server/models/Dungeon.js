@@ -5,7 +5,7 @@ const dungeonSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     trim: true,
   },
   campaign: {
@@ -16,9 +16,13 @@ const dungeonSchema = new Schema({
     type: Boolean,
     required: true,
     default: true,
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
-const Dungeon = model('dungeon', dungeonSchema);
+const Dungeon = model('Dungeon', dungeonSchema);
 
-module.export = Dungeon;
+module.exports = Dungeon;

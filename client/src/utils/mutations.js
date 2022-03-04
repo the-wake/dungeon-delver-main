@@ -36,8 +36,7 @@ export const ADD_DUNGEON = gql`
         }
     }`;
 
-// export const EDIT_DUNGEON = gql`
-//     mutation editDungeon()`
+// export const EDIT_DUNGEON = gql``
 
 export const REMOVE_DUNGEON = gql`
     mutation removeDungeon($dungeon: String!) {

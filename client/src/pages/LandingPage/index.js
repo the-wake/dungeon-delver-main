@@ -1,8 +1,8 @@
 import { Button, Container, Row, Col, ListGroup, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import "./landingpage.css"
 
 const LandingPage = () => {
-
 
 
 
@@ -11,28 +11,36 @@ const LandingPage = () => {
             <Col className="text-center mt-4">
                 <h1>Welcome, Dungeon Delver!</h1>
             </Col>
-            <Col>
+            
                 <Row className="text-center mt-3">
                     <h2>Where would you like to go?</h2>
                 </Row>
-                <Col>
-                <Card className='selectCard'>
-                <ListGroup defaultActiveKey="#link1">
-                    <ListGroup.Item action href="/campaigns">
-                        Campaigns
-                    </ListGroup.Item>
-                    </ListGroup>
+                <Container className="mt-5 mb-5">
+                    <Row>
+                    <Col>
+                    <Link to="/campaigns">
+                    <Card className='selectCard text-center'>
+                      <span className='card-title my-auto red'>Campaigns</span>
                     </Card>
-                    <ListGroup> </ListGroup>
-                    <ListGroup.Item action href="/dungeons">
-                        Dungeons
-                    </ListGroup.Item>
-                    <ListGroup.Item action href="/creatures">
-                        Creatures
-                    </ListGroup.Item>
+                    </Link>
+                    </Col>
+                   <Col>
+                   <Link to="/dungeons">
+                    <Card className='selectCard text-center'>
+                      <span className='card-title my-auto blue'>Dungeons</span>
+                    </Card>
+                    </Link>
+                    </Col>
+                    <Col>
+                    <Link to="/creatures">
+                    <Card className='selectCard text-center'>
+                       <span className='card-title my-auto green'>Creatures</span>
+                    </Card>
+                    </Link>
+                    </Col>
+                    </Row>
+                </Container>
             
-                </Col>
-            </Col>
         </Container>
     );
 }
