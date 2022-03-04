@@ -2,6 +2,8 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth.js');
 const { User, Campaign, Creature, Dungeon, Room } = require('../models');
 
+// TODO: Add single-object lookups, creature routes, and modify routes.
+
 const resolvers = {
   Query: {
     allUsers: async (parent, args) => {
@@ -21,7 +23,7 @@ const resolvers = {
       // console.log(campaigns);
       return campaigns;
     },
-    // TODO: Search for campaign from current context when able.
+    // TODO: Search for campaign from current context when able?
     getDungeons: async (parent, args, context) => {
       const dungeons = await Dungeon.find({}).populate('user').populate('campaign');
       console.log(dungeons);
