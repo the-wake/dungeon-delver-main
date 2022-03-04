@@ -17,10 +17,21 @@ const resolvers = {
     },
     getCampaigns: async (parent, args, context) => {
       console.log(context.user);
-      const campaigns = await Campaign.find({}).populate('user');
+      const campaigns = await Campaign.find({ user: context.user._id }).populate('user');
       // console.log(campaigns);
       return campaigns;
-    }
+    },
+    // TODO: Search for campaign from current context when able.
+    getDungeons: async (parent, args, context) => {
+      const dungeons = await Dungeon.find({}).populate('user').populate('campaign');
+      console.log(dungeons);
+      return dungeons;
+    },
+    getRooms: async (parent, { dungeon }, context) => {
+      const rooms = await Room.find({ dungeon: dungeon, user: context.user._id }).populate('user').populate('dungeon');
+      console.log(rooms);
+      return rooms;
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -47,14 +58,23 @@ const resolvers = {
 
       return { token, user };
     },
-    addCampaign: async (parent, args, context) => {
-      console.log(args);
-      const campaign = await Campaign.create(args);
-      // Change last arg to context.user.
+    addCampaign: async (parent, { name, is_active }, { user }) => {
+      const campaign = await Campaign.create({ name, is_active, user });
       console.log(campaign);
       return campaign;
-    }
-  }
+    },
+    // Still need to get this to populate to the currently focused campaign.
+    addDungeon: async (parent, { name, is_active }, { user }) => {
+      const dungeon = await Dungeon.create({ name, is_active, user });
+      console.log(dungeon);
+      return dungeon;
+    },
+    addRoom: async (parent, { name, blurb, dungeon, is_active }, { user }) => {
+      const room = await Room.create({ name, blurb, dungeon, is_active, user });
+      console.log(room);
+      return room;
+    },
+  },
 };
 
 module.exports = resolvers;
