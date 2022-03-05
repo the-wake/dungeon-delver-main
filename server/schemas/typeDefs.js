@@ -34,12 +34,12 @@ const typeDefs = gql`
   type Creature {
     _id: ID!
     name: String!
+    room: Room
     hp: Int
     loot: String
     key_npc: Boolean!
     is_alive: Boolean!
     is_active: Boolean!
-    room: Room
     user: User!
   }
 
@@ -53,7 +53,12 @@ const typeDefs = gql`
     me: User
     getCampaigns: [Campaign]
     getDungeons: [Dungeon]
-    getRooms(dungeon: String!): [Room]
+    getRooms(dungeon: ID!): [Room]
+    getCreatures(room: ID!): [Creature]
+    getCampaign(campaignId: ID!): [Campaign]
+    getDungeon(dungeonId: ID!): [Dungeon]
+    getRoom(roomId: ID!): [Room]
+    getCreature(creatureId: ID!): [Creature]
   }
 
   type Mutation {
@@ -62,12 +67,15 @@ const typeDefs = gql`
     addCampaign(name: String!, is_active: Boolean!): Campaign
     addDungeon(name: String!, campaign: ID!, is_active: Boolean!): Dungeon
     addRoom(name: String!, blurb: String, dungeon: ID!, is_active: Boolean!): Room
-    addCreature(room: String!, name: String!, hp: Int!, loot: String, key_npc: Boolean, is_alive: Boolean!, is_active: Boolean!): Creature
+    addCreature(name: String!, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
+    editCampaign(_id: ID!, name: String, is_active: Boolean): Campaign
+    editDungeon(_id: ID!, name: String, is_active: Boolean): Dungeon
+    editRoom(_id: ID!, name: String, blurb: String, is_active: Boolean): Room
+    editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     removeCampaign: Campaign
     removeDungeon: Dungeon
     removeRoom: Room
     removeCreature: Creature
-    editCampaign(_id: Int!, name: String, is_active: Boolean): Campaign
   }
 `;
 
