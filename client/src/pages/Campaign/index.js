@@ -1,6 +1,6 @@
-import { Button, Container, Row, ListGroup } from 'react-bootstrap';
+import { Button, Container, Row, ListGroup, Col } from 'react-bootstrap';
 import { Navigate, useParams, Link } from 'react-router-dom';
-
+import "./campaign.css";
 import CampaignList from '../../components/CampaignList';
 
 import { QUERY_ME } from '../../utils/queries';
@@ -18,11 +18,11 @@ const Campaign = () => {
     // );
 
     return ( 
-        <div>
-        <Container>
+        <Container className='my-campaign-container'>
+        <Col>
             <h1>My Campaigns</h1>
-        </Container>
-        <Container>
+        </Col>
+        <Col>
             <Row>
         
             
@@ -38,15 +38,15 @@ const Campaign = () => {
                 </ListGroup.Item>
             </ListGroup>
             </Row>
-        </Container>
-        <Container>
+        </Col>
+        <Col>
             <Link to="/campaigns/new">
             <Button className="mt-4">
                 Create Campaign
             </Button>
             </Link>
+        </Col>
         </Container>
-    </div>
     );
 }
 

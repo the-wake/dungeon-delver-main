@@ -12,10 +12,10 @@ import { QUERY_CAMPAIGNS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const CampaignForm = () => {
+const CampaignForm = (props) => {
     const [campaignText, setCampaignText] = useState('');
 
-    const [addCampaign, { error }] = useMutation(ADD_CAMPAIGN, {
+    const [addCampaign, { error, data }] = useMutation(ADD_CAMPAIGN, {
         update(cache, { data: { addCampaign } }) {
             try {
                 const { campaigns } = cache.readQuery({ query: QUERY_CAMPAIGNS });
@@ -32,7 +32,7 @@ const CampaignForm = () => {
             const { me } = cache.readQuery({ query: QUERY_ME });
             cache.writeQuery({
                 query: QUERY_ME,
-                data: { me: { ...me, campaigns: [...me.thoughts, addCampaign] } },
+                data: { me: { ...me, campaigns: [...me.campaigns, addCampaign] } },
             });
         },
     });
@@ -44,8 +44,8 @@ const CampaignForm = () => {
             const { data } = await addCampaign({
                 variables: {
                     
-                    ...campaignText
-                    // name: campaignText,
+                    // ...campaignText
+                    name: campaignText,
                     // is_active: true
                     // ?: Auth.getProfile().data.username,
                 },
@@ -81,7 +81,7 @@ const CampaignForm = () => {
                                     <Form.Control
                                         autoFocus
                                         onChange={handleChange}
-                                        // value={loginState.email}
+                                        // value={campaignText}
                                         // id="text"
                                         className="form-input"
                                         type="text"
