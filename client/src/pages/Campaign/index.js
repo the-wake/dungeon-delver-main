@@ -1,4 +1,9 @@
 import { Button, Container, Row, ListGroup, Col } from 'react-bootstrap';
+
+import CampaignForm from '../CampaignForm';
+
+import { QUERY_CAMPAIGNS } from '../../utils/queries';
+
 import { Navigate, useParams, Link } from 'react-router-dom';
 import "./campaign.css";
 import CampaignList from '../../components/CampaignList';
@@ -11,16 +16,17 @@ import { useQuery } from '@apollo/client';
 
 
 const Campaign = () => {
+    const { loading, data } = useQuery(QUERY_CAMPAIGNS);
 
-
-    // const { loading, data } = useQuery(
-        
-    // );
+    const campaigns = data?.campaigns || [];
 
     return ( 
         <Container className='my-campaign-container'>
         <Col>
             <h1>My Campaigns</h1>
+            <div>
+               
+                </div>
         </Col>
         <Col>
             <Row>
