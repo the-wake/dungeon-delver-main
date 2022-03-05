@@ -22,6 +22,7 @@ import LandingPage from './pages/LandingPage';
 import Campaign from './pages/Campaign';
 import Dungeon from './pages/Dungeon';
 import Creatures from './pages/Creatures';
+import NewCampaign from './pages/CampaignForm';
 
 
 
@@ -60,6 +61,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/landingpage" element={<LandingPage/>} />
         <Route path="/campaigns" element={<Campaign/>} />
+        <Route path="/campaigns/new" element={<NewCampaign/>} />
         <Route path="/dungeons" element={<Dungeon/>} />
         <Route path="/creatures" element={<Creatures/>} />
         <Route path="*" element={<Home/>} />
