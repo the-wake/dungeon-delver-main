@@ -1,7 +1,10 @@
+import "./dungeon.css";
+import { Container } from 'react-bootstrap'
+
 const Dungeon = () => {
-    return ( <div>
+    return ( <Container className="my-dungeon-container">
         <h1>hello, this is the dungeon</h1>
-    </div> );
+        </Container>);
 }
  
 export default Dungeon;

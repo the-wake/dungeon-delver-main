@@ -42,17 +42,14 @@ const Login = (props) => {
             const { data } = await login({
                 variables: { ...loginState },
             });
-
             AuthService.login(data.login.token);
         } catch (error) {
             console.error(error);
         }
-
         setLoginState({
             email: '',
             password: '',
         });
-
         window.location = "/landingpage"
     };
 
