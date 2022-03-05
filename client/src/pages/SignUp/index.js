@@ -68,7 +68,7 @@ const SignUp = (props) => {
 
 
     return (
-        <Container>
+        <Container className='dice' style={{ backgroundImage: 'url(/assets/images/dice.png)' }}>
             <div className='signUp'>
 
                 <Form onSubmit={handleFormSubmit}>

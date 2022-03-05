@@ -21,7 +21,6 @@ const resolvers = {
       // console.log(campaigns);
       return campaigns;
     },
-    // TODO: Search for campaign from current context when able.
     getDungeons: async (parent, args, context) => {
       const dungeons = await Dungeon.find({}).populate('user').populate('campaign');
       console.log(dungeons);
