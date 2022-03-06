@@ -1,8 +1,36 @@
-import { Card, Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { REMOVE_CAMPAIGN } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 import "./campaignList.css";
 
 const CampaignList = ({campaigns}) => {
+    const [removeCampaign, { error }] = useMutation(REMOVE_CAMPAIGN, {
+        update(cache, { data: { removeCampaign } }) {
+            try {
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: { me: removeCampaign },
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    });
+
+    const handleRemoveCampaign = async (campaign) => {
+        try {
+            const { data } = await removeCampaign({
+                variables: { campaign },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+        console.log("right there", campaign)
+    };
+
     if (!campaigns.length) {
         return <h3>You have no campaigns yet...</h3>
     }
@@ -10,21 +38,6 @@ const CampaignList = ({campaigns}) => {
 
     return ( 
         <Container>
-            {/* <Row>
-            {
-                campaigns &&
-                campaigns.map((campaign) => (
-                    <Col>
-                    <Card
-                        
-                       key={campaign._id} className="campaign-card">
-                       <p>{campaign.name}</p> 
-                    
-                       
-                        </Card>
-                        </Col>
-                ))
-            } */}
 
 <Row xs={1} md={2} lg={3} className="g-4">
   {campaigns && campaigns.map((campaign) => (
@@ -36,12 +49,15 @@ const CampaignList = ({campaigns}) => {
           <Card.Text>
             We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
           </Card.Text>
+          {Auth.loggedIn && (  <Button 
+          onClick={() => handleRemoveCampaign(campaign)}
+          >X</Button> )}
+        
         </Card.Body>
       </Card>
     </Col>
   ))}
 </Row>
-{/* </Row> */}
         </Container>
      );
 }

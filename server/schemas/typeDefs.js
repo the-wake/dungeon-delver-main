@@ -72,6 +72,7 @@ const typeDefs = gql`
     editDungeon(_id: ID!, name: String, is_active: Boolean): Dungeon
     editRoom(_id: ID!, name: String, blurb: String, is_active: Boolean): Room
     editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
+    removeCampaign(_id: ID!): Campaign
     removeDungeon(_id: ID!): Dungeon
     removeRoom(_id: ID!): Room
     removeCreature(_id: ID!): Creature
