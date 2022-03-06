@@ -30,16 +30,21 @@ const SingleCampaign = () => {
             <Col>
                 <Row>
                     {/* <h1>{campaign}</h1> */}
+                    <h1>Campaign Name</h1>
                 </Row>
             </Col>
             <Col>
                 <Row>
-                    <Button>
+                    <Container>
+                    <Button className="mt-4 mb-4" size="lg">
                         Edit Campaign
                     </Button>
-                    <Button>
+                    </Container>
+                    <Container>
+                    <Button className="mb-3" size="lg">
                         Create Dungeon
                     </Button>
+                    </Container>
                 </Row>
             </Col>
             <Col>

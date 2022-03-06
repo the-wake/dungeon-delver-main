@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_CAMPAIGNS = gql`
-    query getCampaigns($name: String!) {
-        campaigns(name: $name) {
+    query getCampaigns {
+        campaigns {
             name
             is_active
         }
