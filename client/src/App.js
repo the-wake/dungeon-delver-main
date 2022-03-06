@@ -13,6 +13,8 @@ import { setContext } from '@apollo/client/link/context';
 //components:
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+//We probably don't need to import this, but it's nice to have a clean list for reference
+import NewCampaign from './components/CampaignForm';
 
 //pages:
 import Home from './pages/Home';
@@ -21,7 +23,6 @@ import SignUp from './pages/SignUp';
 import LandingPage from './pages/LandingPage';
 import Campaign from './pages/Campaign';
 import SingleCampaign from './pages/SingleCampaign';
-import NewCampaign from './pages/CampaignForm';
 import Dungeon from './pages/Dungeon';
 import SingleDungeon from './pages/SingleDungeon';
 import Creatures from './pages/Creatures';
@@ -65,7 +66,7 @@ function App() {
         <Route path="/landingpage" element={<LandingPage/>} />
         <Route path="/campaigns" element={<Campaign/>} />
         <Route path="/campaigns/:name" element={<SingleCampaign/>} />
-        <Route path="/campaigns/new" element={<NewCampaign/>} />
+        {/* <Route path="/campaigns/new" element={<NewCampaign/>} /> */}
         <Route path="/dungeons" element={<Dungeon/>} />
         <Route path="/dungeons/:name" element={<SingleDungeon/>} />
         <Route path="/creatures" element={<Creatures/>} />

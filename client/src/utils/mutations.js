@@ -37,7 +37,6 @@ export const EDIT_CAMPAIGN = gql`
     mutation editCampaign($_id: ID!, $name: String, $is_active: Boolean) {
         editCampaign(_id: $_id, name: $name, is_active: $is_active) {
             name
-            is_active
         }
     }
 `;

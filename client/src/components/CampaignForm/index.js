@@ -11,8 +11,8 @@ import { ADD_CAMPAIGN } from '../../utils/mutations';
 // import { QUERY_CAMPAIGNS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
-import Campaign from '../Campaign';
-import CampaignList from '../../components/CampaignList';
+import Campaign from '../../pages/Campaign';
+import CampaignList from '../CampaignList';
 
 const CampaignForm = (props) => {
     const [campaignText, setCampaignText] = useState('');
@@ -20,31 +20,31 @@ const CampaignForm = (props) => {
     const [addCampaign, { error, data }] = useMutation(ADD_CAMPAIGN);
 
     // const [addCampaign, { error, data }] = useMutation(ADD_CAMPAIGN, {
-        // update(cache, { data: { addCampaign } }) {
-        //     try {
-        //         const campaigns = cache.readQuery({ query: QUERY_CAMPAIGNS,
-        //         variables: {
-        //             name: campaignText,
-        //             is_active: true,
-        //             // ...campaignText
-        //         }
-        //         });
-        //         console.log("there", campaigns)
-        //         cache.writeQuery({
-        //             query: QUERY_CAMPAIGNS,
-        //             data: { campaigns: [addCampaign, campaigns] },
-        //         });
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
+    // update(cache, { data: { addCampaign } }) {
+    //     try {
+    //         const campaigns = cache.readQuery({ query: QUERY_CAMPAIGNS,
+    //         variables: {
+    //             name: campaignText,
+    //             is_active: true,
+    //             // ...campaignText
+    //         }
+    //         });
+    //         console.log("there", campaigns)
+    //         cache.writeQuery({
+    //             query: QUERY_CAMPAIGNS,
+    //             data: { campaigns: [addCampaign, campaigns] },
+    //         });
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
 
-        //     //update me object's cache
-        //     const me = cache.readQuery({ query: QUERY_ME });
-        //     cache.writeQuery({
-        //         query: QUERY_ME,
-        //         data: { me: { ...me, campaigns: [...me.campaigns, addCampaign] } },
-        //     });
-        // },
+    //     //update me object's cache
+    //     const me = cache.readQuery({ query: QUERY_ME });
+    //     cache.writeQuery({
+    //         query: QUERY_ME,
+    //         data: { me: { ...me, campaigns: [...me.campaigns, addCampaign] } },
+    //     });
+    // },
     // });
 
     const handleCampaignSubmit = async (event) => {
@@ -53,7 +53,7 @@ const CampaignForm = (props) => {
         try {
             const { data } = await addCampaign({
                 variables: {
-                    
+
                     // ...campaignText
                     name: campaignText,
                     is_active: true,
@@ -62,11 +62,11 @@ const CampaignForm = (props) => {
             });
             console.log("right here", data)
 
-            // setCampaignText('');
+            setCampaignText('');
 
             // window.location = "/campaigns"
-            
-            
+
+
         } catch (error) {
             console.error(error);
         }
@@ -100,7 +100,7 @@ const CampaignForm = (props) => {
                                         className="form-input"
                                         type="text"
                                         placeholder="Campaign name"
-                                        name="campaignText"/>
+                                        name="campaignText" />
                                     {error ? (
                                         <div>
                                             <p className='error-text'>Please enter a campaign name</p>
@@ -111,12 +111,10 @@ const CampaignForm = (props) => {
                         </Row>
                     </Container>
                     <Container>
-        
+
                         <Button onClick={handleCampaignSubmit} className="mt-4">
                             Add
                         </Button>
-
-                        {campaignText}
                     </Container>
                 </>
             ) : (

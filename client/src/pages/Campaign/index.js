@@ -1,6 +1,6 @@
 import { Button, Container, Row, ListGroup, Col } from 'react-bootstrap';
 
-import CampaignForm from '../CampaignForm';
+import CampaignForm from '../../components/CampaignForm';
 
 import { QUERY_CAMPAIGNS } from '../../utils/queries';
 
@@ -28,7 +28,7 @@ const Campaign = () => {
         // </h1>
         <Container className='my-campaign-container'>
         <Col>
-            <h1>My Campaigns</h1>
+            <h1 className="text-center">Campaigns</h1>
             {/* <div>
                {campaignText && campaigns.map((text) => (
                    <div key={campaigns._id} className="card">{campaigns}</div>
@@ -37,30 +37,12 @@ const Campaign = () => {
         </Col>
         <Col>
             <Row>
-        
-{/*             
-            <ListGroup defaultActiveKey="#link1">
-                <ListGroup.Item action href="">
-                 
-                </ListGroup.Item>
-                <ListGroup.Item action href="">
-                 
-                </ListGroup.Item>
-                <ListGroup.Item action href="">
-               
-                </ListGroup.Item>
-            </ListGroup> */}
             </Row>
         </Col>
-        <Col>
-            <Link to="/campaigns/new">
-            <Button className="mt-4">
-                Create Campaign
-            </Button>
-            </Link>
-        </Col>
+    
      <CampaignForm
      campaigns={campaigns}/>
+      <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
      <CampaignList
      campaigns={campaigns} />
         </Container>

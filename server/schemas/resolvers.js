@@ -279,6 +279,23 @@ const resolvers = {
       return creature;
     },
     // DELETE ROUTES
+    removeCampaign: async (parent, { _id }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Please log in first.');
+      };
+      console.log(user);
+
+      const campaign = await Campaign.findOneAndDelete({_id, user });
+      console.log(campaign)
+
+      if (!campaign) {
+        throw new AuthenticationError('Something went wrong.')
+      };
+
+      return campaign;
+    },
+
+
     removeDungeon: async (paprent, { _id }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
