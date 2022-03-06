@@ -64,7 +64,8 @@ const CampaignForm = (props) => {
 
             setCampaignText('');
 
-            // window.location = "/campaigns"
+            // I'd like to have this redirect to the new campaign when submitted, but I can't figure out how to capture the ID from the newly-added campaign (since it's not passed in the variables).
+            window.location = `/campaigns`
 
 
         } catch (error) {
@@ -89,7 +90,7 @@ const CampaignForm = (props) => {
                     </Container>
                     <Container>
                         <Row>
-                            <Form>
+                            <Form onSubmit={handleCampaignSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicText">
                                     <Form.Label></Form.Label>
                                     <Form.Control
@@ -103,18 +104,15 @@ const CampaignForm = (props) => {
                                         name="campaignText" />
                                     {error ? (
                                         <div>
-                                            <p className='error-text'>Please enter a campaign name</p>
+                                            <p className='error-text'>Please enter a unique campaign name</p>
                                         </div>
                                     ) : null}
+                                    <Button onClick={handleCampaignSubmit} className="mt-4">
+                                        Add
+                                    </Button>
                                 </Form.Group>
                             </Form>
                         </Row>
-                    </Container>
-                    <Container>
-
-                        <Button onClick={handleCampaignSubmit} className="mt-4">
-                            Add
-                        </Button>
                     </Container>
                 </>
             ) : (
