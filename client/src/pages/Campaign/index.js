@@ -22,33 +22,35 @@ const Campaign = () => {
     const campaigns = data?.getCampaigns || [];
     console.log(campaigns);
 
-    return ( 
-        // <h1>
-        //     Campaign Page.
-        // </h1>
+    return (
         <Container className='my-campaign-container'>
-        <Col>
-            <h1 className="text-center">Campaigns</h1>
-            {/* <div>
+            <Col>
+                {/* <div>
                {campaignText && campaigns.map((text) => (
                    <div key={campaigns._id} className="card">{campaigns}</div>
                ))}
                 </div> */}
-        </Col>
-        <Col>
-            <Row>
-            </Row>
-        </Col>
-    
-     <CampaignForm
-     campaigns={campaigns}/>
-      <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
-     <CampaignList
-     campaigns={campaigns} />
+            </Col>
+            <Col>
+                <Row>
+                </Row>
+            </Col>
+
+            <CampaignForm
+                campaigns={campaigns} />
+            <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
+            {loading ? (
+                <h2>
+                    Retrieving Data...
+                </h2>
+            ) : (
+            <CampaignList
+                campaigns={campaigns} />
+                )}
         </Container>
     );
 }
 
 
- 
+
 export default Campaign;

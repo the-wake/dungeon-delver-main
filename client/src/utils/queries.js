@@ -6,6 +6,10 @@ export const QUERY_CAMPAIGNS = gql`
       _id
       name
       is_active
+      user {
+        _id  
+        username
+      }
     }
   }
 `;
