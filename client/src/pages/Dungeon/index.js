@@ -1,10 +1,18 @@
 import "./dungeon.css";
-import { Container } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 
 const Dungeon = () => {
-    return ( <Container className="my-dungeon-container">
-        <h1>hello, this is the dungeon</h1>
-        </Container>);
+    return ( <Container className='my-dungeon-container'>
+    <Col>
+        <h1 className="text-center">Dungeons</h1>
+    </Col>
+    <Col>
+        <Row>
+        </Row>
+    </Col>
+    
+    </Container>);
+
 }
  
 export default Dungeon;

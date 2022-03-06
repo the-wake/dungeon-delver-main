@@ -1,12 +1,12 @@
 import { Button, Container, Row, ListGroup, Col } from 'react-bootstrap';
 
 import CampaignForm from '../../components/CampaignForm';
+import CampaignList from '../../components/CampaignList';
 
 import { QUERY_CAMPAIGNS } from '../../utils/queries';
 
 import { Navigate, useParams, Link } from 'react-router-dom';
 import "./campaign.css";
-import CampaignList from '../../components/CampaignList';
 
 import { QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
