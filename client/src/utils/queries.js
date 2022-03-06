@@ -29,8 +29,8 @@ export const QUERY_DUNGEONS = gql`
                 name
             }
         }
-    }`
-;
+    }
+`;
 
 export const QUERY_SINGLE_DUNGEON = gql`
     query getDungeons($_id: ID!) {
@@ -41,8 +41,8 @@ export const QUERY_SINGLE_DUNGEON = gql`
                 name
             }
         }
-    }`
-;
+    }
+`;
 
 export const QUERY_ROOMS = gql`
     query getRooms {
@@ -57,8 +57,8 @@ export const QUERY_ROOMS = gql`
                 }
             }
         }
-    }`
-;
+    }
+`;
 
 export const QUERY_SINGLE_ROOM = gql`
     query getRooms($_id: ID!) {
@@ -73,8 +73,8 @@ export const QUERY_SINGLE_ROOM = gql`
                 }
             }
         }
-    }`
-;
+    }
+`;
 
 export const QUERY_CREATURES = gql`
     query getCreatures {
@@ -94,8 +94,8 @@ export const QUERY_CREATURES = gql`
                 }
             }
         }
-    }`
-;
+    }
+`;
 
 export const QUERY_SINGLE_CREATURE = gql`
     query getCreatures($_id: ID!) {
@@ -115,8 +115,8 @@ export const QUERY_SINGLE_CREATURE = gql`
                 }
             }
         }
-    }`
-;
+    }
+`;
 
 
 export const QUERY_ME = gql`
