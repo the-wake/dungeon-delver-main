@@ -4,11 +4,18 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+import DungeonForm from '../../components/DungeonForm';
+import DungeonList from '../../components/DungeonList';
+import { QUERY_DUNGEONS } from "../../utils/queries";
 
-//this doesn't exist on the front-end yet
-// import { QUERY_SINGLE_DUNGEON } from '../utils/queries';
 
 const SingleCampaign = () => {
+
+    const { loading, data } = useQuery(QUERY_DUNGEONS);
+    console.log(data);
+
+    const dungeons = data?.getDungeons || [];
+    console.log(dungeons);
     // const { name } = useParams();
 
     // const { loading, data } = useQuery(QUERY_SINGLE_CAMPAIGN, {
@@ -26,32 +33,26 @@ const SingleCampaign = () => {
     // }
 
     return (
-        <Container>
+
+        <Container className='my-campaign-container'>
             <Col>
-                <Row>
-                    {/* <h1>{campaign}</h1> */}
-                    <h1>Campaign Name</h1>
-                </Row>
+                <h1 className="text-center">Specific campaign name</h1>
+                {/* <h1 className="text-center">{campaigns}</h1> */}
             </Col>
-            <Col>
-                <Row>
-                    <Container>
-                    <Button className="mt-4 mb-4" size="lg">
+            <Row>
+                <Col>
+                    <Button className="mt-4 mb-4 mx-2">
                         Edit Campaign
                     </Button>
-                    </Container>
-                    <Container>
-                    <Button className="mb-3" size="lg">
-                        Create Dungeon
-                    </Button>
-                    </Container>
-                </Row>
-            </Col>
-            <Col>
-                <Row>
-                    <h1>Dungeons</h1>
-                </Row>
-            </Col>
+                </Col>
+            </Row>
+            <Row>
+            </Row>
+
+            <DungeonForm dungeons={dungeons}></DungeonForm>
+            <h1 className="mb-3 mt-3 mx-3">My Dungeons</h1>
+            <DungeonList dungeons={dungeons}></DungeonList>
+
         </Container>
     );
 }

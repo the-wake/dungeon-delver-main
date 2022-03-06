@@ -11,8 +11,6 @@ import { ADD_CAMPAIGN } from '../../utils/mutations';
 // import { QUERY_CAMPAIGNS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
-import Campaign from '../../pages/Campaign';
-import CampaignList from '../CampaignList';
 
 const CampaignForm = (props) => {
     const [campaignText, setCampaignText] = useState('');
