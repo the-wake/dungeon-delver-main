@@ -17,21 +17,25 @@ import { useQuery } from '@apollo/client';
 
 const Campaign = () => {
     const { loading, data } = useQuery(QUERY_CAMPAIGNS);
+  console.log(data)
 
     const campaigns = data?.campaigns || [];
+    console.log(campaigns);
 
     return ( 
         <Container className='my-campaign-container'>
         <Col>
             <h1>My Campaigns</h1>
-            <div>
-               
-                </div>
+            {/* <div>
+               {campaignText && campaigns.map((text) => (
+                   <div key={campaigns._id} className="card">{campaigns}</div>
+               ))}
+                </div> */}
         </Col>
         <Col>
             <Row>
         
-            
+{/*             
             <ListGroup defaultActiveKey="#link1">
                 <ListGroup.Item action href="">
                  
@@ -42,7 +46,7 @@ const Campaign = () => {
                 <ListGroup.Item action href="">
                
                 </ListGroup.Item>
-            </ListGroup>
+            </ListGroup> */}
             </Row>
         </Col>
         <Col>
@@ -52,6 +56,10 @@ const Campaign = () => {
             </Button>
             </Link>
         </Col>
+     <CampaignForm
+     campaigns={campaigns}/>
+     <CampaignList
+     campaigns={campaigns} />
         </Container>
     );
 }
