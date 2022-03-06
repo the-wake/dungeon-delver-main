@@ -20,15 +20,15 @@ const CampaignList = ({campaigns}) => {
         },
     });
 
-    const handleRemoveCampaign = async (campaign) => {
+    const handleRemoveCampaign = async (_id) => {
         try {
             const { data } = await removeCampaign({
-                variables: { campaign },
+                variables: { _id },
             });
         } catch (err) {
             console.error(err);
         }
-        console.log("right there", campaign)
+        console.log("right there", _id)
     };
 
     if (!campaigns.length) {

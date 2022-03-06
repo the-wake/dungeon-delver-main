@@ -1,7 +1,5 @@
 import { gql } from '@apollo/client';
 
-<<<<<<< HEAD
-=======
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -25,7 +23,6 @@ export const ADD_USER = gql`
     }
   }
 `;
->>>>>>> main
 
 export const ADD_CAMPAIGN = gql`
     mutation addCampaign($name: String!, $is_active: Boolean!) {
@@ -36,23 +33,9 @@ export const ADD_CAMPAIGN = gql`
     }
 `;
 
-<<<<<<< HEAD
-// export const EDIT_CAMPAIGN = gql`
-//     mutation editCampaign($_id, Int!, $name: String, $is_active: Boolean) {
-//         editCampaign(id: $_id, name: $name, is_active: $is_active) {
-//             name
-//             is_active
-//         }
-    // }`
-  
-export const REMOVE_CAMPAIGN = gql`
-    mutation removeCampaign($_id: ID!) {
-        removeCampaign(_id: $_id) {
-=======
 export const EDIT_CAMPAIGN = gql`
     mutation editCampaign($_id: ID!, $name: String, $is_active: Boolean) {
         editCampaign(_id: $_id, name: $name, is_active: $is_active) {
->>>>>>> main
             name
         }
     }
