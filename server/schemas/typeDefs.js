@@ -69,8 +69,8 @@ const typeDefs = gql`
     addRoom(name: String!, blurb: String, dungeon: ID!, is_active: Boolean): Room
     addCreature(name: String!, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     editCampaign(_id: ID!, name: String, is_active: Boolean): Campaign
-    editDungeon(_id: ID!, name: String, is_active: Boolean): Dungeon
-    editRoom(_id: ID!, name: String, blurb: String, is_active: Boolean): Room
+    editDungeon(_id: ID!, name: String, campign: ID, is_active: Boolean): Dungeon
+    editRoom(_id: ID!, name: String, dungeon: ID, blurb: String, is_active: Boolean): Room
     editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     removeDungeon(_id: ID!): Dungeon
     removeRoom(_id: ID!): Room

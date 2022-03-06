@@ -158,7 +158,7 @@ const resolvers = {
       };
 
       const token = signToken(user);
-      console.log(`Logged in as ${user.username} Copy the followint token into your GraphQL Headers as an Authentication key to validate your login on the backend.\n-----------------------------\nBearer ${token}`);
+      console.log(`Logged in as ${user.username} Copy the following token into your GraphQL Headers as an Authentication key to validate your login on the backend.\n-----------------------------\nBearer ${token}`);
       
       return { token, user };
     },

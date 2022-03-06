@@ -2,15 +2,19 @@ import React, { createContext, useContext } from 'react';
 
 export const CampaignContext = createContext();
 
-const CampaignProvider = (props) => {
-  const [currentCampaign, setCurrentCampaign] = useState({
-    campaignName: '',
-    campaignId: '',
+const SessionProvider = (props) => {
+  const [currentSessioon, setCurrentSession] = useState({
+    currentCampaign: '',
+    currentCampaignId: '',
+    currentDungeon: '',
+    currentDungeonId: '',
+    currentRoom: '',
+    currentRoomId: '',
   });
 
   return (
-    <CampaignContext.Provider value={{ currentCampaign: campaignName, campaignId }} {...props} />
+    <SessionContext.Provider value={{ currentSession: campaignName, campaignId }} {...props} />
   );
 };
 
-export default CampaignProvider;
+export default SessionProvider;
