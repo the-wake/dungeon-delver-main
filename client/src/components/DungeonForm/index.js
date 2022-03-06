@@ -24,7 +24,7 @@ const DungeonForm = (props) => {
             const { data } = await addDungeon({
                 variables: {
 
-                    // _id: _id,
+                    // _id: 5555,
                     name: dungeonText,
                     is_active: true,
                     user: Auth.getProfile().data.username,
