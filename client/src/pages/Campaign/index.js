@@ -17,12 +17,15 @@ import { useQuery } from '@apollo/client';
 
 const Campaign = () => {
     const { loading, data } = useQuery(QUERY_CAMPAIGNS);
-  console.log(data)
+    console.log(data);
 
-    const campaigns = data?.campaigns || [];
+    const campaigns = data?.getCampaigns || [];
     console.log(campaigns);
 
     return ( 
+        // <h1>
+        //     Campaign Page.
+        // </h1>
         <Container className='my-campaign-container'>
         <Col>
             <h1>My Campaigns</h1>
