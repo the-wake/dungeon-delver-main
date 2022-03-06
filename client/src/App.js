@@ -9,6 +9,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { ContextProvider } from './utils/SessionContext.js';
 
 //components:
 import NavBar from './components/NavBar';
