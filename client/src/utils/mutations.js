@@ -40,7 +40,7 @@ export const EDIT_CAMPAIGN = gql`
         }
     }
 `;
-  
+
 export const REMOVE_CAMPAIGN = gql`
     mutation removeCampaign($_id: ID!) {
         removeCampaign(_id: $_id) {
@@ -55,9 +55,6 @@ export const ADD_DUNGEON = gql`
             _id
             name
             is_active
-            campaign {
-                name
-            }
         }
     }
 `;
