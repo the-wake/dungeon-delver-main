@@ -57,8 +57,8 @@ export const QUERY_SINGLE_DUNGEON = gql`
 `;
 
 export const QUERY_ROOMS = gql`
-    query getRooms {
-        getRooms {
+    query getRooms($dungeon: ID!) {
+        getRooms(dungeon: $dungeon) {
             _id
             name
             blurb
@@ -66,10 +66,6 @@ export const QUERY_ROOMS = gql`
             dungeon {
                 _id
                 name
-                campaign {
-                    _id
-                    name
-                }
             }
         }
     }
@@ -85,10 +81,6 @@ export const QUERY_SINGLE_ROOM = gql`
             dungeon {
                 _id
                 name
-                campaign {
-                    _id
-                    name
-                }
             }
         }
     }
@@ -106,14 +98,6 @@ export const QUERY_CREATURES = gql`
             room {
                 _id
                 name
-                dungeon {
-                    _id
-                    name
-                    campaign {
-                        _id
-                        name
-                    }
-                }
             }
         }
     }
@@ -130,14 +114,6 @@ export const QUERY_SINGLE_CREATURE = gql`
             room {
                 _id
                 name
-                dungeon {
-                    _id
-                    name
-                    campaign {
-                        _id
-                        name
-                    }
-                }
             }
         }
     }
