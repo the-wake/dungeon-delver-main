@@ -42,12 +42,30 @@ const SingleDungeon = () => {
 
 
     return (
-        <Container>
+        <Container className='my-dungeon-container'>
             <Col>
-                <Row>
-                    <h1>Single Dungeon Page</h1>
-                </Row>
+                <h1 className="text-center">{dungeonData.name}</h1>
             </Col>
+            <Row>
+                <Col>
+                    <Button className="mt-4 mb-4 mx-2">
+                        Back
+                    </Button>
+                </Col>
+            </Row>
+
+            <Row>
+                <RoomForm rooms={rooms} dungeon={dungeonData}></RoomForm>
+                <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
+                {loading ? (
+                    <h2>
+                        Retrieving Data...
+                    </h2>
+                ) : (
+                    <RoomList rooms={rooms} dungeon={dungeonData}></RoomList>
+                )}
+            </Row>
+
         </Container>
     );
 }
