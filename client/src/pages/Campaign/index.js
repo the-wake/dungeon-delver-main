@@ -44,9 +44,9 @@ const Campaign = () => {
                     Retrieving Data...
                 </h2>
             ) : (
-            <CampaignList
-                campaigns={campaigns} />
-                )}
+                <CampaignList
+                    campaigns={campaigns} />
+            )}
         </Container>
     );
 }

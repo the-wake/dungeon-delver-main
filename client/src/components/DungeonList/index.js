@@ -2,6 +2,7 @@ import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import { useParams, useLocation } from 'react-router-dom';
 import { REMOVE_DUNGEON } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 import "./dungeonList.css";
@@ -30,13 +31,18 @@ const DungeonList = ({ dungeons, campaign }) => {
         }
     };
 
-    if (!dungeons.length) {
-        return <h3>You have no dungeons yet...</h3>
+    if (!campaign) {
+        return <h3>Please select a campaign first.</h3>
     }
-    console.log(dungeons);
-    console.log(campaign._id);
+
+    if (!dungeons.length) {
+        return <h3>You have no dungeons in this campaign.</h3>
+    }
+    // console.log(dungeons);
+    // console.log(campaign._id);
 
     const dungeonList = dungeons.filter(dungeon => dungeon.campaign._id === campaign._id);
+    console.log(dungeonList);
 
     return (
         <Container>
@@ -47,7 +53,7 @@ const DungeonList = ({ dungeons, campaign }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id} className="dungeon-title">{dungeon.name}</Card.Title>
+                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
                                 <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>

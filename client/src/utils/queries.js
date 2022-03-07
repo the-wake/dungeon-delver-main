@@ -27,6 +27,7 @@ export const QUERY_SINGLE_CAMPAIGN = gql`
 export const QUERY_DUNGEONS = gql`
     query getDungeons {
         getDungeons {
+            _id
             name
             is_active
             campaign {
@@ -40,9 +41,11 @@ export const QUERY_DUNGEONS = gql`
 export const QUERY_SINGLE_DUNGEON = gql`
     query getDungeons($_id: ID!) {
         getDungeon(_id: $_id) {
+            _id
             name
             is_active
             campaign {
+                _id
                 name
             }
         }
@@ -52,12 +55,15 @@ export const QUERY_SINGLE_DUNGEON = gql`
 export const QUERY_ROOMS = gql`
     query getRooms {
         getRooms {
+            _id
             name
             blurb
             is_active
             dungeon {
+                _id
                 name
                 campaign {
+                    _id
                     name
                 }
             }
@@ -68,12 +74,15 @@ export const QUERY_ROOMS = gql`
 export const QUERY_SINGLE_ROOM = gql`
     query getRooms($_id: ID!) {
         getRooms(_id: $_id) {
+            _id
             name
             blurb
             is_active
             dungeon {
+                _id
                 name
                 campaign {
+                    _id
                     name
                 }
             }
@@ -83,17 +92,21 @@ export const QUERY_SINGLE_ROOM = gql`
 
 export const QUERY_CREATURES = gql`
     query getCreatures {
-        creatures {
+        getCreatures {
+            _id
             hp
             loot
             key_npc
             is_alive
             is_active
-            rooms {
+            room {
+                _id
                 name
                 dungeon {
+                    _id
                     name
                     campaign {
+                        _id
                         name
                     }
                 }
@@ -110,11 +123,14 @@ export const QUERY_SINGLE_CREATURE = gql`
             key_npc
             is_alive
             is_active
-            rooms {
+            room {
+                _id
                 name
                 dungeon {
+                    _id
                     name
                     campaign {
+                        _id
                         name
                     }
                 }
@@ -131,9 +147,11 @@ export const QUERY_ME = gql`
       username
       email
       campaigns {
+        _id
         name
         is_active
-        dungeon {
+        dungeons {
+            _id
           name
         }
       }
