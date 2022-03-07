@@ -41,24 +41,24 @@ const RoomList = ({ rooms, dungeon }) => {
     // console.log(rooms);
     // console.log(dungeon._id);
 
-    const dungeonList = dungeons.filter(dungeon => dungeon.campaign._id === campaign._id);
-    console.log(dungeonList);
+    const roomList = rooms.filter(room => room.dungeon._id === dungeon._id);
+    console.log(roomList);
 
     return (
         <Container>
 
             <Row xs={1} md={2} lg={3} className="g-4">
-                {dungeonList && dungeonList.map((dungeon) => (
+                {roomList && roomList.map((room) => (
                     <Col>
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
+                                <Card.Title key={room._id} className="room-title"><Link to={`/rooms/${room._id}`} state={{ roomData: room }}>{room.name}</Link></Card.Title>
                                 <Card.Text>
-                                    We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
+                                    We can add a field for room description here. Need to add another field to ADD_ROOM.
                                 </Card.Text>
                                 {Auth.loggedIn && (<Button
-                                    onClick={() => handleRemoveDungeon(dungeon)}
+                                    onClick={() => handleRemoveRoom(room)}
                                 >X</Button>)}
                             </Card.Body>
                         </Card>
