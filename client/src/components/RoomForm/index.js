@@ -92,18 +92,15 @@ const RoomForm = (props) => {
                                     <Form.Group className="mb-3">
                                         <Form.Label>Associated Dungeon</Form.Label>
                                         <Form.Select>
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
+                                        <option>{props.dungeon._id}</option>
+                                        <option>{props.dungeon._id}</option>
+                                        <option>{props.dungeon._id}</option>
                                         </Form.Select>
-                                            {/* autoFocus
+                                        {/* <Form.Control
                                             onChange={handleChange}
-                                            value={roomText.name}
-                                            // id="text"
-                                            className="form-input"
-                                            type="text"
-                                            placeholder="Room name"
-                                            name="roomText" /> */}
+                                            value={dungeonOption.name}
+                                    
+                                            ></Form.Control> */}
                                         {error ? (
                                             <div>
                                                 <p className='error-text'>Please select a dungeon</p>
