@@ -34,6 +34,10 @@ export const QUERY_DUNGEONS = gql`
                 _id
                 name
             }
+            user {
+                _id
+                username
+            }
         }
     }
 `;

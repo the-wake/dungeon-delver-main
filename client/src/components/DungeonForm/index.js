@@ -27,7 +27,7 @@ const DungeonForm = (props) => {
                     name: dungeonText,
                     campaign: props.campaign._id,
                     is_active: true,
-                    user: Auth.getProfile().data.username,
+                    user: Auth.getProfile(),
                 },
             });
             console.log("right here", data)
@@ -35,7 +35,7 @@ const DungeonForm = (props) => {
             setDungeonText('');
 
             window.location.reload();
-
+            
 
         } catch (error) {
             console.error(error);
