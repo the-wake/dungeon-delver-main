@@ -49,12 +49,18 @@ const SingleCampaign = () => {
                     </Button>
                 </Col>
             </Row>
-            <Row>
-            </Row>
 
-            <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
-            <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
-            <DungeonList dungeons={dungeons} campaign={campaignData}></DungeonList>
+            <Row>
+                <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
+                <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
+                {loading ? (
+                    <h2>
+                        Retrieving Data...
+                    </h2>
+                ) : (
+                    <DungeonList dungeons={dungeons} campaign={campaignData}></DungeonList>
+                )}
+            </Row>
 
         </Container>
     );

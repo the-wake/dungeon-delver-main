@@ -25,15 +25,15 @@ const SingleDungeon = () => {
     // }
 
 
-    return ( 
+    return (
         <Container>
             <Col>
-            <Row>
-
-            </Row>
+                <Row>
+                    <h1>Single Dungeon Page</h1>
+                </Row>
             </Col>
         </Container>
-     );
+    );
 }
- 
+
 export default SingleDungeon;
