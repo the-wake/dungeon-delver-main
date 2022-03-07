@@ -29,7 +29,8 @@ export const QUERY_DUNGEONS = gql`
         getDungeons {
             name
             is_active
-            campaigns {
+            campaign {
+                _id
                 name
             }
         }
@@ -41,7 +42,7 @@ export const QUERY_SINGLE_DUNGEON = gql`
         getDungeon(_id: $_id) {
             name
             is_active
-            campaigns {
+            campaign {
                 name
             }
         }
@@ -56,7 +57,7 @@ export const QUERY_ROOMS = gql`
             is_active
             dungeon {
                 name
-                campaigns {
+                campaign {
                     name
                 }
             }
@@ -72,7 +73,7 @@ export const QUERY_SINGLE_ROOM = gql`
             is_active
             dungeon {
                 name
-                campaigns {
+                campaign {
                     name
                 }
             }
@@ -90,9 +91,9 @@ export const QUERY_CREATURES = gql`
             is_active
             rooms {
                 name
-                dungeons {
+                dungeon {
                     name
-                    campaigns {
+                    campaign {
                         name
                     }
                 }
@@ -111,9 +112,9 @@ export const QUERY_SINGLE_CREATURE = gql`
             is_active
             rooms {
                 name
-                dungeons {
+                dungeon {
                     name
-                    campaigns {
+                    campaign {
                         name
                     }
                 }
@@ -132,7 +133,7 @@ export const QUERY_ME = gql`
       campaigns {
         name
         is_active
-        dungeons {
+        dungeon {
           name
         }
       }
