@@ -1,11 +1,27 @@
 import "./singleDungeon.css";
-import { Col, Container, Row } from "react-bootstrap";
 
+import { Container, Col, Row, Button } from "react-bootstrap";
 
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+import RoomForm from '../../components/DungeonForm';
+import RoomList from '../../components/DungeonList';
+import { QUERY_ROOMS } from "../../utils/queries";
+
+
+
 const SingleDungeon = () => {
+
+    const location = useLocation();
+    const { dungeonData } = location.state;
+
+    // console.log(dungeonData);
+
+    const { loading, data } = useQuery(QUERY_ROOMS);
+    console.log(data);
+
+    const rooms = data?.getRooms || [];
 
 
     // const { name } = useParams();
