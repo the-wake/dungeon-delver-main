@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 
 //bootstrap components
-import { Button, Container, Row, Form} from 'react-bootstrap';
+import { Button, Container, Row, Form } from 'react-bootstrap';
 
 //actions
 import { ADD_ROOM } from '../../utils/mutations';
