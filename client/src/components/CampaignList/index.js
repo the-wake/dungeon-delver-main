@@ -32,7 +32,7 @@ const CampaignList = ({ campaigns }) => {
   };
 
   if (!campaigns.length) {
-    return <h3>You have no campaigns yet...</h3>
+    return <h4>You have no campaigns yet...</h4>
   }
 
   // Find out how to capture change in state in React Router 6 and pass that in useEffect function.
@@ -42,12 +42,12 @@ const CampaignList = ({ campaigns }) => {
     <Container>
 
       <Row xs={1} md={2} lg={3} className="g-4">
-        {campaigns && campaigns.map((campaign) => (
-          <Col>
+        {campaigns && campaigns.map((campaign, pos) => (
+          <Col key={pos}>
             <Card>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
-                <Card.Title key={campaign._id} className="campaign-title"><Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link></Card.Title>
+                <Card.Title className="campaign-title"><Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link></Card.Title>
                 <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
                 </Card.Text>
