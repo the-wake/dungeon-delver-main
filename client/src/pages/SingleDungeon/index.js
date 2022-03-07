@@ -5,8 +5,8 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import RoomForm from '../../components/DungeonForm';
-import RoomList from '../../components/DungeonList';
+import RoomForm from '../../components/RoomForm';
+import RoomList from '../../components/RoomList';
 import { QUERY_ROOMS } from "../../utils/queries";
 import { Link } from 'react-router-dom';
 
@@ -65,7 +65,7 @@ const SingleDungeon = () => {
             </Row>
 
             <Row>
-                {/* <RoomForm rooms={rooms} dungeon={dungeonData}></RoomForm> */}
+                <RoomForm rooms={rooms} dungeon={dungeonData}></RoomForm>
                 <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
                 {loading ? (
                     <h2>
