@@ -48,8 +48,8 @@ const DungeonList = ({ dungeons, campaign }) => {
         <Container>
 
             <Row xs={1} md={2} lg={3} className="g-4">
-                {dungeonList && dungeonList.map((dungeon) => (
-                    <Col>
+                {dungeonList && dungeonList.map((dungeon, pos) => (
+                    <Col key={pos}>
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>

@@ -42,12 +42,12 @@ const CampaignList = ({ campaigns }) => {
     <Container>
 
       <Row xs={1} md={2} lg={3} className="g-4">
-        {campaigns && campaigns.map((campaign) => (
-          <Col>
+        {campaigns && campaigns.map((campaign, pos) => (
+          <Col key={pos}>
             <Card>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
-                <Card.Title key={campaign._id} className="campaign-title"><Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link></Card.Title>
+                <Card.Title className="campaign-title"><Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link></Card.Title>
                 <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
                 </Card.Text>

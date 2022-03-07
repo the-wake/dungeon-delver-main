@@ -13,14 +13,12 @@ import { ADD_DUNGEON } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const DungeonForm = (props) => {
-    console.log(props.campaign);
     const [dungeonText, setDungeonText] = useState('');
 
     const [addDungeon, { error, data }] = useMutation(ADD_DUNGEON);
 
     const handleDungeonSubmit = async (event) => {
         event.preventDefault();
-        console.log("here", handleDungeonSubmit)
         try {
             const { data } = await addDungeon({
                 variables: {
@@ -30,12 +28,12 @@ const DungeonForm = (props) => {
                     user: Auth.getProfile(),
                 },
             });
-            console.log("right here", data)
+            console.log("Dungeon Data:", data)
 
             setDungeonText('');
 
             window.location.reload();
-            
+
 
         } catch (error) {
             console.error(error);
@@ -59,7 +57,7 @@ const DungeonForm = (props) => {
                     </Container>
                     <Container>
                         <Row>
-                            <Form>
+                            <Form onSubmit={handleDungeonSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicText">
                                     <Form.Label></Form.Label>
                                     <Form.Control
@@ -71,9 +69,12 @@ const DungeonForm = (props) => {
                                         type="text"
                                         placeholder="Dungeon name"
                                         name="dungeonText" />
+                                    <Button onClick={handleDungeonSubmit} className="mt-4">
+                                        Add
+                                    </Button>
                                     {error ? (
                                         <div>
-                                            <p className='error-text'>Please enter a dungeon name</p>
+                                            <p className='error-text'>Please enter a unique dungeon name.</p>
                                         </div>
                                     ) : null}
                                 </Form.Group>
@@ -81,10 +82,6 @@ const DungeonForm = (props) => {
                         </Row>
                     </Container>
                     <Container>
-
-                        <Button onClick={handleDungeonSubmit} className="mt-4">
-                            Add
-                        </Button>
                     </Container>
                 </>
             ) : (

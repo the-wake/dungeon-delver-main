@@ -47,17 +47,15 @@ const CampaignForm = (props) => {
 
     const handleCampaignSubmit = async (event) => {
         event.preventDefault();
-        console.log("here", handleCampaignSubmit)
         try {
             const { data } = await addCampaign({
                 variables: {
-                    // ...campaignText
                     name: campaignText,
                     is_active: true,
                     user: Auth.getProfile(),
                 },
             });
-            console.log("right here", data)
+            console.log("Campaign Data:", data)
 
             setCampaignText('');
 
@@ -99,14 +97,14 @@ const CampaignForm = (props) => {
                                         type="text"
                                         placeholder="Campaign name"
                                         name="campaignText" />
+                                    <Button onClick={handleCampaignSubmit} className="mt-4">
+                                        Add
+                                    </Button>
                                     {error ? (
                                         <div>
                                             <p className='error-text'>Please enter a unique campaign name</p>
                                         </div>
                                     ) : null}
-                                    <Button onClick={handleCampaignSubmit} className="mt-4">
-                                        Add
-                                    </Button>
                                 </Form.Group>
                             </Form>
                         </Row>
