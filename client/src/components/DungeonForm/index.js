@@ -24,9 +24,8 @@ const DungeonForm = (props) => {
         try {
             const { data } = await addDungeon({
                 variables: {
-
-                    // _id: 5555,
                     name: dungeonText,
+                    campaign: props.campaign._id,
                     is_active: true,
                     user: Auth.getProfile().data.username,
                 },
@@ -34,6 +33,9 @@ const DungeonForm = (props) => {
             console.log("right here", data)
 
             setDungeonText('');
+
+            window.location.reload();
+
 
         } catch (error) {
             console.error(error);
