@@ -48,8 +48,8 @@ const RoomList = ({ rooms, dungeon }) => {
         <Container>
 
             <Row xs={1} md={2} lg={3} className="g-4">
-                {roomList && roomList.map((room) => (
-                    <Col>
+                {roomList && roomList.map((room, pos) => (
+                    <Col key={pos}>
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
