@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 
 //bootstrap components
-import { Button, Container, Row, Form } from 'react-bootstrap';
+import { Button, Container, Row, Form, Modal } from 'react-bootstrap';
 
 //actions
 import { ADD_ROOM } from '../../utils/mutations';
@@ -14,6 +14,7 @@ import Auth from '../../utils/auth';
 const RoomForm = (props) => {
     console.log(props.dungeon);
     const [roomText, setRoomText] = useState('');
+    const [onShow, setOnShow] = useState(false);
 
     const [addRoom, { error, data }] = useMutation(ADD_ROOM);
 
@@ -58,31 +59,79 @@ const RoomForm = (props) => {
                     </Container>
                     <Container>
                         <Row>
-                            <Form>
-                                <Form.Group className="mb-3" controlId="formBasicText">
-                                    <Form.Label></Form.Label>
-                                    <Form.Control
-                                        autoFocus
-                                        onChange={handleChange}
-                                        value={roomText.name}
-                                        // id="text"
-                                        className="form-input"
-                                        type="text"
-                                        placeholder="Room name"
-                                        name="roomText" />
-                                    {error ? (
-                                        <div>
-                                            <p className='error-text'>Please enter a room name</p>
-                                        </div>
-                                    ) : null}
-                                </Form.Group>
-                            </Form>
+                            <Modal show={onShow} onHide={() => setOnShow(false)} role="dialog">
+                                <Form onSubmit={handleRoomSubmit}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>New Room</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            
+                                    <Form.Group className="mb-3" controlId="formBasicText">
+                                        <Form.Label></Form.Label>
+                                        <Form.Control
+                                            autoFocus
+                                            onChange={handleChange}
+                                            value={roomText.name}
+                                            // id="text"
+                                            className="form-input"
+                                            type="text"
+                                            placeholder="Room name"
+                                            name="roomText" />
+                                        {error ? (
+                                            <div>
+                                                <p className='error-text'>Please enter a room name</p>
+                                            </div>
+                                        ) : null}
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Associated Dungeon</Form.Label>
+                                        <Form.Select>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                        <option>Option 3</option>
+                                        </Form.Select>
+                                            {/* autoFocus
+                                            onChange={handleChange}
+                                            value={roomText.name}
+                                            // id="text"
+                                            className="form-input"
+                                            type="text"
+                                            placeholder="Room name"
+                                            name="roomText" /> */}
+                                        {error ? (
+                                            <div>
+                                                <p className='error-text'>Please select a dungeon</p>
+                                            </div>
+                                        ) : null}
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="formBasicText">
+                                        <Form.Label></Form.Label>
+                                        <Form.Control
+                                            autoFocus
+                                            onChange={handleChange}
+                                            value={roomText.name}
+                                            // id="text"
+                                            className="form-input"
+                                            type="text"
+                                            placeholder="Room name"
+                                            name="roomText" />
+                                        {error ? (
+                                            <div>
+                                                <p className='error-text'>Please enter a room name</p>
+                                            </div>
+                                        ) : null}
+                                    </Form.Group>
+                                        </Modal.Body>
+                                </Form>
+                            </Modal>
                         </Row>
                     </Container>
                     <Container>
 
-                        <Button onClick={handleRoomSubmit} className="mt-4">
-                            Add
+                        <Button onClick={() => setOnShow(!onShow)} className="mt-4">
+                            Add Room
                         </Button>
                     </Container>
                 </>
@@ -97,5 +146,6 @@ const RoomForm = (props) => {
         </div>
     );
 };
+
 
 export default RoomForm;

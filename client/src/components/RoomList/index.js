@@ -69,4 +69,4 @@ const RoomList = ({ rooms, dungeon }) => {
     );
 }
 
-export default DungeonList;
+export default RoomList;
