@@ -35,6 +35,8 @@ const CampaignList = ({ campaigns }) => {
     return <h3>You have no campaigns yet...</h3>
   }
 
+  // Find out how to capture change in state in React Router 6 and pass that in useEffect function.
+
 
   return (
     <Container>
