@@ -50,12 +50,12 @@ const resolvers = {
 
       return dungeons;
     },
-    getRooms: async (parent, { dungeonId }, { user }) => {
+    getRooms: async (parent, { dungeon }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
      
-      const rooms = await Room.find({ user: user._id }).populate('user').populate('dungeon');
+      const rooms = await Room.find({ dungeon, user: user._id }).populate('user').populate('dungeon');
       console.log(rooms);
       
       if (!rooms) {

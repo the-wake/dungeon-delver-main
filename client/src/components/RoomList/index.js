@@ -3,7 +3,7 @@ import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useParams, useLocation } from 'react-router-dom';
-import { REMOVE_ROOM} from '../../utils/mutations';
+import { REMOVE_ROOM } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 import "./roomList.css";
 
@@ -32,11 +32,11 @@ const RoomList = ({ rooms, dungeon }) => {
     };
 
     if (!dungeon) {
-        return <h3>Please select a dungeon first.</h3>
+        return <h4>Please select a dungeon first.</h4>
     }
 
     if (!rooms.length) {
-        return <h3>You have no rooms in this dungeon.</h3>
+        return <h4>You have no rooms in this dungeon.</h4>
     }
     // console.log(rooms);
     // console.log(dungeon._id);
@@ -69,4 +69,4 @@ const RoomList = ({ rooms, dungeon }) => {
     );
 }
 
-export default DungeonList;
+export default RoomList;

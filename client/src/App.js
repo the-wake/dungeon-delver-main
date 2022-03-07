@@ -76,7 +76,7 @@ function App() {
                 <Route path="/landingpage" element={<LandingPage />} />
                 <Route path="/campaigns" element={<Campaign />} />
                 <Route path="/campaigns/:id" element={<SingleCampaign />} />
-                <Route path="/dungeons" element={<Dungeon />} />
+                {/* <Route path="/dungeons" element={<Dungeon />} /> */}
                 <Route path="/dungeons/:id" element={<SingleDungeon />} />
                 {/* <Route path="/rooms" element={<Rooms />} /> */}
                 {/* <Route path="/rooms/:id" element={<SingleRoom />} /> */}

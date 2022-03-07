@@ -32,11 +32,11 @@ const DungeonList = ({ dungeons, campaign }) => {
     };
 
     if (!campaign) {
-        return <h3>Please select a campaign first.</h3>
+        return <h4>Please select a campaign first.</h4>
     }
 
     if (!dungeons.length) {
-        return <h3>You have no dungeons in this campaign.</h3>
+        return <h4>You have no dungeons in this campaign.</h4>
     }
     // console.log(dungeons);
     // console.log(campaign._id);
@@ -53,7 +53,7 @@ const DungeonList = ({ dungeons, campaign }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
+                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ campaignData: campaign, dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
                                 <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>
@@ -67,6 +67,6 @@ const DungeonList = ({ dungeons, campaign }) => {
             </Row>
         </Container>
     );
-}
+};
 
 export default DungeonList;

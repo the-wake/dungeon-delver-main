@@ -57,8 +57,8 @@ export const QUERY_SINGLE_DUNGEON = gql`
 `;
 
 export const QUERY_ROOMS = gql`
-    query getRooms {
-        getRooms {
+    query getRooms($dungeon: ID!) {
+        getRooms(dungeon: $dungeon) {
             _id
             name
             blurb
