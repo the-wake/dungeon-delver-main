@@ -13,6 +13,7 @@ import { ADD_DUNGEON } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const DungeonForm = (props) => {
+    console.log(props.campaign);
     const [dungeonText, setDungeonText] = useState('');
 
     const [addDungeon, { error, data }] = useMutation(ADD_DUNGEON);
@@ -52,7 +53,7 @@ const DungeonForm = (props) => {
             {Auth.loggedIn() ? (
                 <>
                     <Container>
-                        <h1>Add a New Dungeon</h1>
+                        <h2>Add a New Dungeon to {props.campaign.name}</h2>
                     </Container>
                     <Container>
                         <Row>

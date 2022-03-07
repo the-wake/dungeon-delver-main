@@ -6,7 +6,7 @@ import { REMOVE_DUNGEON } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 import "./dungeonList.css";
 
-const DungeonList = ({ dungeons }) => {
+const DungeonList = ({ dungeons, campaign }) => {
     const [removeDungeon, { error }] = useMutation(REMOVE_DUNGEON, {
         update(cache, { data: { removeDungeon } }) {
             try {
@@ -33,12 +33,16 @@ const DungeonList = ({ dungeons }) => {
     if (!dungeons.length) {
         return <h3>You have no dungeons yet...</h3>
     }
+    console.log(dungeons);
+    console.log(campaign._id);
+
+    const dungeonList = dungeons.filter(dungeon => dungeon.campaign._id === campaign._id);
 
     return (
         <Container>
 
             <Row xs={1} md={2} lg={3} className="g-4">
-                {dungeons && dungeons.map((dungeon) => (
+                {dungeonList && dungeonList.map((dungeon) => (
                     <Col>
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}

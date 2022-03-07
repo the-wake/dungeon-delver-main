@@ -1,7 +1,7 @@
 import "./singleCampaign.css";
 import { Container, Col, Row, Button } from "react-bootstrap";
 
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import DungeonForm from '../../components/DungeonForm';
@@ -10,12 +10,16 @@ import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
 const SingleCampaign = () => {
+    const location = useLocation();
+    const { campaignData } = location.state;
+
+    // console.log(campaignData);
 
     const { loading, data } = useQuery(QUERY_DUNGEONS);
     console.log(data);
 
     const dungeons = data?.getDungeons || [];
-    console.log(dungeons);
+    // console.log(dungeons);
     // const { name } = useParams();
 
     // const { loading, data } = useQuery(QUERY_SINGLE_CAMPAIGN, {
@@ -36,8 +40,7 @@ const SingleCampaign = () => {
 
         <Container className='my-campaign-container'>
             <Col>
-                <h1 className="text-center">Specific campaign name</h1>
-                {/* <h1 className="text-center">{campaigns}</h1> */}
+                <h1 className="text-center">{campaignData.name}</h1>
             </Col>
             <Row>
                 <Col>
@@ -49,9 +52,9 @@ const SingleCampaign = () => {
             <Row>
             </Row>
 
-            <DungeonForm dungeons={dungeons}></DungeonForm>
-            <h1 className="mb-3 mt-3 mx-3">My Dungeons</h1>
-            <DungeonList dungeons={dungeons}></DungeonList>
+            <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
+            <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
+            <DungeonList dungeons={dungeons} campaign={campaignData}></DungeonList>
 
         </Container>
     );

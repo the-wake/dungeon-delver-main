@@ -51,7 +51,6 @@ const CampaignForm = (props) => {
         try {
             const { data } = await addCampaign({
                 variables: {
-
                     // ...campaignText
                     name: campaignText,
                     is_active: true,
