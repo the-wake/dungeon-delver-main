@@ -14,6 +14,8 @@ import Auth from '../../utils/auth';
 const RoomForm = (props) => {
     console.log(props.dungeon);
     const [roomText, setRoomText] = useState('');
+    const [dungeonOption, setDungeonOption] = useState('')
+    const [roomBlurb, setRoomBlurb] = useState('');
     const [onShow, setOnShow] = useState(false);
 
     const [addRoom, { error, data }] = useMutation(ADD_ROOM);
@@ -26,6 +28,7 @@ const RoomForm = (props) => {
                 variables: {
                     name: roomText,
                     dungeon: props.dungeon._id,
+                    blurb: roomBlurb,
                     is_active: true,
                     user: Auth.getProfile().data.username,
                 },
@@ -49,6 +52,8 @@ const RoomForm = (props) => {
             setRoomText(value);
         }
     };
+
+
 
     return (
         <div>
@@ -106,16 +111,15 @@ const RoomForm = (props) => {
                                         ) : null}
                                     </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="formBasicText">
-                                        <Form.Label></Form.Label>
-                                        <Form.Control
-                                            autoFocus
+                                    <Form.Group className="mb-3" controlId="controlTextArea">
+                                        <Form.Label>Blurb</Form.Label>
+                                        <Form.Control as="textarea" rows={4} 
                                             onChange={handleChange}
                                             value={roomText.name}
                                             // id="text"
                                             className="form-input"
-                                            type="text"
-                                            placeholder="Room name"
+                                            type="textarea"
+                                            placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
                                             name="roomText" />
                                         {error ? (
                                             <div>
@@ -125,6 +129,11 @@ const RoomForm = (props) => {
                                     </Form.Group>
                                         </Modal.Body>
                                 </Form>
+                                <Modal.Footer>
+                                    <Button variant="primary">
+                                            Submit
+                                    </Button>
+                                </Modal.Footer>
                             </Modal>
                         </Row>
                     </Container>
