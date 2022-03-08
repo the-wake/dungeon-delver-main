@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 const SingleRoom = () => {
     const { currentSession } = useSessionContext();
     console.log(currentSession);
-    const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+    const { currentCampaign, currentDungeon, currentRoom} = currentSession;
 
     // const location = useLocation();
     // const { dungeonData } = location.state;
@@ -23,7 +23,6 @@ const SingleRoom = () => {
     // console.log(roomNameData)
     const { loading, data } = useQuery(QUERY_CREATURES, {
         variables: { room: currentRoom._id },
-
     });
 
     const creatures = data?.getCreatures || [];
