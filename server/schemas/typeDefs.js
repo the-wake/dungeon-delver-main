@@ -10,6 +10,7 @@ const typeDefs = gql`
   type Campaign {
     _id: ID!
     name: String!
+    dungeons: [Dungeon]
     is_active: Boolean!
     user: User!
   }

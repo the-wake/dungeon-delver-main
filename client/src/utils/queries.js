@@ -5,6 +5,10 @@ export const QUERY_CAMPAIGNS = gql`
     getCampaigns {
       _id
       name
+      dungeons {
+          _id
+          name
+      }
       is_active
       user {
         _id  
@@ -19,6 +23,10 @@ export const QUERY_SINGLE_CAMPAIGN = gql`
     getCampaign(_id: $_id) {
       _id
       name
+      dungeons {
+          _id
+          name
+      }
       is_active
     }
   }

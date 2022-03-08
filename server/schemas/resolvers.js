@@ -26,7 +26,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaigns = await Campaign.find({ user: user._id }).populate('user');
+      const campaigns = await Campaign.find({ user: user._id }).populate('user').populate('dungeons');
       
       if (!campaigns) {
         throw new AuthenticationError('You have no campaigns!')
