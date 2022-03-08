@@ -69,7 +69,11 @@ const CreatureList = ({ campaign, dungeon, room, creatures }) => {
                                 </Card.Title>
                                 <Card.Text>
                                     HP: {creature.hp}
+                                </Card.Text>
+                                <Card.Text>
                                     Status: {creature.is_alive ? 'Alive': 'Dead'}
+                                </Card.Text>
+                                <Card.Text>
                                     {creature?.loot}
                                 </Card.Text>
                             </Card.Body>

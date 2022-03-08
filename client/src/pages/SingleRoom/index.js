@@ -57,7 +57,7 @@ const SingleRoom = () => {
                 </Col>
             </Row>
 
-            <CreatureForm></CreatureForm>
+            <CreatureForm campaign={campaignData} dungeon={dungeonData} room={roomData}></CreatureForm>
 
             {/* <Row>
                 <CreatureForm creatures={creatures} room={roomData}></CreatureForm>
