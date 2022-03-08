@@ -17,6 +17,19 @@ h1, h2 {
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
+.dunge:hover {
+    background-image: url(../../images/Dungeon-background.jpg);
+}
+
+.camp:hover {
+    background-image: url(../../images/Scroll-background2.jpg);
+}
+
+.creat:hover {
+    background-image: url(../../images/dragon-egg5.jpg);
+    image-orientation:from-image;
+}
+
 .card-title {
     display: block;
     top: 50%;
@@ -44,5 +57,5 @@ a:link {
 }
 
 .Camp {
-    background-image: url(../../../public/assets/images/Scroll-background.jpg);
+    background-image: url(../../images/Scroll-background.jpg);
 }
