@@ -1,6 +1,7 @@
 import React from 'react';
 import "./creatures.css";
 import Carousel from 'react-bootstrap/Carousel'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 // import Demon1 from './images/Demon1.jpg';
 // import Demon2 from './images/Demon2.jpg';
@@ -53,76 +54,103 @@ import Carousel from 'react-bootstrap/Carousel'
     
     const Creatures = () => {
     return ( 
-        // <Container className="my-creatures-container">
-        <div>
-                <h1>Here are your creatures!</h1>
+        <Container className="my-creatures-container">
+            <Row>
+              <Col>
                 <Carousel>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Demon1.jpg")}
                         alt="Fire Demon" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Dragon1.jpg")}
                         alt="Roaring Dragon" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Goblin1.jpg")}
                         alt="Goblin with a Dagger" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Demon2.jpg")}
                         alt="Abyssal Demon" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Dragon2.jpg")}
                         alt="Astral Dragon" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Goblin2.jpg")}
                         alt="Goblin Archer" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/EarthElemental.jpg")}
                         alt="Earth Elemental" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/FireElemental.jpg")}
                         alt="Fire Elemental" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/IceElemental.jpg")}
                         alt="Ice Elemental" 
-                        style={{height: "100vh"}}
+                        style={{}}
                         />
                     </Carousel.Item>
                 </Carousel>
-            </div>
-        // </Container>
+              </Col>
+            <Col className='creatureForm'>
+                <h1>Summon your creatures!</h1>
+                <Form>
+                    <Form.Group className="mb-3 w-50" controlId="formBasicText">
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Creature Name" />
+                      <Form.Text className="text-muted">
+                        e.g. Godzilla
+                      </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control type="text" placeholder="Title of the Beast" />
+                      <Form.Text className="text-muted">
+                        e.g. King of Monsters
+                      </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                      <Form.Check type="checkbox" label="Mark as favorite" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                      Summon
+                    </Button>
+                </Form>
+            </Col>
+        </Row>
+    </Container>
      );
 }
  
