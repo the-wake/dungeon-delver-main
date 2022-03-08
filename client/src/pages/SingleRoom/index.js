@@ -33,13 +33,13 @@ const SingleRoom = () => {
         <Container className='my-room-container'>
             <Col>
           
-                <h1>{roomNameData.name}</h1>
+                {/* <h1>{roomNameData.name}</h1> */}
             </Col>
             <Row>
                 <Col>
 
                     {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
-                    </Link> */}
+                    </Link>  */}
                 </Col>
 
                 <Col className="text-center">
