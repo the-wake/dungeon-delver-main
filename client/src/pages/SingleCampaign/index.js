@@ -7,35 +7,26 @@ import { useQuery } from '@apollo/client';
 import DungeonForm from '../../components/DungeonForm';
 import DungeonList from '../../components/DungeonList';
 import EditCampaign from "../../components/EditCampaign";
+import { useSessionContext } from '../../utils/SessionContext.js';
 import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
 const SingleCampaign = () => {
+    const { currentSession } = useSessionContext();
+    console.log(currentSession);
+    
     const location = useLocation();
     const { campaignData } = location.state;
 
     // console.log(campaignData);
 
     const { loading, data } = useQuery(QUERY_DUNGEONS);
-    console.log(data);
 
     const dungeons = data?.getDungeons || [];
-    // console.log(dungeons);
-    // const { name } = useParams();
 
-    // const { loading, data } = useQuery(QUERY_SINGLE_CAMPAIGN, {
-    //     //have to pass state prop from campaignForm to 
-    //     //retrieve new name
-    //     variables: { name: props.name },
-    // });
-
-    // const campaign = data?.campaign || {};
-
-    // if (loading) {
-    //     return <div>
-    //         <h4>Campaign loading...</h4>
-    //     </div>
-    // }
+    if (!loading) {
+        console.log(dungeons)
+    };
 
     return (
 
@@ -45,7 +36,7 @@ const SingleCampaign = () => {
                 <h1 className="campaign-name mt-1">{campaignData.name}</h1>
                 </Col>
                 <Col className="flex">
-                    <EditCampaign></EditCampaign>
+                    <EditCampaign campaign={campaignData}></EditCampaign>
             </Col>
             </Row>
             <Row>

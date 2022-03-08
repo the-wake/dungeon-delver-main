@@ -111,8 +111,8 @@ export const QUERY_SINGLE_ROOM = gql`
 `;
 
 export const QUERY_CREATURES = gql`
-    query getCreatures {
-        getCreatures {
+    query getCreatures($room: ID!) {
+        getCreatures(room: $room) {
             _id
             hp
             loot

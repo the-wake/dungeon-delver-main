@@ -4,6 +4,7 @@ import CampaignForm from '../../components/CampaignForm';
 import CampaignList from '../../components/CampaignList';
 
 import { QUERY_CAMPAIGNS } from '../../utils/queries';
+import { useSessionContext } from '../../utils/SessionContext.js'
 
 import { Navigate, useParams, Link } from 'react-router-dom';
 import "./campaign.css";
@@ -21,10 +22,12 @@ const Campaign = () => {
     }
 
     const { loading, data } = useQuery(QUERY_CAMPAIGNS);
-    console.log(data);
 
     const campaigns = data?.getCampaigns || [];
-    console.log(campaigns);
+
+    if (!loading) {
+        console.log(campaigns)
+    };
 
     return (
         <Container className='my-campaign-container'>

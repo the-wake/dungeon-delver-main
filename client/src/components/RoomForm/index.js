@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
+import { useSessionContext } from '../../utils/SessionContext.js';
 
 //bootstrap components
 import { Button, Container, Row, Form, Modal } from 'react-bootstrap';
@@ -11,8 +12,11 @@ import { ADD_ROOM } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const RoomForm = ({ dungeonData }) => {
-    console.log("dungeonData", dungeonData)
+const RoomForm = ({ dungeon, campaign }) => {
+    const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+    const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+
+    // console.log("dungeon", dungeon)
 
 
     const [roomText, setRoomText] = useState('');
@@ -29,15 +33,18 @@ const RoomForm = ({ dungeonData }) => {
             const { data } = await addRoom({
                 variables: {
                     name: roomText,
-                    dungeon: dungeonData._id,
+                    dungeon: currentDungeon._id,
                     blurb: roomBlurb,
                     is_active: true,
-                    user: Auth.getProfile().data.username,
+                    user: Auth.getProfile(),
                 },
             });
             console.log("right here", data)
 
             setRoomText('');
+            setDungeonOption('');
+            setRoomBlurb('');
+            
 
             window.location.reload();
 
@@ -53,19 +60,23 @@ const RoomForm = ({ dungeonData }) => {
         if (name === 'roomText') {
             setRoomText(value);
         }
+
+        if (name === 'blurbText') {
+            setRoomBlurb(value);
+        }
     };
 
-    if (!dungeonData) { return (<div>Loading...</div>) }
+    if (!dungeon) { return (<div>Loading...</div>) }
     return (
         <div>
             {Auth.loggedIn() ? (
                 <>
                     <Container>
-                        <h2>Add a New Room to {dungeonData.name}</h2>
+                        <h2>Add a New Room to {dungeon.name}</h2>
                     </Container>
                     <Container>
                         <Row>
-                            <Modal show={onShow} onHide={() => setOnShow(false)} role="dialog">
+                            <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static"  keyboard={false} role="dialog">
                                 <Form onSubmit={handleRoomSubmit}>
                                     <Modal.Header closeButton>
                                         <Modal.Title>New Room</Modal.Title>
@@ -95,12 +106,14 @@ const RoomForm = ({ dungeonData }) => {
 
                                             <Form.Select
                                                 onChange={handleChange}
-                                                value={dungeonOption.name}>
+                                                value={dungeonOption.dungeon}>
 
-                                                {dungeonData.length > 0 && dungeonData.map((dungeon, pos) => (
+                                                {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))}
+                                                
                                             </Form.Select>
+
                                             {error ? (
                                                 <div>
                                                     <p className='error-text'>Please select a dungeon</p>
@@ -112,22 +125,22 @@ const RoomForm = ({ dungeonData }) => {
                                             <Form.Label>Blurb</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                value={roomText.name}
+                                                value={roomBlurb.blurb}
                                                 // id="text"
                                                 className="form-input"
                                                 type="textarea"
                                                 placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
-                                                name="roomText" />
+                                                name="blurbText" />
                                             {error ? (
                                                 <div>
-                                                    <p className='error-text'>Please enter a room name</p>
+                                                    <p className='error-text'>Please enter a blurb. Don't be shy.</p>
                                                 </div>
                                             ) : null}
                                         </Form.Group>
                                     </Modal.Body>
                                 </Form>
                                 <Modal.Footer>
-                                    <Button variant="primary">
+                                    <Button onClick={handleRoomSubmit} variant="primary">
                                         Submit
                                     </Button>
                                 </Modal.Footer>

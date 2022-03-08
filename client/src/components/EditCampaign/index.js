@@ -2,28 +2,37 @@ import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
 import "./editCampaign.css";
 
 import { EDIT_CAMPAIGN } from "../../utils/mutations";
+import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditCampaign = (props) => {
+const EditCampaign = ({ campaign }) => {
     const [campaignText, setCampaignText] = useState('');
+    const { currentSession, setCurrentSession } = useSessionContext();
     const [onShow, setOnShow] = useState(false);
 
+    // var campaignId = campaign._id;
+    // console.log(campaignId);
     const [editCampaign, { error, data }] = useMutation(EDIT_CAMPAIGN);
 
     const handleEditSubmit = async (event) => {
+
         event.preventDefault();
         try {
             const { data } = await editCampaign({
                 variables: {
+                    _id: campaign._id,
                     name: campaignText,
-                    user: Auth.getProfile().data.username,
+                    is_active: true,
                 },
             });
-            console.log(data)
+            console.log(data);
+            setCurrentSession({ currentCampaign: campaign.name, currentCampaignId: campaign._id });
+            console.log('*****************************\nCurrent Session:\n', currentSession);
+            
             setCampaignText('');
 
             window.location.reload();
@@ -48,7 +57,7 @@ const EditCampaign = (props) => {
                 Auth.loggedIn() ? (
                     <Container>
                         <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
-                            <Form>
+                            <Form onSubmit={handleEditSubmit}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>New Campaign Name</Modal.Title>
                                 </Modal.Header>
@@ -76,7 +85,8 @@ const EditCampaign = (props) => {
                             </Form>
                             <Modal.Footer>
                                 <Button onClick={handleEditSubmit} variant="primary">
-                                    Submit</Button>
+                                    Submit
+                                </Button>
                             </Modal.Footer>
                         </Modal>
                         <Row>
