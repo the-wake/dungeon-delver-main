@@ -12,13 +12,17 @@ import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
 const SingleCampaign = () => {
-    const { currentSession } = useSessionContext();
+    const { currentSession, setCampaign } = useSessionContext();
     console.log(currentSession);
     
     const location = useLocation();
     const { campaignData } = location.state;
 
-    // console.log(campaignData);
+    // We can probably use this as a hack to get the context to set on reload, but it's throwing some weird errors and I don't have time to debug it.
+    // if (Object.keys(currentSession.currentCampaign).length === 0) {
+    //     console.log('Campaign Data: ', campaignData);
+    //     setCampaign(campaignData);
+    // };
 
     const { loading, data } = useQuery(QUERY_DUNGEONS);
 

@@ -8,7 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 import { useSessionContext } from '../../utils/SessionContext.js';
 import "./roomList.css";
 
-const RoomList = ({ rooms, dungeon }) => {
+const RoomList = ({ campaign, dungeon, rooms }) => {
     const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
     
     const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
@@ -56,13 +56,13 @@ const RoomList = ({ rooms, dungeon }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={room._id}>
+                                <Card.Title>
                                     <Link className='room-title' to={`/rooms/${room._id}`}
                                         onClick={() => {
                                             setDungeon({ currentDungeon: room.dungeon });
                                             setRoom({ currentRoom: room });
                                         }}
-                                        state={{ roomData: room }}>
+                                        state={{ campaignData: campaign, dungeonData: dungeon, roomData: room }}>
                                         {room.name}
                                     </Link>
                                     {Auth.loggedIn && (<CloseButton className="close-button float-end"
@@ -78,6 +78,6 @@ const RoomList = ({ rooms, dungeon }) => {
             </Row>
         </Container>
     );
-}
+};
 
 export default RoomList;
