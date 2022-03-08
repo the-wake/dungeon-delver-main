@@ -16,6 +16,10 @@ import { useQuery } from '@apollo/client';
 
 
 const Campaign = () => {
+    if (!Auth.loggedIn()) {
+        window.location = `/login`
+    }
+
     const { loading, data } = useQuery(QUERY_CAMPAIGNS);
     console.log(data);
 

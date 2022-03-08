@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, CloseButton } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -32,11 +32,11 @@ const DungeonList = ({ dungeons, campaign }) => {
     };
 
     if (!campaign) {
-        return <h3>Please select a campaign first.</h3>
+        return <h4>Please select a campaign first.</h4>
     }
 
     if (!dungeons.length) {
-        return <h3>You have no dungeons in this campaign.</h3>
+        return <h4>You have no dungeons in this campaign.</h4>
     }
     // console.log(dungeons);
     // console.log(campaign._id);
@@ -48,18 +48,18 @@ const DungeonList = ({ dungeons, campaign }) => {
         <Container>
 
             <Row xs={1} md={2} lg={3} className="g-4">
-                {dungeonList && dungeonList.map((dungeon) => (
-                    <Col>
+                {dungeonList && dungeonList.map((dungeon, pos) => (
+                    <Col key={pos}>
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
+                                <Card.Title key={dungeon._id}><Link className='dungeon-title' to={`/dungeons/${dungeon._id}`} state={{ campaignData: campaign, dungeonData: dungeon }}>{dungeon.name}</Link>
+                                    {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                                        onClick={() => handleRemoveDungeon(dungeon)}
+                                    ></CloseButton>)}</Card.Title>
                                 <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>
-                                {Auth.loggedIn && (<Button
-                                    onClick={() => handleRemoveDungeon(dungeon)}
-                                >X</Button>)}
                             </Card.Body>
                         </Card>
                     </Col>
@@ -67,6 +67,6 @@ const DungeonList = ({ dungeons, campaign }) => {
             </Row>
         </Container>
     );
-}
+};
 
 export default DungeonList;

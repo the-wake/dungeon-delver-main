@@ -10,6 +10,7 @@ const typeDefs = gql`
   type Campaign {
     _id: ID!
     name: String!
+    dungeons: [Dungeon]
     is_active: Boolean!
     user: User!
   }
@@ -17,6 +18,7 @@ const typeDefs = gql`
   type Dungeon {
     _id: ID!
     name: String!
+    rooms: [Room]
     is_active: Boolean!
     campaign: Campaign!
     user: User!
@@ -26,6 +28,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     blurb: String
+    creatures: [Creature]
     is_active: Boolean!
     dungeon: Dungeon!
     user: User!

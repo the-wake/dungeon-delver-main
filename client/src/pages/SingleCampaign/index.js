@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 
 import DungeonForm from '../../components/DungeonForm';
 import DungeonList from '../../components/DungeonList';
+import EditCampaign from "../../components/EditCampaign";
 import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
@@ -32,21 +33,24 @@ const SingleCampaign = () => {
 
     // if (loading) {
     //     return <div>
-    //         <h3>Campaign loading...</h3>
+    //         <h4>Campaign loading...</h4>
     //     </div>
     // }
 
     return (
 
         <Container className='my-campaign-container'>
-            <Col>
-                <h1 className="text-center">{campaignData.name}</h1>
+            <Row>
+            <Col xs={10}>
+                <h1 className="campaign-name mt-1">{campaignData.name}</h1>
+                </Col>
+                <Col className="flex">
+                    <EditCampaign></EditCampaign>
             </Col>
+            </Row>
             <Row>
                 <Col>
-                    <Button className="mt-4 mb-4 mx-2">
-                        Edit Campaign
-                    </Button>
+                    
                 </Col>
             </Row>
 

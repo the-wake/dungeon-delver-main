@@ -5,22 +5,23 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import RoomForm from '../../components/DungeonForm';
-import RoomList from '../../components/DungeonList';
+import RoomForm from '../../components/RoomForm';
+import RoomList from '../../components/RoomList';
 import { QUERY_ROOMS } from "../../utils/queries";
 import { Link } from 'react-router-dom';
 
 
 
 const SingleDungeon = () => {
-
+    
     const location = useLocation();
     const { dungeonData } = location.state;
-    const { campaignData } = location.state
+    const { campaignData } = location.state;
+    console.log(dungeonData);
 
-    // console.log(dungeonData);
-
-    const { loading, data } = useQuery(QUERY_ROOMS);
+    const { loading, data } = useQuery(QUERY_ROOMS, {
+        variables: { dungeon: dungeonData._id },
+    });
     console.log(data);
 
     const rooms = data?.getRooms || [];
@@ -38,7 +39,7 @@ const SingleDungeon = () => {
 
     // if (loading) {
     //     return <div>
-    //         <h3>Dungeon loading...</h3>
+    //         <h4>Dungeon loading...</h4>
     //     </div>
     // }
 
@@ -54,25 +55,25 @@ const SingleDungeon = () => {
                 {/* <Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link> */}
 
                 {/* Attempt to return to previous page -- might be an easier way with redirect */}
-                {/* <Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name} */}
+                {/* <Link to='/campaigns'> */}
                 
-                <Link to='/campaigns'>
-                    <Button className="mt-4 mb-4 mx-2">
+                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
+                    {/* <Button className="mt-4 mb-4 mx-2">
                         Back
-                    </Button>
+                    </Button> */}
                     </Link>
                 </Col>
             </Row>
 
             <Row>
-                {/* <RoomForm rooms={rooms} dungeon={dungeonData}></RoomForm> */}
+                <RoomForm dungeon={dungeonData}></RoomForm>
                 <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
                 {loading ? (
                     <h2>
                         Retrieving Data...
                     </h2>
                 ) : (
-                    <RoomList rooms={rooms} dungeon={dungeonData}></RoomList>
+                    <RoomList campaign={campaignData} dungeon={dungeonData} rooms={rooms}></RoomList>
                 )}
             </Row>
 

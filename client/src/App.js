@@ -10,12 +10,11 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import SessionProvider from './utils/SessionContext.js';
+import Auth from './utils/auth';
 
 //components:
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-//We probably don't need to import this, but it's nice to have a clean list for reference
-import NewCampaign from './components/CampaignForm';
 
 //pages:
 import Home from './pages/Home';
@@ -27,6 +26,7 @@ import SingleCampaign from './pages/SingleCampaign';
 import Dungeon from './pages/Dungeon';
 import SingleDungeon from './pages/SingleDungeon';
 import Creatures from './pages/Creatures';
+import SingleRoom from './pages/SingleRoom';
 
 
 
@@ -61,23 +61,31 @@ function App() {
         <Router>
           <div className="App">
             <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/landingpage" element={<LandingPage />} />
-              <Route path="/campaigns" element={<Campaign />} />
-              <Route path="/campaigns/:id" element={<SingleCampaign />} />
-              {/* <Route path="/campaigns/new" element={<NewCampaign/>} /> */}
-              <Route path="/dungeons" element={<Dungeon />} />
-              <Route path="/dungeons/:id" element={<SingleDungeon />} />
-              {/* If we want, we could have the single component and all components (like room vs. all rooms) pages use the same page, and just render a different component into them. Since we'll probably have some shared elements between them. But doing them as separate pages is just as good if that's easier. */}
-              {/* <Route path="/rooms" element={<Rooms />} />
-              <Route path="/rooms/:id" element={<SingleRoom />} /> */}
-              <Route path="/creatures" element={<Creatures />} />
-              {/* <Route path="/creatures/:id" element={<SingleCreature />} /> */}
-              <Route path="*" element={<Home />} />
-            </Routes>
+            {!Auth.loggedIn()
+              ?
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/*" element={<Login />} />
+              </Routes>
+              :
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/landingpage" element={<LandingPage />} />
+                <Route path="/campaigns" element={<Campaign />} />
+                <Route path="/campaigns/:id" element={<SingleCampaign />} />
+                {/* <Route path="/dungeons" element={<Dungeon />} /> */}
+                <Route path="/dungeons/:id" element={<SingleDungeon />} />
+                {/* <Route path="/rooms" element={<Rooms />} /> */}
+                <Route path="/rooms/:id" element={<SingleRoom />} />
+                <Route path="/creatures" element={<Creatures />} />
+                {/* <Route path="/creatures/:id" element={<SingleCreature />} /> */}
+                <Route path="*" element={<Home />} />
+              </Routes>
+            }
             <Footer />
           </div>
         </Router>
