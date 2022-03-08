@@ -59,7 +59,6 @@ const RoomList = ({ rooms, dungeon }) => {
                                     ></CloseButton>)}
                                 </Card.Title>
                                 <Card.Text>
-                                    We can add a field for room description here. Need to add another field to ADD_ROOM.
                                 </Card.Text>
                             </Card.Body>
                         </Card>

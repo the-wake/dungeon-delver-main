@@ -51,7 +51,7 @@ const SingleDungeon = () => {
             </Row>
 
             <Row>
-                <RoomForm dungeon={dungeonData}></RoomForm>
+                <RoomForm dungeon={dungeonData} campaign={campaignData}></RoomForm>
                 <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
                 {loading ? (
                     <h2>

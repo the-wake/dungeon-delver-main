@@ -16,20 +16,24 @@ const SingleRoom = () => {
     const { dungeonData } = location.state;
     const { roomNameData } = location.state;
     const { roomBlurbData } = location.state;
+    console.log(roomNameData)
+    const { loading, data } = useQuery(QUERY_CREATURES, {
+        variables: { room: roomNameData._id },
+    });
 
+    const creatures = data?.getCreatures || [];
+
+    if (!loading) {
+        console.log(creatures)
+    };
     // console.log(dungeonData);
-
-
-
-
-
 
 
     return (
         <Container className='my-room-container'>
-
             <Col>
-                {/* <h1>{roomNameData.name}</h1> */}
+          
+                <h1>{roomNameData.name}</h1>
             </Col>
             <Row>
                 <Col>
