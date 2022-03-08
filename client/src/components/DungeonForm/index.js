@@ -11,6 +11,7 @@ import { ADD_DUNGEON } from '../../utils/mutations';
 // import { QUERY_CAMPAIGNS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
+import { isRequiredArgument } from 'graphql';
 
 const DungeonForm = (props) => {
     const [dungeonText, setDungeonText] = useState('');
@@ -52,12 +53,12 @@ const DungeonForm = (props) => {
         <div>
             {Auth.loggedIn() ? (
                 <>
-                    <Container className='dungeon'>
+                    <Container>
                         <Row>
                           <Col>
                         <h2>Add a New Dungeon to {props.campaign.name}</h2>
                             <Form onSubmit={handleDungeonSubmit}>
-                                <Form.Group className="mb-3 w-50" controlId="formBasicText">
+                                <Form.Group className="mb-3 w-100" controlId="formBasicText">
                                     <Form.Label></Form.Label>
                                     <Form.Control
                                         autoFocus
@@ -80,9 +81,13 @@ const DungeonForm = (props) => {
                                 </Form.Group>
                             </Form>
                           </Col>
+                          <Col className='egg w-100 m-auto'>
+                            <img src={require("../../images/dragon-egg.jpg")}
+                            alt="Dragon Egg"
+                            style={{ width: "500px" }}
+                            />
+                          </Col>
                         </Row>
-                    </Container>
-                    <Container>
                     </Container>
                 </>
             ) : (

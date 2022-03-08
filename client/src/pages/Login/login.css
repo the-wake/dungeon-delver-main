@@ -1,6 +1,20 @@
 /* need to add something sharper for these forms */
 
 @media all and (min-width: 480px) {
+
+    .background {
+      background-image: url(../../images/Scroll-background.jpg);
+    }
+
+    .instead {
+      color:black;
+    }
+
+    .text-center title {
+      color: chartreuse;
+      font-weight: bold;
+    }
+
     .signUp {
       padding: 100px 0;
     }

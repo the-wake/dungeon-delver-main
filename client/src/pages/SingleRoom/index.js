@@ -5,7 +5,7 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import CreatureForm from '../../components/CreatureForm';
+import CreatureForm from '../../components/CreatureForm';
 import CreatureList from '../../components/CreatureList';
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
@@ -40,8 +40,9 @@ const SingleRoom = () => {
     return (
         <Container className='my-room-container'>
             <Row>
-                <Col xs={10}>
-                    <h1 className="room-name mt-1">{roomData.name}</h1>
+                <Col>
+                    {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
+                    </Link>  */}
                 </Col>
                 <Col className="flex">
                     {/* <EditRoom room={roomData}></EditRoom> */}
@@ -55,6 +56,20 @@ const SingleRoom = () => {
                     )}
                 </Col>
             </Row>
+
+            <CreatureForm></CreatureForm>
+
+            {/* <Row>
+                <CreatureForm creatures={creatures} room={roomData}></CreatureForm>
+                <h2 className="mb-3 mt-3 mx-3">Creatures in {roomData.name}</h2>
+                {loading ? (
+                    <h2>
+                        Retrieving Data...
+                    </h2>
+                ) : (
+                    <CreatureList creatures={creatures} room={roomData}></CreatureList>
+                )}
+            </Row> */}
 
         </Container>
     );

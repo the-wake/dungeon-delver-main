@@ -40,15 +40,9 @@ const SingleDungeon = () => {
             <Row>
                 <Col>
 
-                {/* <Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link> */}
-
-                {/* Attempt to return to previous page -- might be an easier way with redirect */}
-                {/* <Link to='/campaigns'> */}
                 
                 <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
-                    {/* <Button className="mt-4 mb-4 mx-2">
-                        Back
-                    </Button> */}
+                 
                     </Link>
                 </Col>
             </Row>
