@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const EditCampaign = ({ campaign }) => {
     const [campaignText, setCampaignText] = useState('');
-    const { currentSession, setCurrentSession } = useSessionContext();
+    const { currentSession, setCampaign } = useSessionContext();
     const [onShow, setOnShow] = useState(false);
 
     // var campaignId = campaign._id;
@@ -30,7 +30,7 @@ const EditCampaign = ({ campaign }) => {
                 },
             });
             console.log(data);
-            setCurrentSession({ currentCampaign: campaign.name, currentCampaignId: campaign._id });
+            setCampaign({ currentCampaign: campaign });
             console.log('*****************************\nCurrent Session:\n', currentSession);
             
             setCampaignText('');
