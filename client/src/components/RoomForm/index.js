@@ -19,7 +19,7 @@ const RoomForm = ({ dungeon, campaign }) => {
     // console.log("dungeon", dungeon)
 
     const [roomText, setRoomText] = useState('');
-    const [dungeonOption, setDungeonOption] = useState('');
+    const [dungeonOption, setDungeonOption] = useState(dungeon._id);
     const [roomBlurb, setRoomBlurb] = useState('');
     const [onShow, setOnShow] = useState(false);
 
@@ -67,6 +67,7 @@ const RoomForm = ({ dungeon, campaign }) => {
         if (name === 'blurbText') {
             setRoomBlurb(value);
         }
+        console.log(value);
     };
 
     if (!dungeon) { return (<div>Loading...</div>) }
@@ -91,7 +92,7 @@ const RoomForm = ({ dungeon, campaign }) => {
                                             <Form.Control
                                                 autoFocus
                                                 onChange={handleChange}
-                                                value={roomText.name}
+                                                value={roomText}
                                                 // id="text"
                                                 className="form-input"
                                                 type="text"
@@ -109,7 +110,7 @@ const RoomForm = ({ dungeon, campaign }) => {
 
                                             <Form.Select
                                                 onChange={handleChange}
-                                                value={dungeonOption.dungeon}
+                                                value={dungeonOption}
                                                 name="dungeonOption">
 
                                                 {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
@@ -128,7 +129,7 @@ const RoomForm = ({ dungeon, campaign }) => {
                                             <Form.Label>Blurb</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                value={roomBlurb.blurb}
+                                                value={roomBlurb}
                                                 // id="text"
                                                 className="form-input"
                                                 type="textarea"
