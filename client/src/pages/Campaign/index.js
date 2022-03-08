@@ -4,6 +4,7 @@ import CampaignForm from '../../components/CampaignForm';
 import CampaignList from '../../components/CampaignList';
 
 import { QUERY_CAMPAIGNS } from '../../utils/queries';
+import { useSessionContext } from '../../utils/SessionContext.js'
 
 import { Navigate, useParams, Link } from 'react-router-dom';
 import "./campaign.css";

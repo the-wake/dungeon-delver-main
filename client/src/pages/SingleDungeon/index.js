@@ -8,11 +8,14 @@ import { useQuery } from '@apollo/client';
 import RoomForm from '../../components/RoomForm';
 import RoomList from '../../components/RoomList';
 import { QUERY_ROOMS } from "../../utils/queries";
+import { useSessionContext } from '../../utils/SessionContext.js';
 import { Link } from 'react-router-dom';
 
 
 
 const SingleDungeon = () => {
+    const { currentSession } = useSessionContext();
+    console.log(currentSession);
     
     const location = useLocation();
     const { dungeonData } = location.state;
