@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
+import { useSessionContext } from '../../utils/SessionContext.js';
 
 //bootstrap components
 import { Button, Container, Row, Form, Modal } from 'react-bootstrap';
@@ -12,7 +13,10 @@ import { ADD_ROOM } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const RoomForm = ({ dungeon, campaign }) => {
-    console.log("dungeon", dungeon)
+    const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+    const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+
+    // console.log("dungeon", dungeon)
 
 
     const [roomText, setRoomText] = useState('');
@@ -29,10 +33,10 @@ const RoomForm = ({ dungeon, campaign }) => {
             const { data } = await addRoom({
                 variables: {
                     name: roomText,
-                    dungeon: dungeon._id,
+                    dungeon: currentDungeon._id,
                     blurb: roomBlurb,
                     is_active: true,
-                    user: Auth.getProfile().data.username,
+                    user: Auth.getProfile(),
                 },
             });
             console.log("right here", data)
@@ -55,6 +59,10 @@ const RoomForm = ({ dungeon, campaign }) => {
 
         if (name === 'roomText') {
             setRoomText(value);
+        }
+
+        if (name === 'blurbText') {
+            setRoomBlurb(value);
         }
     };
 
@@ -100,10 +108,12 @@ const RoomForm = ({ dungeon, campaign }) => {
                                                 onChange={handleChange}
                                                 value={dungeonOption.dungeon}>
 
-                                                {campaign.dungeon && campaign.dungeon.map((dungeon, pos) => (
+                                                {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))}
+                                                
                                             </Form.Select>
+
                                             {error ? (
                                                 <div>
                                                     <p className='error-text'>Please select a dungeon</p>
@@ -115,12 +125,12 @@ const RoomForm = ({ dungeon, campaign }) => {
                                             <Form.Label>Blurb</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                value={roomBlurb.blurb}
+                                                value={roomBlurb.name}
                                                 // id="text"
                                                 className="form-input"
                                                 type="textarea"
                                                 placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
-                                                name="roomText" />
+                                                name="blurbText" />
                                             {error ? (
                                                 <div>
                                                     <p className='error-text'>Please enter a blurb. Don't be shy.</p>
