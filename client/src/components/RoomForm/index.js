@@ -139,7 +139,7 @@ const RoomForm = ({ dungeonData }) => {
                         <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4">
                             Add Room
                         </Button>
-                        <hr className='w-50' />          
+                        <hr className='w-50' />
                     </Container>
                 </>
             ) : (
