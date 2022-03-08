@@ -1,46 +1,15 @@
 .my-creatures-container {
+  box-sizing: border-box;
+  height: 75vh;
+  background-image: url(../../../public/assets/images/Scroll-background2.jpg);
 }
 
-/* .my-creatures-container {
-    margin-bottom: auto;
-    margin-top: 20px;
-} */
-
-/* .slide-container {
-  display: inline;
-  width: 100%;
+.d-block {
+  box-sizing: border-box;
+  max-height: 400px;
+  max-width: 400px;
+  margin-top: 15px;
+  margin-left: 20px;
 }
 
-.img {
-  display: inline;
-  width: 50px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.each-fade {
-    display: inline;
-    width: 100%;
-  }
-  
-  .each-fade > div {
-    width: 50%;
-  }
-  
-  .each-fade > img {
-    width: 500px;
-    height: 400px;
-    object-fit: contain;
-  } */
-  
-  /* .each-fade p {
-    width: 25%;
-    font-size: 1em;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    background: #adceed;
-  } */
   

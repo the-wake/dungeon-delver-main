@@ -2,61 +2,13 @@ import React from 'react';
 import "./creatures.css";
 import Carousel from 'react-bootstrap/Carousel'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
-// import Demon1 from './images/Demon1.jpg';
-// import Demon2 from './images/Demon2.jpg';
-// import Dragon1 from './images/Dragon1.jpg';
-// import Dragon2 from './images/Dragon2.jpg';
-// import Goblin1 from './images/Goblin1.jpg';
-// import Goblin2 from './images/Goblin2.jpg';
-// import EarthElemental from './images/EarthElemental.jpg';
-// import FireElemental from './images/FireElemental.jpg';
-// import IceElemental from './images/IceElemental.jpg';
-
-    // const fadeImages = [
-    //     {
-    //         name: Demon1,
-    //         caption: 'Demon'
-    //     },
-    //     {
-    //         name: Demon2,
-    //         caption: 'Demon'
-    //     },
-    //     {
-    //         name: Dragon1,
-    //         caption: 'Dragon'
-    //     },
-    //     {
-    //         name: Dragon2,
-    //         caption: 'Dragon'
-    //     },
-    //     {
-    //         name: Goblin1,
-    //         caption: 'Goblin'
-    //     },
-    //     {
-    //         name: Goblin2,
-    //         caption: 'Goblin'
-    //     },
-    //     {
-    //         name: EarthElemental,
-    //         caption: 'EarthElemental'
-    //     },
-    //     {
-    //         name: FireElemental,
-    //         caption: 'FireElemental'
-    //     },
-    //     {
-    //         name: IceElemental,
-    //         caption: 'IceElemental'
-    //     },
-    // ];
     
     const Creatures = () => {
     return ( 
         <Container className="my-creatures-container">
+            <h1>Summon Creatures!</h1>
             <Row>
-              <Col>
+              <Col xs={5}>
                 <Carousel>
                     <Carousel.Item>
                         <img className='d-block w-100' 
@@ -124,30 +76,50 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                 </Carousel>
               </Col>
             <Col className='creatureForm'>
-                <h1>Summon your creatures!</h1>
                 <Form>
-                    <Form.Group className="mb-3 w-50" controlId="formBasicText">
-                      <Form.Label>Name</Form.Label>
+                    <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Name and/or Title</Form.Label>
                       <Form.Control type="text" placeholder="Enter Creature Name" />
                       <Form.Text className="text-muted">
-                        e.g. Godzilla
+                        e.g. Godzilla, King of the Monsters
                       </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3 w-75" controlId="formBasicText">
-                      <Form.Label>Title</Form.Label>
-                      <Form.Control type="text" placeholder="Title of the Beast" />
-                      <Form.Text className="text-muted">
-                        e.g. King of Monsters
-                      </Form.Text>
+                      <Form.Label>Room</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Room " />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                      <Form.Check type="checkbox" label="Mark as favorite" />
+
+                    <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Key NPC</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Key NPC" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+
+                </Form>
+            </Col>
+            <Col>
+            <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Loot</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Possible Loot" />
+                    </Form.Group>
+            
+                    <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>HP</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Hit Points" />
+                    </Form.Group>
+
+                    <Button variant="dark" type="submit">
                       Summon
                     </Button>
-                </Form>
+                    {/* <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Loot</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Possible Loot" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3 w-75" controlId="formBasicText">
+                      <Form.Label>Loot</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Possible Loot" />
+                    </Form.Group> */}
             </Col>
         </Row>
     </Container>
