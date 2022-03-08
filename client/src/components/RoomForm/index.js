@@ -125,7 +125,7 @@ const RoomForm = ({ dungeon, campaign }) => {
                                             <Form.Label>Blurb</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                value={roomBlurb.name}
+                                                value={roomBlurb.blurb}
                                                 // id="text"
                                                 className="form-input"
                                                 type="textarea"
