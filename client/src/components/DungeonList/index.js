@@ -5,9 +5,12 @@ import { useMutation } from '@apollo/client';
 import { useParams, useLocation } from 'react-router-dom';
 import { REMOVE_DUNGEON } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
+import { useSessionContext } from '../../utils/SessionContext.js';
 import "./dungeonList.css";
 
 const DungeonList = ({ dungeons, campaign }) => {
+    const { currentSession, setCampaign, setDungeon } = useSessionContext();
+
     const [removeDungeon, { error }] = useMutation(REMOVE_DUNGEON, {
         update(cache, { data: { removeDungeon } }) {
             try {
@@ -42,7 +45,7 @@ const DungeonList = ({ dungeons, campaign }) => {
     // console.log(campaign._id);
 
     const dungeonList = dungeons.filter(dungeon => dungeon.campaign._id === campaign._id);
-    console.log(dungeonList);
+    // console.log(dungeonList);
 
     return (
         <Container>
@@ -53,10 +56,20 @@ const DungeonList = ({ dungeons, campaign }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id}><Link className='dungeon-title' to={`/dungeons/${dungeon._id}`} state={{ campaignData: campaign, dungeonData: dungeon }}>{dungeon.name}</Link>
+                                <Card.Title key={dungeon._id}>
+                                    <Link className='dungeon-title' to={`/dungeons/${dungeon._id}`}
+                                        onClick={() => {
+                                            setCampaign({ currentCampaign: dungeon.campaign });
+                                            setDungeon({ currentDungeon: dungeon });
+                                        }}
+                                        state={{ campaignData: campaign, dungeonData: dungeon }}>
+                                        {dungeon.name}
+                                    </Link>
                                     {Auth.loggedIn && (<CloseButton className="close-button float-end"
-                                        onClick={() => handleRemoveDungeon(dungeon)}
-                                    ></CloseButton>)}</Card.Title>
+                                        onClick={() => handleRemoveDungeon(dungeon)}>
+
+                                    </CloseButton>)}
+                                </Card.Title>
                                 <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>

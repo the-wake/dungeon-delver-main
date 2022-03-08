@@ -3,10 +3,14 @@ import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_CAMPAIGN } from '../../utils/mutations';
+import { useSessionContext } from '../../utils/SessionContext.js'
 import { QUERY_ME } from '../../utils/queries';
 import "./campaignList.css";
 
 const CampaignList = ({ campaigns }) => {
+  const { currentSession, setCampaign } = useSessionContext();
+  console.log('Current Session: ', currentSession);
+
   const [removeCampaign, { error }] = useMutation(REMOVE_CAMPAIGN, {
     update(cache, { data: { removeCampaign } }) {
       try {
@@ -47,15 +51,22 @@ const CampaignList = ({ campaigns }) => {
             <Card>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
-                
-                <Card.Title><Link className='campaign-title' to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link>
-                {Auth.loggedIn && (<CloseButton className="close-button float-end"
-                  onClick={() => handleRemoveCampaign(campaign)}
-                ></CloseButton>)}</Card.Title>
+
+                <Card.Title>
+                  <Link className='campaign-title'
+                  to={`/campaigns/${campaign._id}`}
+                  onClick={() => setCampaign({ currentCampaign: campaign })}
+                  state={{ campaignData: campaign }}>
+                    {campaign.name}
+                  </Link>
+                  {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                    onClick={() => handleRemoveCampaign(campaign)}
+                  ></CloseButton>)}
+                </Card.Title>
                 <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
                 </Card.Text>
-                
+
               </Card.Body>
             </Card>
           </Col>
@@ -63,6 +74,6 @@ const CampaignList = ({ campaigns }) => {
       </Row>
     </Container>
   );
-}
+};
 
 export default CampaignList;

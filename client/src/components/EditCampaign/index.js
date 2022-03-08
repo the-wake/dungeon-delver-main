@@ -2,6 +2,7 @@ import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
 import "./editCampaign.css";
 
 import { EDIT_CAMPAIGN } from "../../utils/mutations";
+import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
@@ -10,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const EditCampaign = ({ campaign }) => {
     const [campaignText, setCampaignText] = useState('');
+    const { currentSession, setCurrentSession } = useSessionContext();
     const [onShow, setOnShow] = useState(false);
 
     // var campaignId = campaign._id;
@@ -28,11 +30,9 @@ const EditCampaign = ({ campaign }) => {
                 },
             });
             console.log(data);
-
-            // useEffect(() => {
-
-            // },
-            // );
+            setCurrentSession({ currentCampaign: campaign.name, currentCampaignId: campaign._id });
+            console.log('*****************************\nCurrent Session:\n', currentSession);
+            
             setCampaignText('');
 
             window.location.reload();
