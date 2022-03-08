@@ -26,6 +26,7 @@ import SingleCampaign from './pages/SingleCampaign';
 import Dungeon from './pages/Dungeon';
 import SingleDungeon from './pages/SingleDungeon';
 import Creatures from './pages/Creatures';
+import SingleRoom from './pages/SingleRoom';
 
 
 
@@ -79,7 +80,7 @@ function App() {
                 {/* <Route path="/dungeons" element={<Dungeon />} /> */}
                 <Route path="/dungeons/:id" element={<SingleDungeon />} />
                 {/* <Route path="/rooms" element={<Rooms />} /> */}
-                {/* <Route path="/rooms/:id" element={<SingleRoom />} /> */}
+                <Route path="/rooms/:id" element={<SingleRoom />} />
                 <Route path="/creatures" element={<Creatures />} />
                 {/* <Route path="/creatures/:id" element={<SingleCreature />} /> */}
                 <Route path="*" element={<Home />} />
