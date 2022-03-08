@@ -5,7 +5,7 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import CreatureForm from '../../components/CreatureForm';
+import CreatureForm from '../../components/CreatureForm';
 
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
@@ -49,6 +49,8 @@ const SingleRoom = () => {
                     {/* {roomBlurbData.name} */}
                 </Col>
             </Row>
+
+            <CreatureForm></CreatureForm>
 
             {/* <Row>
                 <CreatureForm creatures={creatures} room={roomData}></CreatureForm>

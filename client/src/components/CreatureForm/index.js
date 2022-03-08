@@ -1,4 +1,4 @@
-import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
+import { Container, Col, Row, Button, Modal, Form, NumericInput } from "react-bootstrap";
 import "./creatureForm.css";
 
 import { ADD_CREATURE } from "../../utils/mutations";
@@ -30,7 +30,7 @@ const CreatureForm = () => {
             console.log(data);
             // setCurrentSession({ currentCampaign: campaign.name, currentCampaignId: campaign._id });
             // console.log('*****************************\nCurrent Session:\n', currentSession);
-            
+
             setCreatureText('');
 
             window.location.reload();
@@ -55,9 +55,9 @@ const CreatureForm = () => {
                 Auth.loggedIn() ? (
                     <Container>
                         <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
-                            <Form onSubmit={handleEditSubmit}>
+                            <Form onSubmit={handleCreatureSubmit}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>New Campaign Name</Modal.Title>
+                                    <Modal.Title>Creature Information</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
 
@@ -66,23 +66,103 @@ const CreatureForm = () => {
                                         <Form.Control
                                             autoFocus
                                             onChange={handleChange}
-                                            value={campaignText.name}
+                                            value={creatureText.name}
                                             className="form-input"
                                             type="text"
-                                            placeholder="Enter the name of your campaign"
-                                            name="campaignText" />
+                                            placeholder="Enter the name of your creature"
+                                            name="creatureText" />
 
                                         {error ? (
                                             <div>
-                                                <p className="error-text">Please enter a campaign name.</p>
+                                                <p className="error-text">Please enter a creature name.</p>
                                             </div>
                                         ) : null}
                                     </Form.Group>
 
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Associated Room</Form.Label>
+
+                                        <Form.Select
+                                            onChange={handleChange}
+                                            // value={creatureOption.creature}
+                                            >
+
+                                            {/* {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
+                                                    <option key={pos} value={dungeon._id}>{dungeon.name}</option>
+                                                ))} */}
+
+                                        </Form.Select>
+
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="formBasicText">
+                                        <Form.Label></Form.Label>
+                                        <Form.Control
+                                            onChange={handleChange}
+                                            // value={creatureText.name}
+                                            className="form-input"
+                                            type="number"
+                                            placeholder="Enter the hp of your creature"
+                                            // name="creatureText" 
+                                            />
+
+                                        {error ? (
+                                            <div>
+                                                <p className="error-text">Please enter a creature name.</p>
+                                            </div>
+                                        ) : null}
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="controlTextArea">
+                                            <Form.Label>Loot</Form.Label>
+                                            <Form.Control as="textarea" rows={4}
+                                                onChange={handleChange}
+                                                // value={roomLoot.loot}
+                                                className="form-input"
+                                                type="textarea"
+                                                placeholder="Amethyst of Evermore, Crown of Kings, etc."
+                                                name="blurbText" />
+                                            {error ? (
+                                                <div>
+                                                    <p className='error-text'>Please add some loot. Creatures can be generous, too.</p>
+                                                </div>
+                                            ) : null}
+                                        </Form.Group>
+
+                                        <Form.Group className="mb-3" controlId="controlTextArea">
+                                            <Form.Label>Key NPC</Form.Label>
+                                            <Form.Check
+                                                onChange={handleChange}
+                                                // value={roomLoot.loot}
+                                                className="form-input"
+                                                type="checkbox"
+                                                name="blurbText" />
+                                        </Form.Group>
+
+                                        <Form.Group className="mb-3" controlId="controlTextArea">
+                                            <Form.Label>Key NPC</Form.Label>
+                                            <Form.Check
+                                                onChange={handleChange}
+                                                // value={roomLoot.loot}
+                                                className="form-input"
+                                                type="checkbox"
+                                                name="blurbText" />
+                                        </Form.Group>
+
+
+                                    {/* {error ? (
+                                                <div>
+                                                    <p className='error-text'>Please select a dungeon</p>
+                                                </div>
+                                            ) : null}
+                                        </Form.Group> */}
+
+
+
                                 </Modal.Body>
                             </Form>
                             <Modal.Footer>
-                                <Button onClick={handleEditSubmit} variant="primary">
+                                <Button onClick={handleCreatureSubmit} variant="primary">
                                     Submit
                                 </Button>
                             </Modal.Footer>
@@ -90,7 +170,7 @@ const CreatureForm = () => {
                         <Row>
                             <Col>
                                 <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5">
-                                    Edit Campaign
+                                    Add Creature
                                 </Button>
                             </Col>
                         </Row>
