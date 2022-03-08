@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Room = require('./Room.js');
 
 // This auto-generates _id, right?
 const creatureSchema = new Schema({
@@ -34,6 +35,24 @@ const creatureSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+});
+
+creatureSchema.pre('save', function (next) {
+  Room.findOneAndUpdate(
+    { _id: this.room },
+    { $addToSet: { creatures: this._id } },
+    { new: true },
+  ).exec();
+  next();
+});
+
+creatureSchema.pre('remove', function (next) {
+  Room.findOneAndUpdate(
+    { _id: this.room },
+    { $pull: { creatures: this._id } },
+    { new: true },
+  ).exec();
+  next();
 });
 
 const Creature = model('Creature', creatureSchema);

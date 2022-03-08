@@ -7,17 +7,17 @@ const campaignSchema = new Schema({
     required: true,
     trim: true,
   },
-  is_active: {
-    type: Boolean,
-    required: true,
-    default: true,
-  },
   dungeons: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Dungeon',
     }
   ],
+  is_active: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',

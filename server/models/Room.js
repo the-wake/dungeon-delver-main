@@ -11,6 +11,12 @@ const roomSchema = new Schema({
   blurb: {
     type: String,
   },
+  creatures: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Creature',
+    }
+  ],
   dungeon: {
     type: Schema.Types.ObjectId,
     ref: 'Dungeon',
@@ -30,6 +36,15 @@ roomSchema.pre('save', function (next) {
   Dungeon.findOneAndUpdate(
     { _id: this.dungeon },
     { $addToSet: { rooms: this._id } },
+    { new: true },
+  ).exec();
+  next();
+});
+
+roomSchema.pre('remove', function (next) {
+  Dungeon.findOneAndUpdate(
+    { _id: this.dungeon },
+    { $pull: { rooms: this._id } },
     { new: true },
   ).exec();
   next();

@@ -8,6 +8,12 @@ const dungeonSchema = new Schema({
     required: true,
     trim: true,
   },
+  rooms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Room',
+    }
+  ],
   campaign: {
     type: Schema.Types.ObjectId,
     ref: 'Campaign',
@@ -33,7 +39,7 @@ dungeonSchema.pre('save', function (next) {
   next();
 });
 
-dungeonSchema.pre('findOneAndDelete', function (next) {
+dungeonSchema.pre('remove', function (next) {
   Campaign.findOneAndUpdate(
     { _id: this.campaign },
     { $pull: { dungeons: this._id } },

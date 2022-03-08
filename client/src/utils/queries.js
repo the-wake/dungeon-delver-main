@@ -19,7 +19,7 @@ export const QUERY_CAMPAIGNS = gql`
 `;
 
 export const QUERY_SINGLE_CAMPAIGN = gql`
-  query getCampaigns($_id: ID!) {
+  query getCampaign($_id: ID!) {
     getCampaign(_id: $_id) {
       _id
       name
@@ -37,11 +37,15 @@ export const QUERY_DUNGEONS = gql`
         getDungeons {
             _id
             name
-            is_active
+            rooms {
+                _id
+                name
+            }
             campaign {
                 _id
                 name
             }
+            is_active
             user {
                 _id
                 username
@@ -51,15 +55,19 @@ export const QUERY_DUNGEONS = gql`
 `;
 
 export const QUERY_SINGLE_DUNGEON = gql`
-    query getDungeons($_id: ID!) {
+    query getDungeon($_id: ID!) {
         getDungeon(_id: $_id) {
             _id
             name
-            is_active
+            rooms {
+                _id
+                name
+            }
             campaign {
                 _id
                 name
             }
+            is_active
         }
     }
 `;
@@ -70,26 +78,34 @@ export const QUERY_ROOMS = gql`
             _id
             name
             blurb
-            is_active
+            creatures {
+                _id
+                name
+            }
             dungeon {
                 _id
                 name
             }
+            is_active
         }
     }
 `;
 
 export const QUERY_SINGLE_ROOM = gql`
-    query getRooms($_id: ID!) {
-        getRooms(_id: $_id) {
+    query getRoom($_id: ID!) {
+        getRoom(_id: $_id) {
             _id
             name
             blurb
-            is_active
+            creatures {
+                _id
+                name
+            }
             dungeon {
                 _id
                 name
             }
+            is_active
         }
     }
 `;
@@ -112,8 +128,8 @@ export const QUERY_CREATURES = gql`
 `;
 
 export const QUERY_SINGLE_CREATURE = gql`
-    query getCreatures($_id: ID!) {
-        creatures(_id: $_id) {
+    query getCreature($_id: ID!) {
+        getCreature(_id: $_id) {
             hp
             loot
             key_npc
