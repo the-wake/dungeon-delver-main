@@ -18,7 +18,6 @@ const RoomForm = ({ dungeon, campaign }) => {
 
     // console.log("dungeon", dungeon)
 
-
     const [roomText, setRoomText] = useState('');
     const [dungeonOption, setDungeonOption] = useState('');
     const [roomBlurb, setRoomBlurb] = useState('');

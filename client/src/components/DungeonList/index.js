@@ -56,7 +56,7 @@ const DungeonList = ({ dungeons, campaign }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id}>
+                                <Card.Title>
                                     <Link className='dungeon-title' to={`/dungeons/${dungeon._id}`}
                                         onClick={() => {
                                             setCampaign({ currentCampaign: dungeon.campaign });
