@@ -7,10 +7,14 @@ import { useQuery } from '@apollo/client';
 import DungeonForm from '../../components/DungeonForm';
 import DungeonList from '../../components/DungeonList';
 import EditCampaign from "../../components/EditCampaign";
+import { useSessionContext } from '../../utils/SessionContext.js';
 import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
 const SingleCampaign = () => {
+    const { currentSession } = useSessionContext();
+    console.log(currentSession);
+    
     const location = useLocation();
     const { campaignData } = location.state;
 
