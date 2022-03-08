@@ -26,7 +26,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaigns = await Campaign.find({ user: user._id }).populate('user');
+      const campaigns = await Campaign.find({ user: user._id }).populate('user').populate('dungeons');
       
       if (!campaigns) {
         throw new AuthenticationError('You have no campaigns!')
@@ -41,7 +41,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeons = await Dungeon.find({ user: user._id }).populate('user').populate('campaign');
+      const dungeons = await Dungeon.find({ user: user._id }).populate('user').populate('campaign').populate('rooms');
       console.log(dungeons);
       
       if (!dungeons) {
@@ -55,7 +55,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
      
-      const rooms = await Room.find({ dungeon, user: user._id }).populate('user').populate('dungeon');
+      const rooms = await Room.find({ dungeon, user: user._id }).populate('user').populate('dungeon').populate('creatures');
       console.log(rooms);
       
       if (!rooms) {
@@ -83,7 +83,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaign = await Campaign.findOne({ _id: campaignId, user }).populate('user');
+      const campaign = await Campaign.findOne({ _id: campaignId, user }).populate('user').populate('dungeons');
       console.log(campaign);
       
       if (!campaign) {
@@ -97,7 +97,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeon = await Dungeon.findOne({ _id: dungeonId, user }).populate('user').populate('campaign');
+      const dungeon = await Dungeon.findOne({ _id: dungeonId, user }).populate('user').populate('campaign').populate('rooms');
       console.log(dungeon);
       
       if (!dungeon) {
@@ -111,7 +111,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('dungeon');
+      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('dungeon').populate('creatures');
       console.log(room);
 
       if (!room) {

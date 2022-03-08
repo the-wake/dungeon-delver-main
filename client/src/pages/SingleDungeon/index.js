@@ -13,14 +13,16 @@ import { Link } from 'react-router-dom';
 
 
 const SingleDungeon = () => {
-
+    
     const location = useLocation();
     const { dungeonData } = location.state;
     const { campaignData } = location.state;
+    console.log(dungeonData);
 
     const { loading, data } = useQuery(QUERY_ROOMS, {
         variables: { dungeon: dungeonData._id },
     });
+    console.log(data);
 
     const rooms = data?.getRooms || [];
 
@@ -44,26 +46,35 @@ const SingleDungeon = () => {
 
     return (
         <Container className='my-dungeon-container'>
+            <Col>
+                <h1>{dungeonData.name}</h1>
+            </Col>
             <Row>
-                <Col xs={10}>
-                    <h1 className="dungeon-name mt-1">{dungeonData.name}</h1>
-                </Col>
-                <Col className="flex mt-4 mb-5">
-                    <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
+                <Col>
+
+                {/* <Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link> */}
+
+                {/* Attempt to return to previous page -- might be an easier way with redirect */}
+                {/* <Link to='/campaigns'> */}
+                
+                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
+                    {/* <Button className="mt-4 mb-4 mx-2">
+                        Back
+                    </Button> */}
                     </Link>
                 </Col>
             </Row>
 
             <Row>
+                <RoomForm dungeon={dungeonData}></RoomForm>
+                <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
                 {loading ? (
                     <h2>
                         Retrieving Data...
                     </h2>
-                ) : (<>
-                    <RoomForm dungeonData={dungeonData}></RoomForm>
-                    <h2 className="mb-3 mt-3 mx-3">Rooms in {dungeonData.name}</h2>
+                ) : (
                     <RoomList campaign={campaignData} dungeon={dungeonData} rooms={rooms}></RoomList>
-                </>)}
+                )}
             </Row>
 
         </Container>
