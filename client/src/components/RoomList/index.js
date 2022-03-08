@@ -5,9 +5,12 @@ import { useMutation } from '@apollo/client';
 import { useParams, useLocation } from 'react-router-dom';
 import { REMOVE_ROOM } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
+import { useSessionContext } from '../../utils/SessionContext.js';
 import "./roomList.css";
 
 const RoomList = ({ rooms, dungeon }) => {
+    const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+    
     const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
         update(cache, { data: { removeRoom } }) {
             try {
@@ -53,10 +56,18 @@ const RoomList = ({ rooms, dungeon }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={room._id}><Link className='room-title' to={`/rooms/${room._id}`} state={{ roomData: room }}>{room.name}</Link>
+                                <Card.Title key={room._id}>
+                                    <Link className='room-title' to={`/rooms/${room._id}`}
+                                        onClick={() => {
+                                            setDungeon({ currentDungeon: room.dungeon });
+                                            setRoom({ currentRoom: room });
+                                        }}
+                                        state={{ roomData: room }}>
+                                        {room.name}
+                                    </Link>
                                     {Auth.loggedIn && (<CloseButton className="close-button float-end"
-                                        onClick={() => handleRemoveRoom(room)}
-                                    ></CloseButton>)}
+                                        onClick={() => handleRemoveRoom(room)}>
+                                    </CloseButton>)}
                                 </Card.Title>
                                 <Card.Text>
                                     We can add a field for room description here. Need to add another field to ADD_ROOM.

@@ -9,7 +9,7 @@ import "./campaignList.css";
 
 const CampaignList = ({ campaigns }) => {
   const { currentSession, setCampaign } = useSessionContext();
-  console.log('Current Sessioon: ', currentSession);
+  console.log('Current Session: ', currentSession);
 
   const [removeCampaign, { error }] = useMutation(REMOVE_CAMPAIGN, {
     update(cache, { data: { removeCampaign } }) {
@@ -53,7 +53,10 @@ const CampaignList = ({ campaigns }) => {
               <Card.Body>
 
                 <Card.Title>
-                  <Link className='campaign-title' to={`/campaigns/${campaign._id}`} onClick={() => setCampaign({ currentCampaignId: campaign._id, currentCampaign: campaign.name })} state={{ campaignData: campaign }}>
+                  <Link className='campaign-title'
+                  to={`/campaigns/${campaign._id}`}
+                  onClick={() => setCampaign({ currentCampaign: campaign })}
+                  state={{ campaignData: campaign }}>
                     {campaign.name}
                   </Link>
                   {Auth.loggedIn && (<CloseButton className="close-button float-end"
@@ -71,6 +74,6 @@ const CampaignList = ({ campaigns }) => {
       </Row>
     </Container>
   );
-}
+};
 
 export default CampaignList;

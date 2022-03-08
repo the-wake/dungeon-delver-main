@@ -14,7 +14,7 @@ import { ADD_CAMPAIGN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const CampaignForm = (props) => {
-    const [campaignText, setCampaignText] = useState('');
+  const [campaignText, setCampaignText] = useState('');
 
     const [addCampaign, { error, data }] = useMutation(ADD_CAMPAIGN);
 
@@ -56,11 +56,16 @@ const CampaignForm = (props) => {
                     user: Auth.getProfile(),
                 },
             });
-            // console.log("Campaign Data:", data)
+
+            console.log(data);
+            // console.log(data._id);
+            // console.log(data.name);
 
             setCampaignText('');
 
             // I'd like to have this redirect to the new campaign when submitted, but I can't figure out how to capture the ID from the newly-added campaign (since it's not passed in the variables).
+            
+            // Also we'd have to find a way to wait for the addCampaign to finish, and then update the Context with the focused campaign.
             window.location = `/campaigns`
 
 
