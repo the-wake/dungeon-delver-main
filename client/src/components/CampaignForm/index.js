@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
-import "./campaignForm.css"
+
 
 //bootstrap components
 import { Button, Container, Row, Form, Col } from 'react-bootstrap';
@@ -56,7 +56,7 @@ const CampaignForm = (props) => {
                     user: Auth.getProfile(),
                 },
             });
-            console.log("Campaign Data:", data)
+            // console.log("Campaign Data:", data)
 
             setCampaignText('');
 
