@@ -56,7 +56,7 @@ const CampaignForm = (props) => {
                     user: Auth.getProfile(),
                 },
             });
-            console.log("Campaign Data:", data)
+            // console.log("Campaign Data:", data)
 
             setCampaignText('');
 

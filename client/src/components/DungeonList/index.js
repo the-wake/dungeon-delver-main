@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, CloseButton } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -53,13 +53,13 @@ const DungeonList = ({ dungeons, campaign }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={dungeon._id} className="dungeon-title"><Link to={`/dungeons/${dungeon._id}`} state={{ campaignData: campaign, dungeonData: dungeon }}>{dungeon.name}</Link></Card.Title>
+                                <Card.Title key={dungeon._id}><Link className='dungeon-title' to={`/dungeons/${dungeon._id}`} state={{ campaignData: campaign, dungeonData: dungeon }}>{dungeon.name}</Link>
+                                    {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                                        onClick={() => handleRemoveDungeon(dungeon)}
+                                    ></CloseButton>)}</Card.Title>
                                 <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>
-                                {Auth.loggedIn && (<Button
-                                    onClick={() => handleRemoveDungeon(dungeon)}
-                                >X</Button>)}
                             </Card.Body>
                         </Card>
                     </Col>

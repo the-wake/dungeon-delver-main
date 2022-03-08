@@ -23,6 +23,7 @@ const EditCampaign = (props) => {
                     user: Auth.getProfile().data.username,
                 },
             });
+            console.log(data)
             setCampaignText('');
 
             window.location.reload();
@@ -46,8 +47,8 @@ const EditCampaign = (props) => {
             {
                 Auth.loggedIn() ? (
                     <Container>
-                        <Modal show={onShow} onHide={() => setOnShow(false)} role="dialog">
-                            <Form onSubmit={handleEditSubmit}>
+                        <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
+                            <Form>
                                 <Modal.Header closeButton>
                                     <Modal.Title>New Campaign Name</Modal.Title>
                                 </Modal.Header>
@@ -74,7 +75,7 @@ const EditCampaign = (props) => {
                                 </Modal.Body>
                             </Form>
                             <Modal.Footer>
-                                <Button variant="primary">
+                                <Button onClick={handleEditSubmit} variant="primary">
                                     Submit</Button>
                             </Modal.Footer>
                         </Modal>
@@ -94,47 +95,6 @@ const EditCampaign = (props) => {
                 )
             }
         </>
-
-        // <Container>
-        //     <Col>
-        //         <Row>
-        //             <h1>Update Campaign:
-        //                 {/* {campaign} */}
-        //             </h1>
-        //         </Row>
-        //     </Col>
-        //     <Container>
-        //         <Row>
-        //             <Form>
-        //                 <Form.Group className="mb-3" controlId="formBasicText">
-        //                     <Form.Label></Form.Label>
-        //                     <Form.Control
-        //                         autoFocus
-        //                         onChange={handleChange}
-        //                         // value={campaignText}
-        //                         // id="text"
-        //                         className="form-input"
-        //                         type="text"
-        //                         placeholder="New campaign name"
-        //                         name="text" />
-        //                     {error ? (
-        //                         <div>
-        //                             <p className='error-text'>Please enter a new campaign name</p>
-        //                         </div>
-        //                     ) : null}
-        //                 </Form.Group>
-        //             </Form>
-        //         </Row>
-        //     </Container>
-        //     <Container>
-
-        //         <Button onClick={handleCampaignSubmit} className="mt-4">
-        //             Submit
-        //         </Button>
-        //     </Container>
-        // </Container>
-
-
     );
 }
 

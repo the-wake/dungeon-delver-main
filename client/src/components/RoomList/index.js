@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, CloseButton } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -53,13 +53,14 @@ const RoomList = ({ rooms, dungeon }) => {
                         <Card>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title key={room._id} className="room-title"><Link to={`/rooms/${room._id}`} state={{ roomData: room }}>{room.name}</Link></Card.Title>
+                                <Card.Title key={room._id}><Link className='room-title' to={`/rooms/${room._id}`} state={{ roomData: room }}>{room.name}</Link>
+                                    {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                                        onClick={() => handleRemoveRoom(room)}
+                                    ></CloseButton>)}
+                                </Card.Title>
                                 <Card.Text>
                                     We can add a field for room description here. Need to add another field to ADD_ROOM.
                                 </Card.Text>
-                                {Auth.loggedIn && (<Button
-                                    onClick={() => handleRemoveRoom(room)}
-                                >X</Button>)}
                             </Card.Body>
                         </Card>
                     </Col>
