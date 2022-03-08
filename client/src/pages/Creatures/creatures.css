@@ -1,4 +1,15 @@
 .my-creatures-container {
-    margin-bottom: auto;
-    margin-top: 20px;
+  box-sizing: border-box;
+  height: 75vh;
+  background-image: url(../../../public/assets/images/Scroll-background2.jpg);
 }
+
+.d-block {
+  box-sizing: border-box;
+  max-height: 400px;
+  max-width: 400px;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+  

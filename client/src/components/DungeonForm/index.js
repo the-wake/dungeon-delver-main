@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap'
+import { Form, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 
@@ -52,11 +52,10 @@ const DungeonForm = (props) => {
         <div>
             {Auth.loggedIn() ? (
                 <>
-                    <Container>
-                        <h2>Add a New Dungeon to {props.campaign.name}</h2>
-                    </Container>
-                    <Container>
+                    <Container className='dungeon'>
                         <Row>
+                          <Col>
+                        <h2>Add a New Dungeon to {props.campaign.name}</h2>
                             <Form onSubmit={handleDungeonSubmit}>
                                 <Form.Group className="mb-3 w-50" controlId="formBasicText">
                                     <Form.Label></Form.Label>
@@ -80,6 +79,7 @@ const DungeonForm = (props) => {
                                     ) : null}
                                 </Form.Group>
                             </Form>
+                          </Col>
                         </Row>
                     </Container>
                     <Container>
