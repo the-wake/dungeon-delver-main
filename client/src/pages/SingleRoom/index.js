@@ -1,11 +1,11 @@
-import "./login.css";
+import "./singleRoom.css";
 
 import { Container, Col, Row, Button } from "react-bootstrap";
 
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import CreatureForm from '../../components/CreatureForm';
+// import CreatureForm from '../../components/CreatureForm';
 
 import { QUERY_CREATURES } from "../../utils/queries";
 import { Link } from 'react-router-dom';
@@ -27,26 +27,19 @@ const SingleRoom = () => {
 
     return ( 
 <Container className='my-room-container'>
+
             <Col>
-                <h1>{roomNameData.name}</h1>
+                {/* <h1>{roomNameData.name}</h1> */}
             </Col>
             <Row>
                 <Col>
-
-                {/* <Link to={`/dungeons/${dungeon._id}`} state={{ dungeonData: dungeon }}>{dungeon.name}</Link> */}
-
-                {/* Attempt to return to previous page -- might be an easier way with redirect */}
-                {/* <Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name} */}
                 
-                <Link to='/campaigns'>
-                    <Button className="mt-4 mb-4 mx-2">
-                        Back
-                    </Button>
-                    </Link>
+                {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
+                    </Link> */}
                 </Col>
 
                 <Col className="text-center">
-                    {roomBlurbData.name}
+                    {/* {roomBlurbData.name} */}
                     </Col>
             </Row>
 
@@ -67,5 +60,3 @@ const SingleRoom = () => {
 }
  
 export default SingleRoom;
-
-

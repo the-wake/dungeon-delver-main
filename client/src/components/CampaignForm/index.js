@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap'
+
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
+import "./campaignForm.css"
 
 //bootstrap components
-import { Button, Container, Row } from 'react-bootstrap';
+import { Button, Container, Row, Form, Col } from 'react-bootstrap';
 
 //actions
 import { ADD_CAMPAIGN } from '../../utils/mutations';
@@ -80,13 +81,13 @@ const CampaignForm = (props) => {
         <div>
             {Auth.loggedIn() ? (
                 <>
-                    <Container>
+                    <Container className='form-container'>
                         <h1>Add a New Campaign</h1>
-                    </Container>
-                    <Container>
+                    
+                    <Col>
                         <Row>
                             <Form onSubmit={handleCampaignSubmit}>
-                                <Form.Group className="mb-3" controlId="formBasicText">
+                                <Form.Group className="mb-3 w-50" controlId="formBasicText">
                                     <Form.Label></Form.Label>
                                     <Form.Control
                                         autoFocus
@@ -97,9 +98,10 @@ const CampaignForm = (props) => {
                                         type="text"
                                         placeholder="Campaign name"
                                         name="campaignText" />
-                                    <Button onClick={handleCampaignSubmit} className="mt-4">
+                                    <Button onClick={handleCampaignSubmit} className="mt-4 mb-4">
                                         Add
                                     </Button>
+                                    <hr className='w-100 m-auto'/>
                                     {error ? (
                                         <div>
                                             <p className='error-text'>Please enter a unique campaign name</p>
@@ -108,6 +110,7 @@ const CampaignForm = (props) => {
                                 </Form.Group>
                             </Form>
                         </Row>
+                    </Col>
                     </Container>
                 </>
             ) : (

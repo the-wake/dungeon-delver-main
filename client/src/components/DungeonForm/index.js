@@ -58,7 +58,7 @@ const DungeonForm = (props) => {
                     <Container>
                         <Row>
                             <Form onSubmit={handleDungeonSubmit}>
-                                <Form.Group className="mb-3" controlId="formBasicText">
+                                <Form.Group className="mb-3 w-50" controlId="formBasicText">
                                     <Form.Label></Form.Label>
                                     <Form.Control
                                         autoFocus
@@ -69,9 +69,10 @@ const DungeonForm = (props) => {
                                         type="text"
                                         placeholder="Dungeon name"
                                         name="dungeonText" />
-                                    <Button onClick={handleDungeonSubmit} className="mt-4">
+                                    <Button onClick={handleDungeonSubmit} className="mt-4 mb-4">
                                         Add
                                     </Button>
+                                    <hr className='w-100 m-auto'/>
                                     {error ? (
                                         <div>
                                             <p className='error-text'>Please enter a unique dungeon name.</p>
