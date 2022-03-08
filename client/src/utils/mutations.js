@@ -86,12 +86,6 @@ export const ADD_ROOM = gql`
             name
             blurb
             is_active
-            dungeon {
-                name
-                campaign {
-                    name
-                }
-            }
         }
     }
 `;
@@ -131,16 +125,6 @@ export const ADD_CREATURE = gql`
             key_npc
             is_alive
             is_active
-            room {
-                name
-                dungeon {
-                    name
-                    campaign {
-                        name
-                    }
-                }
-            }
-            
         }
     }
 `;

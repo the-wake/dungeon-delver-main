@@ -14,14 +14,15 @@ import { Link } from 'react-router-dom';
 const SingleRoom = () => {
     const { currentSession } = useSessionContext();
     console.log(currentSession);
+    const { currentCampaign, currentDungeon, currentRoom} = currentSession;
 
-    const location = useLocation();
-    const { dungeonData } = location.state;
-    const { roomNameData } = location.state;
-    const { roomBlurbData } = location.state;
-    console.log(roomNameData)
+    // const location = useLocation();
+    // const { dungeonData } = location.state;
+    // const { roomNameData } = location.state;
+    // const { roomBlurbData } = location.state;
+    // console.log(roomNameData)
     const { loading, data } = useQuery(QUERY_CREATURES, {
-        variables: { room: roomNameData._id },
+        variables: { room: currentRoom._id },
     });
 
     const creatures = data?.getCreatures || [];
@@ -36,7 +37,7 @@ const SingleRoom = () => {
         <Container className='my-room-container'>
             <Col>
           
-                <h1>{roomNameData.name}</h1>
+                <h1>{currentRoom.name}</h1>
             </Col>
             <Row>
                 <Col>
