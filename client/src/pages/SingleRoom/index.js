@@ -19,28 +19,28 @@ const SingleRoom = () => {
 
     // console.log(dungeonData);
 
-    
-   
-
-    
 
 
-    return ( 
-<Container className='my-room-container'>
+
+
+
+
+    return (
+        <Container className='my-room-container'>
 
             <Col>
                 {/* <h1>{roomNameData.name}</h1> */}
             </Col>
             <Row>
                 <Col>
-                
-                {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
+
+                    {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
                     </Link> */}
                 </Col>
 
                 <Col className="text-center">
                     {/* {roomBlurbData.name} */}
-                    </Col>
+                </Col>
             </Row>
 
             {/* <Row>
@@ -56,7 +56,7 @@ const SingleRoom = () => {
             </Row> */}
 
         </Container>
-     );
+    );
 }
- 
+
 export default SingleRoom;
