@@ -6,7 +6,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import CreatureForm from '../../components/CreatureForm';
-
+import CreatureList from '../../components/CreatureList';
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { Link } from 'react-router-dom';
@@ -14,15 +14,19 @@ import { Link } from 'react-router-dom';
 const SingleRoom = () => {
     const { currentSession } = useSessionContext();
     console.log(currentSession);
-    const { currentCampaign, currentDungeon, currentRoom} = currentSession;
+    const { currentCampaign, currentDungeon, currentRoom } = currentSession;
 
-    // const location = useLocation();
-    // const { dungeonData } = location.state;
-    // const { roomNameData } = location.state;
-    // const { roomBlurbData } = location.state;
-    // console.log(roomNameData)
+    const location = useLocation();
+    // May want/need to add more state data.
+    const { campaignData } = location.state;
+    const { dungeonData } = location.state;
+    const { roomData } = location.state;
+    console.log(campaignData);
+    console.log(dungeonData);
+    console.log(roomData);
+
     const { loading, data } = useQuery(QUERY_CREATURES, {
-        variables: { room: currentRoom._id },
+        variables: { room: roomData._id },
     });
 
     const creatures = data?.getCreatures || [];
@@ -35,22 +39,25 @@ const SingleRoom = () => {
 
     return (
         <Container className='my-room-container'>
-            <Col>
-          
-                <h1>{currentRoom.name}</h1>
-            </Col>
             <Row>
                 <Col>
                     {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
                     </Link>  */}
                 </Col>
-
-                <Col className="text-center">
-                    {/* {roomBlurbData.name} */}
+                <Col className="flex">
+                    {/* <EditRoom room={roomData}></EditRoom> */}
+                    <h2 className="mb-3 mt-3 mx-3">Creatures in {roomData.name}</h2>
+                    {loading ? (
+                        <h2>
+                            Retrieving Data...
+                        </h2>
+                    ) : (
+                        <CreatureList campaign={campaignData} dungeon={dungeonData} room={roomData} creatures={creatures}></CreatureList>
+                    )}
                 </Col>
             </Row>
 
-            <CreatureForm></CreatureForm>
+            <CreatureForm campaign={campaignData} dungeon={dungeonData} room={roomData}></CreatureForm>
 
             {/* <Row>
                 <CreatureForm creatures={creatures} room={roomData}></CreatureForm>

@@ -18,7 +18,6 @@ const RoomForm = ({ dungeon, campaign }) => {
 
     // console.log("dungeon", dungeon)
 
-
     const [roomText, setRoomText] = useState('');
     const [dungeonOption, setDungeonOption] = useState('');
     const [roomBlurb, setRoomBlurb] = useState('');
@@ -33,7 +32,7 @@ const RoomForm = ({ dungeon, campaign }) => {
             const { data } = await addRoom({
                 variables: {
                     name: roomText,
-                    dungeon: currentDungeon._id,
+                    dungeon: dungeonOption,
                     blurb: roomBlurb,
                     is_active: true,
                     user: Auth.getProfile(),
@@ -59,6 +58,10 @@ const RoomForm = ({ dungeon, campaign }) => {
 
         if (name === 'roomText') {
             setRoomText(value);
+        }
+
+        if (name === 'dungeonOption') {
+            setDungeonOption(value);
         }
 
         if (name === 'blurbText') {
@@ -106,12 +109,12 @@ const RoomForm = ({ dungeon, campaign }) => {
 
                                             <Form.Select
                                                 onChange={handleChange}
-                                                value={dungeonOption.dungeon}>
+                                                value={dungeonOption.dungeon}
+                                                name="dungeonOption">
 
                                                 {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))}
-                                                
                                             </Form.Select>
 
                                             {error ? (
