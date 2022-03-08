@@ -60,7 +60,7 @@ const Login = (props) => {
     return (
 
         <Container>
-            <Row>
+            <Row className='background'>
                 <Col>
                 <img className='wizard' src={`${process.env.PUBLIC_URL}/assets/images/wizard-4417430_1280.png`} alt="Great wizard" />
                 </Col>
@@ -69,7 +69,7 @@ const Login = (props) => {
 
 
                     <Form onSubmit={handleFormSubmit}>
-                        <h2 className='text-center'>Login</h2>
+                        <h2 className='text-center title'>Login</h2>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
 
@@ -102,11 +102,11 @@ const Login = (props) => {
                             ) : null}
                         </Form.Group>
 
-                        <Button variant="primary" block-size="lg" type="submit">
+                        <Button varient="dark" block-size="lg" type="submit">
                             Submit
                         </Button>
                         <Container className='mt-3'>
-                            <Link to="/signup">Sign up instead</Link>
+                            <Link className='instead' to="/signup">Sign up instead</Link>
                         </Container>
                     </Form>
                 </Col>

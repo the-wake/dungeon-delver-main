@@ -19,21 +19,21 @@ const LandingPage = () => {
                     <Row>
                     <Col>
                     <Link to="/campaigns">
-                    <Card className='selectCard text-center'>
+                    <Card className='selectCard text-center camp'>
                       <span className='card-title my-auto red'>Campaigns</span>
                     </Card>
                     </Link>
                     </Col>
                    <Col>
                    <Link to="/dungeons">
-                    <Card className='selectCard text-center'>
+                    <Card className='selectCard text-center dunge'>
                       <span className='card-title my-auto blue'>Dungeons</span>
                     </Card>
                     </Link>
                     </Col>
                     <Col>
                     <Link to="/creatures">
-                    <Card className='selectCard text-center'>
+                    <Card className='selectCard text-center creat'>
                        <span className='card-title my-auto green'>Creatures</span>
                     </Card>
                     </Link>

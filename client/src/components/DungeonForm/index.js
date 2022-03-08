@@ -82,8 +82,6 @@ const DungeonForm = (props) => {
                           </Col>
                         </Row>
                     </Container>
-                    <Container>
-                    </Container>
                 </>
             ) : (
 
