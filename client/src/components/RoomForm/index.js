@@ -11,8 +11,8 @@ import { ADD_ROOM } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const RoomForm = ({ dungeonData }) => {
-    console.log("dungeonData", dungeonData)
+const RoomForm = ({ campaign, dungeon }) => {
+    console.log("dungeonData", dungeon)
 
 
     const [roomText, setRoomText] = useState('');
@@ -29,7 +29,7 @@ const RoomForm = ({ dungeonData }) => {
             const { data } = await addRoom({
                 variables: {
                     name: roomText,
-                    dungeon: dungeonData._id,
+                    dungeon: dungeon._id,
                     blurb: roomBlurb,
                     is_active: true,
                     user: Auth.getProfile().data.username,
@@ -55,13 +55,13 @@ const RoomForm = ({ dungeonData }) => {
         }
     };
 
-    if (!dungeonData) { return (<div>Loading...</div>) }
+    if (!dungeon) { return (<div>Loading...</div>) }
     return (
         <div>
             {Auth.loggedIn() ? (
                 <>
                     <Container>
-                        <h2>Add a New Room to {dungeonData.name}</h2>
+                        <h2>Add a New Room to {dungeon.name}</h2>
                     </Container>
                     <Container>
                         <Row>
@@ -97,7 +97,7 @@ const RoomForm = ({ dungeonData }) => {
                                                 onChange={handleChange}
                                                 value={dungeonOption.name}>
 
-                                                {dungeonData.length > 0 && dungeonData.map((dungeon, pos) => (
+                                                {campaign.dungeons.length > 0 && campaign.dungeons.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))}
                                             </Form.Select>

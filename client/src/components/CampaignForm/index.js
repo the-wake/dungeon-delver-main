@@ -83,34 +83,34 @@ const CampaignForm = (props) => {
                 <>
                     <Container className='form-container'>
                         <h1>Add a New Campaign</h1>
-                    
-                    <Col>
-                        <Row>
-                            <Form onSubmit={handleCampaignSubmit}>
-                                <Form.Group className="mb-3 w-50" controlId="formBasicText">
-                                    <Form.Label></Form.Label>
-                                    <Form.Control
-                                        autoFocus
-                                        onChange={handleChange}
-                                        value={campaignText.name}
-                                        // id="text"
-                                        className="form-input"
-                                        type="text"
-                                        placeholder="Campaign name"
-                                        name="campaignText" />
-                                    <Button onClick={handleCampaignSubmit} className="mt-4 mb-4">
-                                        Add
-                                    </Button>
-                                    <hr className='w-100 m-auto'/>
-                                    {error ? (
-                                        <div>
-                                            <p className='error-text'>Please enter a unique campaign name</p>
-                                        </div>
-                                    ) : null}
-                                </Form.Group>
-                            </Form>
-                        </Row>
-                    </Col>
+
+                        <Col>
+                            <Row>
+                                <Form onSubmit={handleCampaignSubmit}>
+                                    <Form.Group className="mb-3 w-50" controlId="formBasicText">
+                                        <Form.Label></Form.Label>
+                                        <Form.Control
+                                            autoFocus
+                                            onChange={handleChange}
+                                            value={campaignText.name}
+                                            // id="text"
+                                            className="form-input"
+                                            type="text"
+                                            placeholder="Campaign name"
+                                            name="campaignText" />
+                                        <Button onClick={handleCampaignSubmit} className="mt-4 mb-4">
+                                            Add
+                                        </Button>
+                                        <hr className='w-100 m-auto' />
+                                        {error ? (
+                                            <div>
+                                                <p className='error-text'>Please enter a unique campaign name</p>
+                                            </div>
+                                        ) : null}
+                                    </Form.Group>
+                                </Form>
+                            </Row>
+                        </Col>
                     </Container>
                 </>
             ) : (
