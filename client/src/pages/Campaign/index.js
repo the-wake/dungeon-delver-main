@@ -21,10 +21,12 @@ const Campaign = () => {
     }
 
     const { loading, data } = useQuery(QUERY_CAMPAIGNS);
-    console.log(data);
 
     const campaigns = data?.getCampaigns || [];
-    console.log(campaigns);
+
+    if (!loading) {
+        console.log(campaigns)
+    };
 
     return (
         <Container className='my-campaign-container'>

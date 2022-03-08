@@ -5,16 +5,19 @@ import { EDIT_CAMPAIGN } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditCampaign = ( {campaign }) => {
+const EditCampaign = ({ campaign }) => {
     const [campaignText, setCampaignText] = useState('');
     const [onShow, setOnShow] = useState(false);
 
+    // var campaignId = campaign._id;
+    // console.log(campaignId);
     const [editCampaign, { error, data }] = useMutation(EDIT_CAMPAIGN);
 
     const handleEditSubmit = async (event) => {
+
         event.preventDefault();
         try {
             const { data } = await editCampaign({
@@ -24,7 +27,12 @@ const EditCampaign = ( {campaign }) => {
                     is_active: true,
                 },
             });
-            console.log(data)
+            console.log(data);
+
+            // useEffect(() => {
+
+            // },
+            // );
             setCampaignText('');
 
             window.location.reload();
@@ -49,7 +57,7 @@ const EditCampaign = ( {campaign }) => {
                 Auth.loggedIn() ? (
                     <Container>
                         <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
-                            <Form>
+                            <Form onSubmit={handleEditSubmit}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>New Campaign Name</Modal.Title>
                                 </Modal.Header>
@@ -77,7 +85,8 @@ const EditCampaign = ( {campaign }) => {
                             </Form>
                             <Modal.Footer>
                                 <Button onClick={handleEditSubmit} variant="primary">
-                                    Submit</Button>
+                                    Submit
+                                </Button>
                             </Modal.Footer>
                         </Modal>
                         <Row>

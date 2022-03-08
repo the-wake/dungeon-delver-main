@@ -17,25 +17,12 @@ const SingleCampaign = () => {
     // console.log(campaignData);
 
     const { loading, data } = useQuery(QUERY_DUNGEONS);
-    console.log(data);
 
     const dungeons = data?.getDungeons || [];
-    // console.log(dungeons);
-    // const { name } = useParams();
 
-    // const { loading, data } = useQuery(QUERY_SINGLE_CAMPAIGN, {
-    //     //have to pass state prop from campaignForm to 
-    //     //retrieve new name
-    //     variables: { name: props.name },
-    // });
-
-    // const campaign = data?.campaign || {};
-
-    // if (loading) {
-    //     return <div>
-    //         <h4>Campaign loading...</h4>
-    //     </div>
-    // }
+    if (!loading) {
+        console.log(dungeons)
+    };
 
     return (
 
@@ -45,7 +32,7 @@ const SingleCampaign = () => {
                 <h1 className="campaign-name mt-1">{campaignData.name}</h1>
                 </Col>
                 <Col className="flex">
-                    <EditCampaign>campaign={campaignData}</EditCampaign>
+                    <EditCampaign campaign={campaignData}></EditCampaign>
             </Col>
             </Row>
             <Row>
