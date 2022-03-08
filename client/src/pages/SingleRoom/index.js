@@ -5,7 +5,7 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import CreatureForm from '../../components/CreatureForm';
+import CreatureForm from '../../components/CreatureForm';
 
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
@@ -41,15 +41,16 @@ const SingleRoom = () => {
             </Col>
             <Row>
                 <Col>
-
                     {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
-                    </Link> */}
+                    </Link>  */}
                 </Col>
 
                 <Col className="text-center">
                     {/* {roomBlurbData.name} */}
                 </Col>
             </Row>
+
+            <CreatureForm></CreatureForm>
 
             {/* <Row>
                 <CreatureForm creatures={creatures} room={roomData}></CreatureForm>
