@@ -17,31 +17,16 @@ const SingleDungeon = () => {
     const location = useLocation();
     const { dungeonData } = location.state;
     const { campaignData } = location.state;
-    console.log(dungeonData);
 
     const { loading, data } = useQuery(QUERY_ROOMS, {
         variables: { dungeon: dungeonData._id },
     });
-    console.log(data);
 
     const rooms = data?.getRooms || [];
 
-
-    // const { name } = useParams();
-
-    // const { loading, data } = useQuery(QUERY_SINGLE_DUNGEON, {
-    //     //have to pass state prop from campaignForm to 
-    //     //retrieve new name
-    //     variables: { name: props.name },
-    // });
-
-    // const dungeon = data?.dungeon || {};
-
-    // if (loading) {
-    //     return <div>
-    //         <h4>Dungeon loading...</h4>
-    //     </div>
-    // }
+    if (!loading) {
+        console.log(rooms)
+    };
 
 
     return (
