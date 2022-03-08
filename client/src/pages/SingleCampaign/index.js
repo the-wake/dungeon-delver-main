@@ -45,7 +45,7 @@ const SingleCampaign = () => {
                 <h1 className="campaign-name mt-1">{campaignData.name}</h1>
                 </Col>
                 <Col className="flex">
-                    <EditCampaign></EditCampaign>
+                    <EditCampaign>campaign={campaignData}</EditCampaign>
             </Col>
             </Row>
             <Row>

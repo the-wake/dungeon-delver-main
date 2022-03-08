@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditCampaign = (props) => {
+const EditCampaign = ( {campaign }) => {
     const [campaignText, setCampaignText] = useState('');
     const [onShow, setOnShow] = useState(false);
 
@@ -19,8 +19,9 @@ const EditCampaign = (props) => {
         try {
             const { data } = await editCampaign({
                 variables: {
+                    _id: campaign._id,
                     name: campaignText,
-                    user: Auth.getProfile().data.username,
+                    is_active: true,
                 },
             });
             console.log(data)
