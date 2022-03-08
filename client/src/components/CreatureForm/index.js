@@ -11,6 +11,13 @@ import { Link } from "react-router-dom";
 
 const CreatureForm = () => {
     const [creatureText, setCreatureText] = useState('');
+    const [roomOption, setRoomOption] = useState('');
+    const [hpOption, setHpOption] = useState('');
+    const [creatureLoot, setCreatureLoot] = useState('');
+    const [keyNpc, setKeyNpc] = useState(false);
+    const [isAlive, setIsAlive] = useState(false);
+
+
     const { currentSession, setCurrentSession, setRoom, setDungeon } = useSessionContext();
     const { currentCampaign, currentDungeon, currentRoom } = currentSession;
     const [onShow, setOnShow] = useState(false);
@@ -22,6 +29,13 @@ const CreatureForm = () => {
         try {
             const { data } = await addCreature({
                 variables: {
+                    name: creatureText,
+                    room: roomOption,
+                    hp: hpOption,
+                    loot: creatureLoot,
+                    key_npc: keyNpc,
+                    is_alive: isAlive,
+                    is_active: true
                     // _id: campaign._id,
                     // name: campaignText,
                     // is_active: true,
@@ -84,13 +98,12 @@ const CreatureForm = () => {
 
                                         <Form.Select
                                             onChange={handleChange}
-                                            // value={creatureOption.creature}
+                                            value={roomOption.room}
                                             >
 
                                             {/* {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))} */}
-
                                         </Form.Select>
 
                                     </Form.Group>
@@ -99,7 +112,7 @@ const CreatureForm = () => {
                                         <Form.Label></Form.Label>
                                         <Form.Control
                                             onChange={handleChange}
-                                            // value={creatureText.name}
+                                            value={hpOption.hp}
                                             className="form-input"
                                             type="number"
                                             placeholder="Enter the hp of your creature"
@@ -108,7 +121,7 @@ const CreatureForm = () => {
 
                                         {error ? (
                                             <div>
-                                                <p className="error-text">Please enter a creature name.</p>
+                                                <p className="error-text">Please enter a valid number of hitpoints.</p>
                                             </div>
                                         ) : null}
                                     </Form.Group>
@@ -117,11 +130,11 @@ const CreatureForm = () => {
                                             <Form.Label>Loot</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                // value={roomLoot.loot}
+                                                value={creatureLoot.loot}
                                                 className="form-input"
                                                 type="textarea"
                                                 placeholder="Amethyst of Evermore, Crown of Kings, etc."
-                                                name="blurbText" />
+                                                name="creatureLoot" />
                                             {error ? (
                                                 <div>
                                                     <p className='error-text'>Please add some loot. Creatures can be generous, too.</p>
@@ -133,30 +146,24 @@ const CreatureForm = () => {
                                             <Form.Label>Key NPC</Form.Label>
                                             <Form.Check
                                                 onChange={handleChange}
-                                                // value={roomLoot.loot}
+                                                value={keyNpc.key_npc}
                                                 className="form-input"
                                                 type="checkbox"
-                                                name="blurbText" />
+                                                name="keyNpc" />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="controlTextArea">
-                                            <Form.Label>Key NPC</Form.Label>
+                                            <Form.Label>Is alive?</Form.Label>
                                             <Form.Check
                                                 onChange={handleChange}
-                                                // value={roomLoot.loot}
+                                                value={isAlive.is_alive}
                                                 className="form-input"
                                                 type="checkbox"
-                                                name="blurbText" />
+                                                name="isAlive" />
                                         </Form.Group>
 
 
-                                    {/* {error ? (
-                                                <div>
-                                                    <p className='error-text'>Please select a dungeon</p>
-                                                </div>
-                                            ) : null}
-                                        </Form.Group> */}
-
+                                    
 
 
                                 </Modal.Body>
