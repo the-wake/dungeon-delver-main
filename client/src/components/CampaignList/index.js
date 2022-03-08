@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, CloseButton } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -47,14 +47,15 @@ const CampaignList = ({ campaigns }) => {
             <Card>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
-                <Card.Title className="campaign-title"><Link to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link></Card.Title>
+                
+                <Card.Title><Link className='campaign-title' to={`/campaigns/${campaign._id}`} state={{ campaignData: campaign }}>{campaign.name}</Link>
+                {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                  onClick={() => handleRemoveCampaign(campaign)}
+                ></CloseButton>)}</Card.Title>
                 <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
                 </Card.Text>
-                {Auth.loggedIn && (<Button
-                  onClick={() => handleRemoveCampaign(campaign)}
-                >X</Button>)}
-
+                
               </Card.Body>
             </Card>
           </Col>
