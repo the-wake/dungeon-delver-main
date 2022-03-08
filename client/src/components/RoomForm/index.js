@@ -11,8 +11,8 @@ import { ADD_ROOM } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const RoomForm = ({ campaign, dungeon }) => {
-    console.log("dungeonData", dungeon)
+const RoomForm = ({ dungeon, campaign }) => {
+    console.log("dungeon", dungeon)
 
 
     const [roomText, setRoomText] = useState('');
@@ -38,6 +38,9 @@ const RoomForm = ({ campaign, dungeon }) => {
             console.log("right here", data)
 
             setRoomText('');
+            setDungeonOption('');
+            setRoomBlurb('');
+            
 
             window.location.reload();
 
@@ -65,7 +68,7 @@ const RoomForm = ({ campaign, dungeon }) => {
                     </Container>
                     <Container>
                         <Row>
-                            <Modal show={onShow} onHide={() => setOnShow(false)} role="dialog">
+                            <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static"  keyboard={false} role="dialog">
                                 <Form onSubmit={handleRoomSubmit}>
                                     <Modal.Header closeButton>
                                         <Modal.Title>New Room</Modal.Title>
@@ -95,9 +98,9 @@ const RoomForm = ({ campaign, dungeon }) => {
 
                                             <Form.Select
                                                 onChange={handleChange}
-                                                value={dungeonOption.name}>
+                                                value={dungeonOption.dungeon}>
 
-                                                {campaign.dungeons.length > 0 && campaign.dungeons.map((dungeon, pos) => (
+                                                {campaign.dungeon && campaign.dungeon.map((dungeon, pos) => (
                                                     <option key={pos} value={dungeon._id}>{dungeon.name}</option>
                                                 ))}
                                             </Form.Select>
@@ -112,7 +115,7 @@ const RoomForm = ({ campaign, dungeon }) => {
                                             <Form.Label>Blurb</Form.Label>
                                             <Form.Control as="textarea" rows={4}
                                                 onChange={handleChange}
-                                                value={roomText.name}
+                                                value={roomBlurb.blurb}
                                                 // id="text"
                                                 className="form-input"
                                                 type="textarea"
@@ -120,14 +123,14 @@ const RoomForm = ({ campaign, dungeon }) => {
                                                 name="roomText" />
                                             {error ? (
                                                 <div>
-                                                    <p className='error-text'>Please enter a room name</p>
+                                                    <p className='error-text'>Please enter a blurb. Don't be shy.</p>
                                                 </div>
                                             ) : null}
                                         </Form.Group>
                                     </Modal.Body>
                                 </Form>
                                 <Modal.Footer>
-                                    <Button variant="primary">
+                                    <Button onClick={handleRoomSubmit} variant="primary">
                                         Submit
                                     </Button>
                                 </Modal.Footer>
