@@ -39,14 +39,19 @@ const SingleCampaign = () => {
     return (
 
         <Container className='my-campaign-container'>
-            <Col>
-                <h1 className="text-center">{campaignData.name}</h1>
-            </Col>
             <Row>
-                <Col>
-                    <Button className="mt-4 mb-4 mx-2">
+            <Col xs={10}>
+                <h1 className="campaign-name mt-1">{campaignData.name}</h1>
+                </Col>
+                <Col className="flex">
+                <Button className="mt-4 mb-5">
                         Edit Campaign
                     </Button>
+            </Col>
+            </Row>
+            <Row>
+                <Col>
+                    
                 </Col>
             </Row>
 
