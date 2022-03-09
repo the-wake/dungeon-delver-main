@@ -4,10 +4,16 @@
 
     .background {
       background-image: url(../../images/Scroll-background.jpg);
+      background-repeat: no-repeat;
     }
 
     .instead {
       color:black;
+    }
+
+    .title {
+      font-size: 46px;
+      font-weight: bold;
     }
 
     .text-center title {

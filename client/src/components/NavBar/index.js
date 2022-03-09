@@ -23,7 +23,7 @@ const NavBar = () => {
                         <span className='capitalD'>D</span>ungeon <span className='capitalD'>D</span>elver</Navbar.Brand>
                         
                 </Container>
-                <Container fluid>
+                <Container fluid className="hamburger-menu">
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                     <Nav className="nav me-auto">

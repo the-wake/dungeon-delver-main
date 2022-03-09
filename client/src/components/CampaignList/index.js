@@ -59,13 +59,10 @@ const CampaignList = ({ campaigns }) => {
                   state={{ campaignData: campaign }}>
                     {campaign.name}
                   </Link>
-                  {Auth.loggedIn && (<CloseButton className="close-button float-end"
-                    onClick={() => handleRemoveCampaign(campaign)}
-                  ></CloseButton>)}
                 </Card.Title>
-                <Card.Text>
+                {/* <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
-                </Card.Text>
+                </Card.Text> */}
 
               </Card.Body>
             </Card>

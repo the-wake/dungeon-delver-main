@@ -40,12 +40,16 @@ const SingleRoom = () => {
     return (
         <Container className='my-room-container'>
             <Row>
-                <Col>
-                    {/* <Link to={`/dungeons/${dungeonData._id}`} state={{ dungeonData }}><h4>{dungeonData.name}</h4>
-                    </Link>  */}
+                <Col xs={10}>
+                <h1 className="room-name mt-1">{roomData.name}</h1>
                 </Col>
                 <Col className="flex">
-                    {/* <EditRoom room={roomData}></EditRoom> */}
+                     {/* <EditRoom room={roomData}></EditRoom> */}
+                    </Col>
+            </Row>
+        
+                <Row>
+                <CreatureForm campaign={campaignData} dungeon={dungeonData} room={roomData}></CreatureForm>
                     <h2 className="mb-3 mt-3 mx-3">Creatures in {roomData.name}</h2>
                     {loading ? (
                         <h2>
@@ -54,25 +58,10 @@ const SingleRoom = () => {
                     ) : (
                         <CreatureList campaign={campaignData} dungeon={dungeonData} room={roomData} creatures={creatures}></CreatureList>
                     )}
-                </Col>
+              
             </Row>
-
-            <CreatureForm campaign={campaignData} dungeon={dungeonData} room={roomData}></CreatureForm>
-
-            {/* <Row>
-                <CreatureForm creatures={creatures} room={roomData}></CreatureForm>
-                <h2 className="mb-3 mt-3 mx-3">Creatures in {roomData.name}</h2>
-                {loading ? (
-                    <h2>
-                        Retrieving Data...
-                    </h2>
-                ) : (
-                    <CreatureList creatures={creatures} room={roomData}></CreatureList>
-                )}
-            </Row> */}
 
         </Container>
     );
 }
-
 export default SingleRoom;
