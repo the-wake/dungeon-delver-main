@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -68,11 +68,18 @@ const SignUp = (props) => {
 
 
     return (
-        <Container className='dice' style={{ backgroundImage: 'url(/assets/images/dice.png)' }}>
+        <Container>
             <div className='signUp'>
-
+                <Row>
+                <Col>
+                <img src={require("../../images/dice.png")}
+                alt="Fantasy Board Game Dice" 
+                style={{}}
+                />
+                </Col>
+                <Col style={{marginTop: "100px", marginRight: "60px"}}>
                 <Form onSubmit={handleFormSubmit}>
-                    <h2 className='text-center'>Sign up</h2>
+                    <h1 className='text-center'>Sign up</h1>
                     <Form.Group size="lg" className="mb-3" controlId="formBasicUsername">
                         <div>
                             {/* test validation */}
@@ -88,6 +95,7 @@ const SignUp = (props) => {
                             type="text"
                             placeholder="Username"
                             name="username"
+                            style={{background: "beige"}}
                         />
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -103,7 +111,8 @@ const SignUp = (props) => {
                             className="form-input"
                             type="email"
                             placeholder="Email"
-                            name="email" />
+                            name="email" 
+                            style={{background: "beige"}} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -116,7 +125,8 @@ const SignUp = (props) => {
                             className="form-input"
                             type="password"
                             placeholder="*******"
-                            name="password" />
+                            name="password"
+                            style={{background: "beige"}} />
                         {error ? (
                             <div>
                                 <p className='error-text'>Please enter a valid email and password</p>
@@ -124,13 +134,15 @@ const SignUp = (props) => {
                         ) : null}
                     </Form.Group>
 
-                    <Button variant="primary" block-size="lg" type="submit">
+                    <Button variant="outline-dark" style={{background: "black", color: "beige"}} block-size="lg" type="submit">
                         Submit
                     </Button>
                     <Container className='mt-3'>
-                        <Link to="/login">Log in instead</Link>
+                        <Link to="/login" style={{color: "black"}}>Log in instead</Link>
                     </Container>
                 </Form>
+                </Col>
+                </Row>
             </div>
         </Container>
     );

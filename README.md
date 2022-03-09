@@ -56,5 +56,20 @@ Generic login
 
 ## Roadmap
 
-- Improve UI/UX
-- 
+- Improve UI/UX.
+- Get page to re-render contents when a new item is posted.
+- When creating a campaign, go directly into that campaign.
+- Add active/inactive toggle to all edit forms.
+- Store the SessionContext in cache, and reload it when user logs back in.
+    Could also store their last-accessed page this way and redirect after login
+    (or just if logged out by token expiration).
+- Add third party API intergration with Open5e to generate HP for creatures.
+- Add toggles to the components that displays lists.
+    Toggle showing only active items, only inactive items, or all items
+    Show only items in the currently focused parent, or show all of them in the 
+    current campaign.
+- Add GraphQL virtuals.
+- Add up-a-level links.
+- Error boundaries for handling different errors 
+    (like when user needs to login to reach a page).
+ 

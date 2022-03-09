@@ -35,13 +35,13 @@ const SingleDungeon = () => {
     return (
         <Container className='my-dungeon-container'>
             <Col>
-                <h1 className="dungeon-name">{dungeonData.name}</h1>
+                <h1 className="dungeon-name" style={{color: "seagreen"}}>{dungeonData.name}</h1>
             </Col>
             <Row>
                 <Col>
 
                 
-                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
+                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4 style={{color: "seagreen"}}>{campaignData.name}</h4>
                  
                     </Link>
                 </Col>

@@ -153,7 +153,7 @@ const RoomForm = ({ dungeon, campaign }) => {
                     </Container>
                     <Container>
 
-                        <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4">
+                        <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4" variant='dark' style={{color: "black", background: "seagreen"}}>
                             Add Room
                         </Button>
                         <hr className='w-50' />

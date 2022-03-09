@@ -87,7 +87,7 @@ const CampaignForm = (props) => {
             {Auth.loggedIn() ? (
                 <>
                     <Container className='form-container'>
-                        <h1>Add a New Campaign</h1>
+                        <h1>Start a New Campaign</h1>
 
                         <Col>
                             <Row>
@@ -102,8 +102,9 @@ const CampaignForm = (props) => {
                                             className="form-input"
                                             type="text"
                                             placeholder="Campaign name"
-                                            name="campaignText" />
-                                        <Button onClick={handleCampaignSubmit} className="mt-4 mb-4">
+                                            name="campaignText" 
+                                            style={{background: "beige"}}/>
+                                        <Button onClick={handleCampaignSubmit} className="mt-4 mb-4" variant='outline-dark' style={{color: "beige", background: "black"}}>
                                             Add
                                         </Button>
                                         <hr className='w-100 m-auto' />

@@ -69,7 +69,7 @@ const Login = (props) => {
 
 
                     <Form className="mt-5" onSubmit={handleFormSubmit}>
-                        <h2 className='text-center title'>Login</h2>
+                        <h1 className='text-center'>Login</h1>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
 
@@ -81,7 +81,8 @@ const Login = (props) => {
                                 className="form-input"
                                 type="email"
                                 placeholder="Email"
-                                name="email" />
+                                name="email" 
+                                style={{background: "beige"}} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -94,7 +95,8 @@ const Login = (props) => {
                                 className="form-input"
                                 type="password"
                                 placeholder="*******"
-                                name="password" />
+                                name="password"
+                                style={{background: "beige"}} />
                             {error ? (
                                 <div>
                                     <p className='error-text'>Please check your email or password</p>
@@ -102,11 +104,11 @@ const Login = (props) => {
                             ) : null}
                         </Form.Group>
 
-                        <Button varient="dark" block-size="lg" type="submit">
+                        <Button style={{background: "chartreuse"}} variant="outline-dark" block-size="lg" type="submit">
                             Submit
                         </Button>
-                        <Container className='mt-3'>
-                            <Link className='instead ' to="/signup">Sign up instead</Link>
+                        <Container>
+                         <Link className='instead' to="/signup">Sign up instead</Link>
                         </Container>
                     </Form>
                 </Col>

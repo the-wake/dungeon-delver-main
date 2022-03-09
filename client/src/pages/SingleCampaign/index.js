@@ -44,7 +44,7 @@ const SingleCampaign = () => {
             </Row>
             <Row>
                 <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
-                <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
+                <h2 className="mb-3 mt-3 mx-3" style={{color: "red", fontSize: "xxx-large"}}>Dungeons in {campaignData.name}</h2>
                 {loading ? (
                     <h2>
                         Retrieving Data...

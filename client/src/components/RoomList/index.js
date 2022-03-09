@@ -53,11 +53,11 @@ const RoomList = ({ campaign, dungeon, rooms }) => {
             <Row xs={1} md={2} lg={3} className="g-4">
                 {roomList && roomList.map((room, pos) => (
                     <Col key={pos}>
-                        <Card>
+                        <Card style={{background: "black"}}>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
-                                <Card.Title>
-                                    <Link className='room-title' to={`/rooms/${room._id}`}
+                                <Card.Title key={room._id}>
+                                    <Link  style={{color: "seagreen"}}className='room-title' to={`/rooms/${room._id}`}
                                         onClick={() => {
                                             setDungeon({ currentDungeon: room.dungeon });
                                             setRoom({ currentRoom: room });
