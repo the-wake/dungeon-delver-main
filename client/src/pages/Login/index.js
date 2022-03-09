@@ -50,7 +50,7 @@ const Login = (props) => {
             email: '',
             password: '',
         });
-        window.location = "/landingpage"
+        window.location = "/campaigns"
     };
 
 
