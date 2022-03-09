@@ -93,14 +93,13 @@ const RoomForm = ({ dungeon, campaign }) => {
                                                 autoFocus
                                                 onChange={handleChange}
                                                 value={roomText}
-                                                // id="text"
                                                 className="form-input"
                                                 type="text"
                                                 placeholder="Room name"
                                                 name="roomText" />
                                             {error ? (
                                                 <div>
-                                                    <p className='error-text'>Please enter a room name</p>
+                                                    <p className='error-text'>Please enter a room name.</p>
                                                 </div>
                                             ) : null}
                                         </Form.Group>
@@ -111,6 +110,7 @@ const RoomForm = ({ dungeon, campaign }) => {
                                             <Form.Select
                                                 onChange={handleChange}
                                                 value={dungeonOption}
+                                                selected={dungeon._id}
                                                 name="dungeonOption">
 
                                                 {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (

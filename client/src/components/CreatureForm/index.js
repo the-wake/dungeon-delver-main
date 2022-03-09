@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CreatureForm = ({ campaign, dungeon, room }) => {
+    console.log(room);
     const [creatureText, setCreatureText] = useState('');
-    // const [roomOption, setRoomOption] = useState('');
+    const [roomOption, setRoomOption] = useState(room._id);
     const [hpOption, setHpOption] = useState('');
     const [creatureLoot, setCreatureLoot] = useState('');
     const [keyNpc, setKeyNpc] = useState(false);
@@ -30,8 +31,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
             const { data } = await addCreature({
                 variables: {
                     name: creatureText,
-                    // room: roomOption,
-                    room: room._id,
+                    room: roomOption,
+                    // room: room._id,
                     hp: hpOption,
                     loot: creatureLoot,
                     key_npc: keyNpc,
@@ -48,7 +49,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
             setIsAlive('');
 
             window.location.reload();
-            
+
         } catch (error) {
             console.log(addCreature);
             console.error(error);
@@ -62,8 +63,12 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
             setCreatureText(value);
         }
 
+        if (name === 'roomOption') {
+            setRoomOption(value);
+        }
+
         if (name === 'creatureHp') {
-            setHpOption(value);
+            setHpOption(parseInt(value));
         }
 
         if (name === 'creatureLoot') {
@@ -77,6 +82,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
         if (name === 'isAlive') {
             setIsAlive(value);
         }
+        console.log(value);
+        console.log(typeof value);
     };
 
 
@@ -97,10 +104,10 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         <Form.Control
                                             autoFocus
                                             onChange={handleChange}
-                                            value={creatureText.name}
+                                            value={creatureText}
                                             className="form-input"
                                             type="text"
-                                            placeholder="Enter the name of your creature"
+                                            placeholder="Creature name"
                                             name="creatureText" />
 
                                         {error ? (
@@ -110,14 +117,14 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         ) : null}
                                     </Form.Group>
 
-                                    {/* <Form.Group className="mb-3">
+                                    <Form.Group className="mb-3">
                                         <Form.Label>Associated Room</Form.Label>
 
                                         <Form.Select
                                             onChange={handleChange}
                                             value={roomOption}
-                                            name="roomOption"
-                                            defaultValue={room._id}>
+                                            selected={room._id}
+                                            name="roomOption">
 
                                             {currentDungeon.rooms && currentDungeon.rooms.map((room, pos) => (
                                                 <option key={pos} value={room._id}>{room.name}</option>
@@ -129,13 +136,13 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                                 <p className='error-text'>Please select a dungeon</p>
                                             </div>
                                         ) : null}
-                                    </Form.Group> */}
+                                    </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="formBasicText">
                                         <Form.Label></Form.Label>
                                         <Form.Control
                                             onChange={handleChange}
-                                            value={hpOption.hp}
+                                            value={hpOption}
                                             className="form-input"
                                             type="number"
                                             placeholder="Enter the hp of your creature"
@@ -153,7 +160,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         <Form.Label>Loot</Form.Label>
                                         <Form.Control as="textarea" rows={4}
                                             onChange={handleChange}
-                                            value={creatureLoot.loot}
+                                            value={creatureLoot}
                                             className="form-input"
                                             type="textarea"
                                             placeholder="Amethyst of Evermore, Crown of Kings, etc."
@@ -169,7 +176,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         <Form.Label>Key NPC</Form.Label>
                                         <Form.Check
                                             onChange={handleChange}
-                                            value={keyNpc.key_npc}
+                                            value={keyNpc}
                                             className="form-input"
                                             type="checkbox"
                                             name="keyNpc" />
@@ -179,7 +186,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         <Form.Label>Is alive?</Form.Label>
                                         <Form.Check
                                             onChange={handleChange}
-                                            value={isAlive.is_alive}
+                                            value={isAlive}
                                             className="form-input"
                                             type="checkbox"
                                             name="isAlive" />
