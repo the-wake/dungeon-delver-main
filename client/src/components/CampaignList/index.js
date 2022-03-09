@@ -60,9 +60,9 @@ const CampaignList = ({ campaigns }) => {
                     {campaign.name}
                   </Link>
                 </Card.Title>
-                <Card.Text>
+                {/* <Card.Text>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
-                </Card.Text>
+                </Card.Text> */}
 
               </Card.Body>
             </Card>

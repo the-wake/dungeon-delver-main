@@ -35,7 +35,7 @@ const SingleDungeon = () => {
     return (
         <Container className='my-dungeon-container'>
             <Col>
-                <h1>{dungeonData.name}</h1>
+                <h1 className="dungeon-name">{dungeonData.name}</h1>
             </Col>
             <Row>
                 <Col>

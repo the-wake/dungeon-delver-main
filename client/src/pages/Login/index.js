@@ -68,7 +68,7 @@ const Login = (props) => {
                 <Col className='signUp'>
 
 
-                    <Form onSubmit={handleFormSubmit}>
+                    <Form className="mt-5" onSubmit={handleFormSubmit}>
                         <h2 className='text-center title'>Login</h2>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
@@ -106,7 +106,7 @@ const Login = (props) => {
                             Submit
                         </Button>
                         <Container className='mt-3'>
-                            <Link className='instead' to="/signup">Sign up instead</Link>
+                            <Link className='instead ' to="/signup">Sign up instead</Link>
                         </Container>
                     </Form>
                 </Col>

@@ -1,0 +1,11 @@
+.dungeon-name {
+    color: red;
+    font-size: 54px;
+}
+
+.my-room-container {
+    /* box-sizing: border-box; */
+    height: 100vh;
+    
+
+}

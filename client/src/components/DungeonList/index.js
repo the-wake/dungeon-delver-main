@@ -70,9 +70,9 @@ const DungeonList = ({ dungeons, campaign }) => {
 
                                     </CloseButton>)}
                                 </Card.Title>
-                                <Card.Text>
+                                {/* <Card.Text>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
-                                </Card.Text>
+                                </Card.Text> */}
                             </Card.Body>
                         </Card>
                     </Col>

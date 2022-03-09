@@ -14,7 +14,7 @@ import { QUERY_DUNGEONS } from "../../utils/queries";
 const SingleCampaign = () => {
     const { currentSession, setCampaign } = useSessionContext();
     console.log(currentSession);
-    
+
     const location = useLocation();
     const { campaignData } = location.state;
 
@@ -36,18 +36,14 @@ const SingleCampaign = () => {
 
         <Container className='my-campaign-container'>
             <Row>
-            <Col xs={10}>
-                <h1 className="campaign-name mt-1">{campaignData.name}</h1>
+                <Col xs={10}>
+                    <h1 className="campaign-name mt-1">{campaignData.name}</h1>
                 </Col>
                 <Col className="flex">
                     <EditCampaign campaign={campaignData}></EditCampaign>
-            </Col>
-            </Row>
-            <Row>
-                <Col>
-                    
                 </Col>
             </Row>
+           
 
             <Row>
                 <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
