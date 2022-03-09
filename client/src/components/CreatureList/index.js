@@ -54,7 +54,7 @@ const CreatureList = ({ campaign, dungeon, room, creatures }) => {
             <Row xs={1} md={2} lg={3} className="g-4">
                 {creatureList && creatureList.map((creature, pos) => (
                     <Col key={pos}>
-                        <Card>
+                        <Card className="crature-card">
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
                                 <Card.Title className='creature-title'>
