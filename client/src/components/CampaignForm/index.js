@@ -104,7 +104,7 @@ const CampaignForm = (props) => {
                                             placeholder="Campaign name"
                                             name="campaignText" 
                                             style={{background: "beige"}}/>
-                                        <Button onClick={handleCampaignSubmit} className="mt-4 mb-4" variant='outline-dark' style={{color: "black", background: "beige"}}>
+                                        <Button onClick={handleCampaignSubmit} className="mt-4 mb-4" variant='outline-dark' style={{color: "beige", background: "black"}}>
                                             Add
                                         </Button>
                                         <hr className='w-100 m-auto' />

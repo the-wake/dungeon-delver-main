@@ -8,17 +8,12 @@
     }
 
     .instead {
-      color:black;
+      color: black;
     }
 
-    .title {
-      font-size: 46px;
-      font-weight: bold;
-    }
-
-    .text-center title {
-      color: chartreuse;
-      font-weight: bold;
+    .instead:hover {
+      color: black;
+      font-size: x-large;
     }
 
     .signUp {
