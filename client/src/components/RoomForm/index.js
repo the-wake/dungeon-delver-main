@@ -93,7 +93,6 @@ const RoomForm = ({ dungeon, campaign }) => {
                                                 autoFocus
                                                 onChange={handleChange}
                                                 value={roomText}
-                                                // id="text"
                                                 className="form-input"
                                                 type="text"
                                                 placeholder="Room name"

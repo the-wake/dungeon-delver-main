@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CreatureForm = ({ campaign, dungeon, room }) => {
+    console.log(room);
     const [creatureText, setCreatureText] = useState('');
-    const [roomOption, setRoomOption] = useState('');
+    const [roomOption, setRoomOption] = useState(room._id);
     const [hpOption, setHpOption] = useState('');
     const [creatureLoot, setCreatureLoot] = useState('');
     const [keyNpc, setKeyNpc] = useState(false);
@@ -31,7 +32,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                 variables: {
                     name: creatureText,
                     room: roomOption,
-                    room: room._id,
+                    // room: room._id,
                     hp: hpOption,
                     loot: creatureLoot,
                     key_npc: keyNpc,
@@ -62,8 +63,12 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
             setCreatureText(value);
         }
 
+        if (name === 'roomOption') {
+            setRoomOption(value);
+        }
+
         if (name === 'creatureHp') {
-            setHpOption(value);
+            setHpOption(parseInt(value));
         }
 
         if (name === 'creatureLoot') {
@@ -77,6 +82,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
         if (name === 'isAlive') {
             setIsAlive(value);
         }
+        console.log(value);
+        console.log(typeof value);
     };
 
 
@@ -100,7 +107,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                             value={creatureText}
                                             className="form-input"
                                             type="text"
-                                            placeholder="Enter the name of your creature"
+                                            placeholder="Creature name"
                                             name="creatureText" />
 
                                         {error ? (
@@ -116,8 +123,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                                         <Form.Select
                                             onChange={handleChange}
                                             value={roomOption}
-                                            name="roomOption"
-                                            selected={room._id}>
+                                            selected={room._id}
+                                            name="roomOption">
 
                                             {currentDungeon.rooms && currentDungeon.rooms.map((room, pos) => (
                                                 <option key={pos} value={room._id}>{room.name}</option>
