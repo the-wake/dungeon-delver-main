@@ -72,7 +72,7 @@ const DungeonList = ({ dungeons, campaign }) => {
                                 </Card.Title>
                                 <Card.Text className='hidden'>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
-                                </Card.Text>
+                                </Card.Text> 
                             </Card.Body>
                         </Card>
                     </Col>

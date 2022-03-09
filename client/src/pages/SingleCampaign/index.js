@@ -12,13 +12,17 @@ import { QUERY_DUNGEONS } from "../../utils/queries";
 
 
 const SingleCampaign = () => {
-    const { currentSession } = useSessionContext();
+    const { currentSession, setCampaign } = useSessionContext();
     console.log(currentSession);
-    
+
     const location = useLocation();
     const { campaignData } = location.state;
 
-    // console.log(campaignData);
+    // We can probably use this as a hack to get the context to set on reload, but it's throwing some weird errors and I don't have time to debug it.
+    // if (Object.keys(currentSession.currentCampaign).length === 0) {
+    //     console.log('Campaign Data: ', campaignData);
+    //     setCampaign(campaignData);
+    // };
 
     const { loading, data } = useQuery(QUERY_DUNGEONS);
 
@@ -29,22 +33,15 @@ const SingleCampaign = () => {
     };
 
     return (
-
         <Container className='my-campaign-container'>
             <Row>
-            <Col xs={10}>
-                <h1 className="campaign-name mt-1">{campaignData.name}</h1>
+                <Col xs={10}>
+                    <h1 className="campaign-name mt-1">{campaignData.name}</h1>
                 </Col>
                 <Col className="flex">
                     <EditCampaign campaign={campaignData}></EditCampaign>
-            </Col>
-            </Row>
-            <Row>
-                <Col>
-                    
                 </Col>
             </Row>
-
             <Row>
                 <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
                 <h2 className="mb-3 mt-3 mx-3" style={{color: "red", fontSize: "xxx-large"}}>Dungeons in {campaignData.name}</h2>
@@ -56,7 +53,6 @@ const SingleCampaign = () => {
                     <DungeonList dungeons={dungeons} campaign={campaignData}></DungeonList>
                 )}
             </Row>
-
         </Container>
     );
 }

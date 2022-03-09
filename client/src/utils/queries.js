@@ -114,6 +114,7 @@ export const QUERY_CREATURES = gql`
     query getCreatures($room: ID!) {
         getCreatures(room: $room) {
             _id
+            name
             hp
             loot
             key_npc
@@ -131,6 +132,7 @@ export const QUERY_SINGLE_CREATURE = gql`
     query getCreature($_id: ID!) {
         getCreature(_id: $_id) {
             hp
+            name
             loot
             key_npc
             is_alive

@@ -29,7 +29,7 @@ const DungeonForm = (props) => {
                     user: Auth.getProfile(),
                 },
             });
-            console.log("Dungeon Data:", data)
+            // console.log("Dungeon Data:", data)
 
             setDungeonText('');
 
