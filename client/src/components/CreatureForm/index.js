@@ -10,13 +10,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CreatureForm = ({ campaign, dungeon, room }) => {
-    console.log(room);
     const [creatureText, setCreatureText] = useState('');
     const [roomOption, setRoomOption] = useState(room._id);
     const [hpOption, setHpOption] = useState('');
     const [creatureLoot, setCreatureLoot] = useState('');
     const [keyNpc, setKeyNpc] = useState(false);
     const [isAlive, setIsAlive] = useState(true);
+    // console.log(roomOption);
 
 
     const { currentSession, setCurrentSession, setRoom, setDungeon } = useSessionContext();
@@ -45,8 +45,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
             setCreatureText('');
             setHpOption('');
             setCreatureLoot('');
-            setKeyNpc('');
-            setIsAlive('');
+            setKeyNpc(false);
+            setIsAlive(true);
 
             window.location.reload();
 
