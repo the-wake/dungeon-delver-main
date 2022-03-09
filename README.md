@@ -1,21 +1,31 @@
 # Project 3: Dungeon Delver
 
-## Code Link
+
+## Table of Contents:
+* [Code](#code)
+* [Demo](#demo)
+* [Authors](#authors)
+* [Features](#features)
+* [Tech](#tech)
+* [Screenshots](#screenshots)
+* [Roadmap](#roadmap)
+
+## Code
 
 GitHub Link: https://github.com/the-wake/dungeon-delver
 
-## Live Demo
+## Demo
 
 Project Live Link: https://ancient-ocean-23622.herokuapp.com/
 
 Generic login
-    Email: tester@tester.com
-    Password: tester33
+    Email: test@test.com
+    Password: testtest1
 
 ## Authors
 
 - [@AlexHuss](https://github.com/Huss33)
-- [@NicKMullenmeister](https://github.com/Mully7773)
+- [@NickMullenmeister](https://github.com/Mully7773)
 - [@BenMartin](https://github.com/the-wake/)
 - [@LeoDickens](https://github.com/LeoDickenson)
 
@@ -33,7 +43,7 @@ Generic login
 
 - The DM can remove any dungeon, room or creature
 
-## Tech Used
+## Tech
 
 - Mongoose, Apollo Server Express, Bcrypt, Express, GraphQL, Jsonwebtoken, Bootstrap, JWT Decode, React, React Bootstrap, React Dom, React Router Dom, React Scripts, CSS, JavaScript and Node/Nodemon
 

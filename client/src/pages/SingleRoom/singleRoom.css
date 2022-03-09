@@ -1,11 +1,9 @@
-.dungeon-name {
-    color: red;
+.room-name {
+    color: rgb(38, 134, 106);
     font-size: 54px;
 }
 
 .my-room-container {
     /* box-sizing: border-box; */
     height: 100vh;
-    
-
 }

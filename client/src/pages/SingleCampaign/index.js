@@ -33,7 +33,6 @@ const SingleCampaign = () => {
     };
 
     return (
-
         <Container className='my-campaign-container'>
             <Row>
                 <Col xs={10}>
@@ -43,8 +42,6 @@ const SingleCampaign = () => {
                     <EditCampaign campaign={campaignData}></EditCampaign>
                 </Col>
             </Row>
-           
-
             <Row>
                 <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
                 <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
@@ -56,7 +53,6 @@ const SingleCampaign = () => {
                     <DungeonList dungeons={dungeons} campaign={campaignData}></DungeonList>
                 )}
             </Row>
-
         </Container>
     );
 }
