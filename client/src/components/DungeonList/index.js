@@ -53,11 +53,11 @@ const DungeonList = ({ dungeons, campaign }) => {
             <Row xs={1} md={2} lg={3} className="g-4">
                 {dungeonList && dungeonList.map((dungeon, pos) => (
                     <Col key={pos}>
-                        <Card>
+                        <Card style={{background: "black", color: "red"}}>
                             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                             <Card.Body>
                                 <Card.Title key={dungeon._id}>
-                                    <Link className='dungeon-title' to={`/dungeons/${dungeon._id}`}
+                                    <Link className='dungeon-title' style={{color: "red"}} to={`/dungeons/${dungeon._id}`}
                                         onClick={() => {
                                             setCampaign({ currentCampaign: dungeon.campaign });
                                             setDungeon({ currentDungeon: dungeon });
@@ -70,7 +70,7 @@ const DungeonList = ({ dungeons, campaign }) => {
 
                                     </CloseButton>)}
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text className='hidden'>
                                     We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
                                 </Card.Text>
                             </Card.Body>

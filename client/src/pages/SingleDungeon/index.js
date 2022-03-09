@@ -41,7 +41,7 @@ const SingleDungeon = () => {
                 <Col>
 
                 
-                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4>{campaignData.name}</h4>
+                <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4 style={{color: "seagreen"}}>{campaignData.name}</h4>
                  
                     </Link>
                 </Col>

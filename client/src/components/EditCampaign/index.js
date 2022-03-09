@@ -91,7 +91,7 @@ const EditCampaign = ({ campaign }) => {
                         </Modal>
                         <Row>
                             <Col>
-                                <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5">
+                                <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5" variant="danger" style={{ color: "black"}}>
                                     Edit Campaign
                                 </Button>
                             </Col>

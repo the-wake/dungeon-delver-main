@@ -48,22 +48,22 @@ const CampaignList = ({ campaigns }) => {
       <Row xs={1} md={2} lg={3} className="g-4">
         {campaigns && campaigns.map((campaign, pos) => (
           <Col key={pos}>
-            <Card>
+            <Card style={{background: "beige"}}>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
 
                 <Card.Title>
-                  <Link className='campaign-title'
+                  <Link  style={{color: "black"}}className='campaign-title'
                   to={`/campaigns/${campaign._id}`}
                   onClick={() => setCampaign({ currentCampaign: campaign })}
                   state={{ campaignData: campaign }}>
                     {campaign.name}
                   </Link>
-                  {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                  {Auth.loggedIn && (<CloseButton className="close-button float-end hidden"
                     onClick={() => handleRemoveCampaign(campaign)}
                   ></CloseButton>)}
                 </Card.Title>
-                <Card.Text>
+                <Card.Text className='hidden'>
                   We can add a field for campaign description here. Need to add another field to ADD_CAMPAIGN.
                 </Card.Text>
 

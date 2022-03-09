@@ -8,8 +8,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
         <Container className="my-creatures-container">
             <h1>Summon Creatures!</h1>
             <Row>
-              <Col xs={5}>
-                <Carousel>
+              <Col>
+                <Carousel className='carousel'>
                     <Carousel.Item>
                         <img className='d-block w-100' 
                         src={require("./images/Demon1.jpg")}

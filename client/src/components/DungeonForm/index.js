@@ -50,7 +50,7 @@ const DungeonForm = (props) => {
     };
 
     return (
-        <div>
+        <div style={{background: "black", color: "red"}}>
             {Auth.loggedIn() ? (
                 <>
                     <Container>
@@ -69,7 +69,7 @@ const DungeonForm = (props) => {
                                         type="text"
                                         placeholder="Dungeon name"
                                         name="dungeonText" />
-                                    <Button onClick={handleDungeonSubmit} className="mt-4 mb-4">
+                                    <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant='danger' style={{ color: "black"}}>
                                         Add
                                     </Button>
                                     <hr className='w-100 m-auto'/>
@@ -84,7 +84,7 @@ const DungeonForm = (props) => {
                           <Col className='egg w-100 m-auto'>
                             <img src={require("../../images/dragon-egg.jpg")}
                             alt="Dragon Egg"
-                            style={{ width: "500px" }}
+                            style={{ width: "500px", marginLeft: "40px"}}
                             />
                           </Col>
                         </Row>

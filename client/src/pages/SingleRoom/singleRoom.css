@@ -1,0 +1,10 @@
+.my-room-container {
+    color: blue;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../images/Cave-background3.jpg);
+}
+
+img {
+    object-fit: contain;
+}
