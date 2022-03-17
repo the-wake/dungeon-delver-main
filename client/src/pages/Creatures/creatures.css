@@ -1,4 +1,9 @@
-.my-creatures-container {
+.my-campaign-container {
+  margin-bottom: auto;
+  margin-top: 20px;
+}
+
+/* .my-creatures-container {
   box-sizing: border-box;
   height: 75vh;
   background-image: url(../../../public/assets/images/Scroll-background2.jpg);
@@ -10,6 +15,4 @@
   max-width: 400px;
   margin-top: 15px;
   margin-left: 20px;
-}
-
-  
+} */
