@@ -9,80 +9,80 @@ import { useSessionContext } from '../../utils/SessionContext.js';
 import "./creatureList.css";
 
 const CreatureList = ({ campaign, dungeon, room, creatures }) => {
-    const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+  const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
 
-    // const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
-    //     update(cache, { data: { removeRoom } }) {
-    //         try {
-    //             cache.writeQuery({
-    //                 query: QUERY_ME,
-    //                 data: { me: removeRoom },
-    //             });
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     },
-    // });
+  // const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
+  //     update(cache, { data: { removeRoom } }) {
+  //         try {
+  //             cache.writeQuery({
+  //                 query: QUERY_ME,
+  //                 data: { me: removeRoom },
+  //             });
+  //         } catch (error) {
+  //             console.error(error);
+  //         }
+  //     },
+  // });
 
-    // const handleRemoveRoom = async (_id) => {
-    //     try {
-    //         const { data } = await removeRoom({
-    //             variables: { _id },
-    //         });
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
+  // const handleRemoveRoom = async (_id) => {
+  //     try {
+  //         const { data } = await removeRoom({
+  //             variables: { _id },
+  //         });
+  //     } catch (err) {
+  //         console.error(err);
+  //     }
+  // };
 
-    console.log(creatures);
-    console.log(room._id);
+  console.log(creatures);
+  console.log(room._id);
 
-    if (!room) {
-        return <h4>Please select a room first.</h4>
-    }
+  if (!room) {
+    return <h4>Please select a room first.</h4>
+  }
 
-    if (!creatures.length) {
-        return <h4>You have no creatures in this dungeon.</h4>
-    }
+  if (!creatures.length) {
+    return <h4>You have no creatures in this dungeon.</h4>
+  }
 
-    const creatureList = creatures.filter(creature => creature.room._id === room._id);
-    console.log(creatureList);
+  const creatureList = creatures.filter(creature => creature.room._id === room._id);
+  console.log(creatureList);
 
-    return (
-        <Container>
+  return (
+    <Container>
 
-            <Row xs={1} md={2} lg={3} className="g-4">
-                {creatureList && creatureList.map((creature, pos) => (
-                    <Col key={pos}>
-                        <Card className="crature-card">
-                            {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
-                            <Card.Body>
-                                <Card.Title className='creature-title'>
-                                    {/* <Link className='campaign-title'
+      <Row xs={1} md={2} lg={3} className="g-4">
+        {creatureList && creatureList.map((creature, pos) => (
+          <Col key={pos}>
+            <Card className="crature-card">
+              {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
+              <Card.Body>
+                <Card.Title className='creature-title'>
+                  {/* <Link className='campaign-title'
                                         to={`/campaigns/${campaign._id}`}
                                         onClick={() => setCampaign({ currentCampaign: campaign })}
                                         state={{ campaignData: campaign }}> */}
-                                    {creature.name}
-                                    {/* </Link> */}
-                                    {/* {Auth.loggedIn && (<CloseButton className="close-button float-end"
+                  {creature.name}
+                  {/* </Link> */}
+                  {/* {Auth.loggedIn && (<CloseButton className="close-button float-end"
                                         onClick={() => handleRemoveCampaign(campaign)}></CloseButton>)} */}
-                                </Card.Title>
-                                <Card.Text>
-                                    HP: {creature.hp}
-                                </Card.Text>
-                                <Card.Text>
-                                    Status: {creature.is_alive ? 'Alive': 'Dead'}
-                                </Card.Text>
-                                <Card.Text>
-                                    {creature?.loot}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </Container>
-    );
+                </Card.Title>
+                <Card.Text>
+                  HP: {creature.hp}
+                </Card.Text>
+                <Card.Text>
+                  Status: {creature.is_alive ? 'Alive' : 'Dead'}
+                </Card.Text>
+                <Card.Text>
+                  {creature?.loot}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  );
 }
 
 export default CreatureList;

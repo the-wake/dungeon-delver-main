@@ -10,3 +10,14 @@
   justify-content: space-between;
 }
 
+.page-header {
+  padding: 0.5rem 0;
+}
+
+.right-element {
+  float: right;
+}
+
+.right-justify {
+  text-align: right;
+}
