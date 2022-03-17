@@ -13,162 +13,160 @@ import { ADD_ROOM } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const RoomForm = ({ dungeon, campaign }) => {
-    const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
-    const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+  const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+  const { currentCampaign, currentDungeon, currentRoom } = currentSession;
 
-    // console.log("dungeon", dungeon)
+  // console.log("dungeon", dungeon)
 
-    const [roomText, setRoomText] = useState('');
-    const [dungeonOption, setDungeonOption] = useState(dungeon._id);
-    const [roomBlurb, setRoomBlurb] = useState('');
-    const [onShow, setOnShow] = useState(false);
+  const [roomText, setRoomText] = useState('');
+  const [dungeonOption, setDungeonOption] = useState(dungeon._id);
+  const [roomBlurb, setRoomBlurb] = useState('');
+  const [onShow, setOnShow] = useState(false);
 
-    const [addRoom, { error, data }] = useMutation(ADD_ROOM);
+  const [addRoom, { error, data }] = useMutation(ADD_ROOM);
 
-    const handleRoomSubmit = async (event) => {
-        event.preventDefault();
-        console.log("here", handleRoomSubmit)
-        try {
-            const { data } = await addRoom({
-                variables: {
-                    name: roomText,
-                    dungeon: dungeonOption,
-                    blurb: roomBlurb,
-                    is_active: true,
-                    user: Auth.getProfile(),
-                },
-            });
-            console.log("right here", data)
+  const handleRoomSubmit = async (event) => {
+    event.preventDefault();
+    console.log("here", handleRoomSubmit)
+    try {
+      const { data } = await addRoom({
+        variables: {
+          name: roomText,
+          dungeon: dungeonOption,
+          blurb: roomBlurb,
+          is_active: true,
+          user: Auth.getProfile(),
+        },
+      });
+      console.log("right here", data)
 
-            setRoomText('');
-            setDungeonOption('');
-            setRoomBlurb('');
-            
-
-            window.location.reload();
+      setRoomText('');
+      setDungeonOption('');
+      setRoomBlurb('');
 
 
-        } catch (error) {
-            console.error(error);
-        }
-    };
+      window.location.reload();
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
 
-        if (name === 'roomText') {
-            setRoomText(value);
-        }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-        if (name === 'dungeonOption') {
-            setDungeonOption(value);
-        }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-        if (name === 'blurbText') {
-            setRoomBlurb(value);
-        }
-        console.log(value);
-    };
+    if (name === 'roomText') {
+      setRoomText(value);
+    }
 
-    if (!dungeon) { return (<div>Loading...</div>) }
-    return (
-        <div>
-            {Auth.loggedIn() ? (
-                <>
-                    <Container>
-                        <h2>Add a New Room to {dungeon.name}</h2>
-                    </Container>
-                    <Container>
-                        <Row>
-                            <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static"  keyboard={false} role="dialog">
-                                <Form onSubmit={handleRoomSubmit}>
-                                    <Modal.Header closeButton>
-                                        <Modal.Title>New Room</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
+    if (name === 'dungeonOption') {
+      setDungeonOption(value);
+    }
 
-                                        <Form.Group className="mb-3" controlId="formBasicText">
-                                            <Form.Label></Form.Label>
-                                            <Form.Control
-                                                autoFocus
-                                                onChange={handleChange}
-                                                value={roomText}
-                                                className="form-input"
-                                                type="text"
-                                                placeholder="Room name"
-                                                name="roomText" />
-                                            {error ? (
-                                                <div>
-                                                    <p className='error-text'>Please enter a room name.</p>
-                                                </div>
-                                            ) : null}
-                                        </Form.Group>
+    if (name === 'blurbText') {
+      setRoomBlurb(value);
+    }
+    console.log(value);
+  };
 
-                                        <Form.Group className="mb-3">
-                                            <Form.Label>Associated Dungeon</Form.Label>
+  if (!dungeon) { return (<div>Loading...</div>) }
 
-                                            <Form.Select
-                                                onChange={handleChange}
-                                                value={dungeonOption}
-                                                selected={dungeon._id}
-                                                name="dungeonOption">
+  return (
+    <div>
+      {Auth.loggedIn() ? (
+        <>
+          <Container>
+            <Row>
+              <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
+                <Form onSubmit={handleRoomSubmit}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>New Room</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
 
-                                                {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
-                                                    <option key={pos} value={dungeon._id}>{dungeon.name}</option>
-                                                ))}
-                                            </Form.Select>
+                    <Form.Group className="mb-3" controlId="formBasicText">
+                      <Form.Label></Form.Label>
+                      <Form.Control
+                        autoFocus
+                        onChange={handleChange}
+                        value={roomText}
+                        className="form-input"
+                        type="text"
+                        placeholder="Room name"
+                        name="roomText" />
+                      {error ? (
+                        <div>
+                          <p className='error-text'>Please enter a room name.</p>
+                        </div>
+                      ) : null}
+                    </Form.Group>
 
-                                            {error ? (
-                                                <div>
-                                                    <p className='error-text'>Please select a dungeon</p>
-                                                </div>
-                                            ) : null}
-                                        </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Associated Dungeon</Form.Label>
 
-                                        <Form.Group className="mb-3" controlId="controlTextArea">
-                                            <Form.Label>Blurb</Form.Label>
-                                            <Form.Control as="textarea" rows={4}
-                                                onChange={handleChange}
-                                                value={roomBlurb}
-                                                // id="text"
-                                                className="form-input"
-                                                type="textarea"
-                                                placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
-                                                name="blurbText" />
-                                            {error ? (
-                                                <div>
-                                                    <p className='error-text'>Please enter a blurb. Don't be shy.</p>
-                                                </div>
-                                            ) : null}
-                                        </Form.Group>
-                                    </Modal.Body>
-                                </Form>
-                                <Modal.Footer>
-                                    <Button onClick={handleRoomSubmit} variant="primary">
-                                        Submit
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
-                        </Row>
-                    </Container>
-                    <Container>
+                      <Form.Select
+                        onChange={handleChange}
+                        value={dungeonOption}
+                        selected={dungeon._id}
+                        name="dungeonOption">
 
-                        <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4" variant='dark' style={{color: "black", background: "seagreen"}}>
-                            Add Room
-                        </Button>
-                        <hr className='w-50' />
-                    </Container>
-                </>
-            ) : (
+                        {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
+                          <option key={pos} value={dungeon._id}>{dungeon.name}</option>
+                        ))}
+                      </Form.Select>
 
-                <p>
-                    You need to be logged in. Please
-                    <Link to="/login"> login</Link> or <Link to="/signup"> sign up</Link>
-                </p>
+                      {error ? (
+                        <div>
+                          <p className='error-text'>Please select a dungeon</p>
+                        </div>
+                      ) : null}
+                    </Form.Group>
 
-            )}
-        </div>
-    );
+                    <Form.Group className="mb-3" controlId="controlTextArea">
+                      <Form.Label>Blurb</Form.Label>
+                      <Form.Control as="textarea" rows={4}
+                        onChange={handleChange}
+                        value={roomBlurb}
+                        // id="text"
+                        className="form-input"
+                        type="textarea"
+                        placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
+                        name="blurbText" />
+                      {error ? (
+                        <div>
+                          <p className='error-text'>Please enter a blurb. Don't be shy.</p>
+                        </div>
+                      ) : null}
+                    </Form.Group>
+                  </Modal.Body>
+                </Form>
+                <Modal.Footer>
+                  <Button onClick={handleRoomSubmit} variant="primary">
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </Row>
+          </Container>
+          <Container>
+
+            {/* <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4" variant='dark' style={{ color: "black", background: "seagreen" }}> */}
+            <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4 right-element" variant="outline-dark">
+              Add Room
+            </Button>
+          </Container>
+        </>
+      ) : (
+
+        <p>
+          You need to be logged in. Please
+          <Link to="/login"> login</Link> or <Link to="/signup"> sign up</Link>
+        </p>
+
+      )}
+    </div>
+  );
 };
 
 

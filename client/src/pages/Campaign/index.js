@@ -17,50 +17,36 @@ import { useQuery } from '@apollo/client';
 
 
 const Campaign = () => {
-    if (!Auth.loggedIn()) {
-        window.location = `/login`
-    }
+  if (!Auth.loggedIn()) {
+    window.location = `/login`
+  }
 
-    const { loading, data } = useQuery(QUERY_CAMPAIGNS);
+  const { loading, data } = useQuery(QUERY_CAMPAIGNS);
 
-    const campaigns = data?.getCampaigns || [];
+  const campaigns = data?.getCampaigns || [];
 
-    if (!loading) {
-        console.log(campaigns)
-    };
+  if (!loading) {
+    console.log(campaigns)
+  };
 
-    return (
-        <Container className='my-campaign-container'>
-          <Row>  
-            <Col>
-                <img src={require("../../images/campaign-map.jpg")}
-                alt="Landscape Map"
-                style={{width: "650px", marginTop: "145px"}}
-                />
-                {/* <div>
-               {campaignText && campaigns.map((text) => (
-                   <div key={campaigns._id} className="card">{campaigns}</div>
-               ))}
-                </div> */}
-            </Col>
-            <Col>
-              <CampaignForm
-                campaigns={campaigns} />
-                <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
-                {loading ? (
-                <h2>
-                    Retrieving Data...
-                </h2>
-            ) : (
-                <CampaignList
-                campaigns={campaigns} />
-                )}
-            </Col>
-          </Row>  
-        </Container>
-    );
-}
-
+  return (
+    <Container className='my-campaign-container'>
+      <Col>
+        <CampaignForm
+          campaigns={campaigns} />
+        <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
+        {loading ? (
+          <h2>
+            Retrieving Data...
+          </h2>
+        ) : (
+          <CampaignList
+            campaigns={campaigns} />
+        )}
+      </Col>
+    </Container>
+  );
+};
 
 
 export default Campaign;

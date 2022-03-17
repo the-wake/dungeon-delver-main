@@ -1,6 +1,25 @@
-/* need to add something sharper for these forms */
-
 @media all and (min-width: 480px) {
+  .signUp {
+    padding: 100px 0;
+  }
+
+  .signUp form {
+    margin: 0 auto;
+    max-width: 320px;
+    margin-right: 50px;
+  }
+  
+    .error {
+      border-style: solid;
+      border: 2px solid #ffa4a4;
+    }
+    .wizard {
+        width: 710px;
+        height: 825px;
+    }
+}
+
+/* @media all and (min-width: 480px) {
 
     .background {
       background-image: url(../../images/Scroll-background.jpg);
@@ -34,4 +53,4 @@
           width: 710px;
           height: 825px;
       }
-  }
+  } */

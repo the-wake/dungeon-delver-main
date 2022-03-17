@@ -14,92 +14,86 @@ import Auth from '../../utils/auth';
 import { isRequiredArgument } from 'graphql';
 
 const DungeonForm = (props) => {
-    const [dungeonText, setDungeonText] = useState('');
+  const [dungeonText, setDungeonText] = useState('');
 
-    const [addDungeon, { error, data }] = useMutation(ADD_DUNGEON);
+  const [addDungeon, { error, data }] = useMutation(ADD_DUNGEON);
 
-    const handleDungeonSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const { data } = await addDungeon({
-                variables: {
-                    name: dungeonText,
-                    campaign: props.campaign._id,
-                    is_active: true,
-                    user: Auth.getProfile(),
-                },
-            });
-            // console.log("Dungeon Data:", data)
+  const handleDungeonSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await addDungeon({
+        variables: {
+          name: dungeonText,
+          campaign: props.campaign._id,
+          is_active: true,
+          user: Auth.getProfile(),
+        },
+      });
+      // console.log("Dungeon Data:", data)
 
-            setDungeonText('');
+      setDungeonText('');
 
-            window.location.reload();
+      window.location.reload();
 
 
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-        if (name === 'dungeonText') {
-            setDungeonText(value);
-        }
-    };
+    if (name === 'dungeonText') {
+      setDungeonText(value);
+    }
+  };
 
-    return (
-        <div style={{background: "black", color: "red"}}>
-            {Auth.loggedIn() ? (
-                <>
-                    <Container>
-                        <Row>
-                          <Col>
-                        <h2>Add a New Dungeon to {props.campaign.name}</h2>
-                            <Form onSubmit={handleDungeonSubmit}>
-                                <Form.Group className="mb-3 w-100" controlId="formBasicText">
-                                    <Form.Label></Form.Label>
-                                    <Form.Control
-                                        autoFocus
-                                        onChange={handleChange}
-                                        value={dungeonText.name}
-                                        // id="text"
-                                        className="form-input"
-                                        type="text"
-                                        placeholder="Dungeon name"
-                                        name="dungeonText" />
-                                    <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant='danger' style={{ color: "black"}}>
-                                        Add
-                                    </Button>
-                                    <hr className='w-100 m-auto'/>
-                                    {error ? (
-                                        <div>
-                                            <p className='error-text'>Please enter a unique dungeon name.</p>
-                                        </div>
-                                    ) : null}
-                                </Form.Group>
-                            </Form>
-                          </Col>
-                          <Col className='egg w-100 m-auto'>
-                            <img src={require("../../images/dragon-egg.jpg")}
-                            alt="Dragon Egg"
-                            style={{ width: "500px", marginLeft: "40px"}}
-                            />
-                          </Col>
-                        </Row>
-                    </Container>
-                </>
-            ) : (
+  return (
+    // <div style={{ background: "black", color: "red" }}>
+    <div>
+      {Auth.loggedIn() ? (
+        <Container>
+          <Row>
+            <Col>
+              <h2>Add a New Dungeon to {props.campaign.name}</h2>
+              <Form onSubmit={handleDungeonSubmit}>
+                <Form.Group className="mb-3 w-100" controlId="formBasicText">
+                  <Form.Label></Form.Label>
+                  <Form.Control
+                    autoFocus
+                    onChange={handleChange}
+                    value={dungeonText.name}
+                    // id="text"
+                    className="form-input"
+                    type="text"
+                    placeholder="Dungeon name"
+                    name="dungeonText" />
+                  {/* <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant='danger' style={{ color: "black" }}> */}
+                  <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant="outline-dark">
+                    Add
+                  </Button>
+                  <hr className='w-100 m-auto' />
+                  {error ? (
+                    <div>
+                      <p className='error-text'>Please enter a unique dungeon name.</p>
+                    </div>
+                  ) : null}
+                </Form.Group>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      ) : (
 
-                <p>
-                    You need to be logged in. Please
-                    <Link to="/login"> login</Link> or <Link to="/signup"> sign up</Link>
-                </p>
+        <p>
+          You need to be logged in. Please
+          <Link to="/login"> login</Link> or <Link to="/signup"> sign up</Link>
+        </p>
 
-            )}
-        </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default DungeonForm;

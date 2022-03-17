@@ -1,4 +1,32 @@
+.dice {
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 @media all and (min-width: 480px) {
+  .signUp {
+    padding: 100px 0;
+  }
+
+  .signUp form {
+    margin: 0 auto;
+    max-width: 320px;
+    margin-right: 50px;
+  }
+
+  .success-message {
+      padding: 15px;
+      color: rgb(76, 74, 216);
+    }
+  
+    .error {
+      border-style: solid;
+      border: 2px solid #ffa4a4;
+    }
+}
+
+/* @media all and (min-width: 480px) {
     .signUp {
       padding: 0;
       background-image: url(../../images/Scroll-background2.jpg);
@@ -29,4 +57,4 @@
 
 .mt-3:hover {
   font-size: x-large;
-}
+} */
