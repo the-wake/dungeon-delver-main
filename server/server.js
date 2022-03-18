@@ -19,7 +19,11 @@ app.get(express.json());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
-}
+};
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 async function startApolloServer() {
   const httpServer = http.createServer(app);
@@ -49,11 +53,7 @@ async function startApolloServer() {
   await new Promise(resolve => httpServer.listen({ port: PORT }, resolve));
   console.log(`🚀 Server ready at http://localhost:3001${server.graphqlPath}`);
   return { server, app };
-};
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+}
 
 startApolloServer();
 

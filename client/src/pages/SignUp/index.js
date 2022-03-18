@@ -89,7 +89,6 @@ const SignUp = (props) => {
                         <Form.Control
                             autoFocus
                             onChange={handleChange}
-                            value={signUpState.name}
                             // id="username"
                             className="form-input"
                             type="text"
@@ -106,7 +105,6 @@ const SignUp = (props) => {
 
                         <Form.Control
                             onChange={handleChange}
-                            value={signUpState.email}
                             // id="email"
                             className="form-input"
                             type="email"
@@ -120,7 +118,6 @@ const SignUp = (props) => {
 
                         <Form.Control
                             onChange={handleChange}
-                            value={signUpState.password}
                             // id="password"
                             className="form-input"
                             type="password"
@@ -134,12 +131,12 @@ const SignUp = (props) => {
                         ) : null}
                     </Form.Group>
 
-                    <Button variant="outline-dark" style={{background: "black", color: "beige"}} block-size="lg" type="submit">
+                    <Button variant="outline-dark" block-size="lg" type="submit">
                         Submit
                     </Button>
-                    <Container className='mt-3'>
-                        <Link to="/login" style={{color: "black"}}>Log in instead</Link>
-                    </Container>
+                    <Row className='mt-3'>
+                        <Link to="/login">Log in instead</Link>
+                    </Row>
                 </Form>
                 </Col>
                 </Row>

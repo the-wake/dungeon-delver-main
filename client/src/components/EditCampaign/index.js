@@ -67,7 +67,7 @@ const EditCampaign = ({ campaign }) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={campaignName}
+                      defaultValue={campaign.name}
                       className="form-input"
                       type="text"
                       placeholder="Enter the name of your campaign"
