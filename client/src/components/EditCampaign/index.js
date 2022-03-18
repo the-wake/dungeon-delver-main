@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const EditCampaign = ({ campaign }) => {
-  const [campaignText, setCampaignText] = useState('');
+  const [campaignName, setCampaignName] = useState('');
   const { currentSession, setCampaign } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
 
@@ -25,7 +25,7 @@ const EditCampaign = ({ campaign }) => {
       const { data } = await editCampaign({
         variables: {
           _id: campaign._id,
-          name: campaignText,
+          name: campaignName,
           is_active: true,
         },
       });
@@ -33,7 +33,7 @@ const EditCampaign = ({ campaign }) => {
       setCampaign({ currentCampaign: campaign });
       console.log('*****************************\nCurrent Session:\n', currentSession);
 
-      setCampaignText('');
+      setCampaignName('');
 
       window.location.reload();
 
@@ -45,8 +45,8 @@ const EditCampaign = ({ campaign }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'campaignText') {
-      setCampaignText(value);
+    if (name === 'campaignName') {
+      setCampaignName(value);
     }
   };
 
@@ -55,7 +55,7 @@ const EditCampaign = ({ campaign }) => {
     <>
       {
         Auth.loggedIn() ? (
-          <Container>
+          <>
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
@@ -68,11 +68,11 @@ const EditCampaign = ({ campaign }) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={campaignText.name}
+                      value={campaignName}
                       className="form-input"
                       type="text"
                       placeholder="Enter the name of your campaign"
-                      name="campaignText" />
+                      name="campaignName" />
 
                     {error ? (
                       <div>
@@ -89,15 +89,12 @@ const EditCampaign = ({ campaign }) => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            <Row>
-              <Col>
-                {/* <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5" variant="danger" style={{ color: "black" }}> */}
-                <Button onClick={() => setOnShow(!onShow)} variant="outline-dark">
-                  Edit Campaign
-                </Button>
-              </Col>
-            </Row>
-          </Container>
+            {/* <Button onClick={() => setOnShow(!onShow)} className="right-element" variant="outline-dark">
+              Edit Campaign
+            </Button> */}
+            <i className="bi-pencil icon" onClick={() => setOnShow(!onShow)} />
+            {/* <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5" variant="danger" style={{ color: "black" }}> */}
+          </>
         ) : (
           <p>
             You need to be logged in. Please

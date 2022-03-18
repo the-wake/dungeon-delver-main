@@ -51,12 +51,14 @@ const SingleRoom = () => {
       </Row>
 
       <hr className='w-100 m-auto' />
-      
+
       {roomData.blurb ? (
         <Row>
-          <div className="blurb">
-            <p>"{roomData.blurb}"</p>
-          </div>
+          <Col className="blurb" xs={10} lg={8}>
+            <div>
+              <p>"{roomData.blurb}"</p>
+            </div>
+          </Col>
         </Row>
       ) :
         <></>
