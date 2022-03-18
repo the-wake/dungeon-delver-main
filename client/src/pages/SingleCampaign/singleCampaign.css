@@ -2,3 +2,13 @@
     color: rgb(151, 13, 41);
     font-size: 54px
 } */
+
+.my-dungeon-container {
+  margin-bottom: auto;
+  margin-top: 20px;
+  /* box-sizing: border-box; */
+    /* background-image: url(../../images/dungeon-background2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: seagreen; */
+}

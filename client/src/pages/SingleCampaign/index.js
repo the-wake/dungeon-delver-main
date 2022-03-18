@@ -9,6 +9,7 @@ import DungeonList from '../../components/DungeonList';
 import EditCampaign from "../../components/EditCampaign";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { QUERY_DUNGEONS } from "../../utils/queries";
+import { Link } from 'react-router-dom';
 
 
 const SingleCampaign = () => {
@@ -35,7 +36,12 @@ const SingleCampaign = () => {
   return (
     <Container className='my-campaign-container'>
       <Row className="page-header">
-        <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
+        <Col xs={6}>
+          <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
+        </Col>
+        <Col className="flex right-justify">
+          <Link to={`/campaigns`}><h4>All Campaigns</h4></Link>
+        </Col>
       </Row>
 
       <hr className='w-100 m-auto' />
