@@ -5,6 +5,7 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+import EditDungeon from '../../components/EditDungeon';
 import RoomForm from '../../components/RoomForm';
 import RoomList from '../../components/RoomList';
 import { QUERY_ROOMS } from "../../utils/queries";
@@ -40,7 +41,7 @@ const SingleDungeon = () => {
       <Row className="page-header">
         <Col xs={6}>
           {/* <h1 className="dungeon-name" style={{ color: "seagreen" }}>{dungeonData.name}</h1> */}
-          <h1 className="dungeon-name mt-1">{dungeonData.name}</h1>
+          <h1 className="dungeon-name mt-1">{dungeonData.name}<EditDungeon dungeon={dungeonData} /></h1>
         </Col>
         <Col className="flex right-justify">
           {/* <Link to={`/campaigns/${campaignData._id}`} state={{ campaignData }}><h4 style={{ color: "seagreen" }}>{campaignData.name}</h4> */}

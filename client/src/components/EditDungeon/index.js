@@ -1,7 +1,7 @@
 import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
-import "./editCampaign.css";
+import "./editDungeon.css";
 
-import { EDIT_CAMPAIGN } from "../../utils/mutations";
+import { EDIT_DUNGEON } from "../../utils/mutations";
 import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
@@ -9,30 +9,29 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditCampaign = ({ campaign }) => {
-  const [campaignName, setCampaignName] = useState('');
-  const { currentSession, setCampaign } = useSessionContext();
+const EditDungeon = ({ dungeon }) => {
+  const [dungeonName, setDungeonName] = useState('');
+  const { currentSession, setDungeon } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
 
-  // var campaignId = campaign._id;
-  // console.log(campaignId);
-  const [editCampaign, { error, data }] = useMutation(EDIT_CAMPAIGN);
+
+  const [editDungeon, { error, data }] = useMutation(EDIT_DUNGEON);
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
+    console.log(dungeon);
     try {
-      const { data } = await editCampaign({
+      const { data } = await editDungeon({
         variables: {
-          _id: campaign._id,
-          name: campaignName,
-          is_active: true,
+          _id: dungeon._id,
+          name: dungeonName,
+          campaign: dungeon.campaign._id,
+          // is_active: true,
         },
       });
-      console.log(data);
-      setCampaign({ currentCampaign: campaign });
-      console.log('*****************************\nCurrent Session:\n', currentSession);
 
-      setCampaignName('');
+      setDungeon({ currentDungeon: data });
+      setDungeonName('');
 
       window.location.reload();
 
@@ -44,8 +43,9 @@ const EditCampaign = ({ campaign }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'campaignName') {
-      setCampaignName(value);
+    if (name === 'dungeonName') {
+      setDungeonName(value);
+      console.log(dungeonName);
     }
   };
 
@@ -58,7 +58,7 @@ const EditCampaign = ({ campaign }) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Campaign Name</Modal.Title>
+                  <Modal.Title>New Dungeon Name</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -67,15 +67,15 @@ const EditCampaign = ({ campaign }) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={campaignName}
+                      value={dungeonName}
                       className="form-input"
                       type="text"
-                      placeholder="Enter the name of your campaign"
-                      name="campaignName" />
+                      placeholder="New Dungeon Name"
+                      name="dungeonName" />
 
                     {error ? (
                       <div>
-                        <p className="error-text">Please enter a campaign name.</p>
+                        <p className="error-text">Please enter a dungeon name.</p>
                       </div>
                     ) : null}
                   </Form.Group>
@@ -88,11 +88,7 @@ const EditCampaign = ({ campaign }) => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            {/* <Button onClick={() => setOnShow(!onShow)} className="right-element" variant="outline-dark">
-              Edit Campaign
-            </Button> */}
             <i className="bi-pencil icon" onClick={() => setOnShow(!onShow)} />
-            {/* <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5" variant="danger" style={{ color: "black" }}> */}
           </>
         ) : (
           <p>
@@ -105,4 +101,4 @@ const EditCampaign = ({ campaign }) => {
   );
 }
 
-export default EditCampaign;
+export default EditDungeon;

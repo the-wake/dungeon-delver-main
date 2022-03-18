@@ -35,9 +35,7 @@ const SingleCampaign = () => {
   return (
     <Container className='my-campaign-container'>
       <Row className="page-header">
-        <Col>
-          <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
-        </Col>
+        <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
       </Row>
 
       <hr className='w-100 m-auto' />

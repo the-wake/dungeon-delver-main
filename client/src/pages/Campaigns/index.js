@@ -7,7 +7,7 @@ import { QUERY_CAMPAIGNS } from '../../utils/queries';
 // import { useSessionContext } from '../../utils/SessionContext.js'
 
 // import { Navigate, useParams, Link } from 'react-router-dom';
-import "./campaign.css";
+import "./campaigns.css";
 
 // import { QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
@@ -16,7 +16,7 @@ import { useQuery } from '@apollo/client';
 
 
 
-const Campaign = () => {
+const Campaigns = () => {
   if (!Auth.loggedIn()) {
     window.location = `/login`
   }
@@ -49,4 +49,4 @@ const Campaign = () => {
 };
 
 
-export default Campaign;
+export default Campaigns;
