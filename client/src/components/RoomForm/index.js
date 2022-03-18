@@ -90,7 +90,6 @@ const RoomForm = ({ dungeon, campaign }) => {
                       <Form.Control
                         autoFocus
                         onChange={handleChange}
-                        value={roomText}
                         className="form-input"
                         type="text"
                         placeholder="Room name"
@@ -107,7 +106,6 @@ const RoomForm = ({ dungeon, campaign }) => {
 
                       <Form.Select
                         onChange={handleChange}
-                        value={dungeonOption}
                         selected={dungeon._id}
                         name="dungeonOption">
 
@@ -127,7 +125,6 @@ const RoomForm = ({ dungeon, campaign }) => {
                       <Form.Label>Blurb</Form.Label>
                       <Form.Control as="textarea" rows={4}
                         onChange={handleChange}
-                        value={roomBlurb}
                         // id="text"
                         className="form-input"
                         type="textarea"

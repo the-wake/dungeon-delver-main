@@ -97,8 +97,6 @@ const CampaignForm = (props) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={campaignText.name}
-                      // id="text"
                       className="form-input"
                       type="text"
                       placeholder="Campaign name"

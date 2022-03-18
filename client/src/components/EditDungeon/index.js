@@ -67,7 +67,7 @@ const EditDungeon = ({ dungeon }) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={dungeonName}
+                      defaultValue={dungeon.name}
                       className="form-input"
                       type="text"
                       placeholder="New Dungeon Name"

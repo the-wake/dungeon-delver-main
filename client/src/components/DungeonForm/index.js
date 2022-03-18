@@ -51,37 +51,6 @@ const DungeonForm = (props) => {
   };
 
 
-  // <Row>
-  //   <Col>
-  //     <h2>Add a New Dungeon to {props.campaign.name}</h2>
-  //     <Form onSubmit={handleDungeonSubmit}>
-  //       <Form.Group className="mb-3 w-100" controlId="formBasicText">
-  //         <Form.Label></Form.Label>
-  //         <Form.Control
-  //           autoFocus
-  //           onChange={handleChange}
-  //           value={dungeonText.name}
-  //           // id="text"
-  //           className="form-input"
-  //           type="text"
-  //           placeholder="Dungeon name"
-  //           name="dungeonText" />
-  //         {/* <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant='danger' style={{ color: "black" }}> */}
-  //         <Button onClick={handleDungeonSubmit} className="mt-4 mb-4" variant="outline-dark">
-  //           Add
-  //         </Button>
-  //         <hr className='w-100 m-auto' />
-  //         {error ? (
-  //           <div>
-  //             <p className='error-text'>Please enter a unique dungeon name.</p>
-  //           </div>
-  //         ) : null}
-  //       </Form.Group>
-  //     </Form>
-  //   </Col>
-  // </Row>
-
-
   return (
     // <div style={{ background: "black", color: "red" }}>
     <div>
@@ -100,7 +69,6 @@ const DungeonForm = (props) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      value={dungeonName}
                       className="form-input"
                       type="text"
                       placeholder="Dungeon Name"

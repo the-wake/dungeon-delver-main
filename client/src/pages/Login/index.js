@@ -13,108 +13,107 @@ import "./login.css";
 
 
 const Login = (props) => {
-    const [loginState, setLoginState] = useState({
-        email: '',
-        password: ''
+  const [loginState, setLoginState] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+
+
+
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setLoginState({
+      ...loginState,
+      [name]: value,
     });
+  };
 
-    const [login, { error, data }] = useMutation(LOGIN_USER);
+  //submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(loginState);
 
-
-
-
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-
-        setLoginState({
-            ...loginState,
-            [name]: value,
-        });
-    };
-
-    //submit form
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        console.log(loginState);
-
-        try {
-            const { data } = await login({
-                variables: { ...loginState },
-            });
-            AuthService.login(data.login.token);
-        } catch (error) {
-            console.error(error);
-        }
-        setLoginState({
-            email: '',
-            password: '',
-        });
-        window.location = "/campaigns"
-    };
+    try {
+      const { data } = await login({
+        variables: { ...loginState },
+      });
+      AuthService.login(data.login.token);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoginState({
+      email: '',
+      password: '',
+    });
+    window.location = "/campaigns"
+  };
 
 
 
 
 
-    return (
+  return (
 
-        <Container>
-            <Row className='background'>
-                <Col>
-                <img className='wizard' src={`${process.env.PUBLIC_URL}/assets/images/wizard-4417430_1280.png`} alt="Great wizard" />
-                </Col>
+    <Container>
+      <Row className='background'>
+        <Col>
+          <img className='wizard' src={`${process.env.PUBLIC_URL}/assets/images/wizard-4417430_1280.png`} alt="Great wizard" />
+        </Col>
 
-                <Col className='signUp'>
+        <Col className='signUp'>
 
 
-                    <Form className="mt-5" onSubmit={handleFormSubmit}>
-                        <h1 className='text-center'>Login</h1>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
+          <Form className="mt-5" onSubmit={handleFormSubmit}>
+            <h1 className='text-center'>Login</h1>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
 
-                            <Form.Control
-                                autoFocus
-                                onChange={handleChange}
-                                value={loginState.email}
-                                // id="email"
-                                className="form-input"
-                                type="email"
-                                placeholder="Email"
-                                name="email" 
-                                style={{background: "beige"}} />
-                        </Form.Group>
+              <Form.Control
+                autoFocus
+                onChange={handleChange}
+                // id="email"
+                className="form-input"
+                type="email"
+                placeholder="Email"
+                name="email"
+                style={{ background: "beige" }} />
+            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
 
-                            <Form.Control
-                                onChange={handleChange}
-                                value={loginState.password}
-                                // id="password"
-                                className="form-input"
-                                type="password"
-                                placeholder="*******"
-                                name="password"
-                                style={{background: "beige"}} />
-                            {error ? (
-                                <div>
-                                    <p className='error-text'>Please check your email or password</p>
-                                </div>
-                            ) : null}
-                        </Form.Group>
+              <Form.Control
+                onChange={handleChange}
+                // id="password"
+                className="form-input"
+                type="password"
+                placeholder="*******"
+                name="password"
+                style={{ background: "beige" }} />
+              {error ? (
+                <div>
+                  <p className='error-text'>Please check your email or password</p>
+                </div>
+              ) : null}
+            </Form.Group>
 
-                        <Button style={{background: "chartreuse"}} variant="outline-dark" block-size="lg" type="submit">
-                            Submit
-                        </Button>
-                        <Container>
-                         <Link className='instead' to="/signup">Sign up instead</Link>
-                        </Container>
-                    </Form>
-                </Col>
+            {/* <Button style={{ background: "chartreuse" }} variant="outline-dark" block-size="lg" type="submit"> */}
+            <Button variant="outline-dark" block-size="lg" type="submit">
+              Submit
+            </Button>
+            <Row className="mt-3">
+              <Link className='instead' to="/signup">Sign up instead</Link>
             </Row>
-        </Container>
-    );
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+  );
 
 };
 
