@@ -60,14 +60,11 @@ export const ADD_DUNGEON = gql`
 `;
 
 export const EDIT_DUNGEON = gql`
-    mutation editDungeon($_id: ID!, $name: String!, $campaign: ID!, $is_active: Boolean) {
-        addDungeon(_id: $_id, name: $name, campaign: $campaign, is_active: $is_active) {
+    mutation editDungeon($_id: ID!, $name: String!, $campaign: ID, $is_active: Boolean) {
+        editDungeon(_id: $_id, name: $name, campaign: $campaign, is_active: $is_active) {
             _id
             name
             is_active
-            campaign {
-                name
-            }
         }
     }
 `;

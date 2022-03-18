@@ -21,3 +21,12 @@
 .right-justify {
   text-align: right;
 }
+
+.icon {
+  display: inline;
+  cursor: pointer;
+  color: rgb(0, 0, 167);
+  font-size: 17px;
+  margin-left: 20px;
+  vertical-align: middle;
+}

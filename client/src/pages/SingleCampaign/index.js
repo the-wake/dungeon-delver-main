@@ -9,6 +9,7 @@ import DungeonList from '../../components/DungeonList';
 import EditCampaign from "../../components/EditCampaign";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { QUERY_DUNGEONS } from "../../utils/queries";
+import { Link } from 'react-router-dom';
 
 
 const SingleCampaign = () => {
@@ -36,16 +37,21 @@ const SingleCampaign = () => {
     <Container className='my-campaign-container'>
       <Row className="page-header">
         <Col xs={6}>
-          <h1 className="campaign-name">{campaignData.name}</h1>
+          <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
         </Col>
-        <Col className="flex">
-          <EditCampaign campaign={campaignData}></EditCampaign>
+        <Col className="flex right-justify">
+          <Link to={`/campaigns`}><h4>All Campaigns</h4></Link>
         </Col>
       </Row>
+
+      <hr className='w-100 m-auto' />
+
       <Row>
-        <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
-        {/* <h2 className="mb-3 mt-3 mx-3" style={{ color: "red", fontSize: "xxx-large" }}>Dungeons in {campaignData.name}</h2> */}
-        <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
+        <Col>
+          <DungeonForm dungeons={dungeons} campaign={campaignData}></DungeonForm>
+          {/* <h2 className="mb-3 mt-3 mx-3" style={{ color: "red", fontSize: "xxx-large" }}>Dungeons in {campaignData.name}</h2> */}
+          <h2 className="mb-3 mt-3 mx-3">Dungeons in {campaignData.name}</h2>
+        </Col>
         {loading ? (
           <h2>
             Retrieving Data...

@@ -21,12 +21,25 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import LandingPage from './pages/LandingPage';
-import Campaign from './pages/Campaign';
+import Campaigns from './pages/Campaigns';
 import SingleCampaign from './pages/SingleCampaign';
-import Dungeon from './pages/Dungeon';
+import Dungeons from './pages/Dungeons(Unused)';
 import SingleDungeon from './pages/SingleDungeon';
-import Creatures from './pages/Creatures';
+import Creatures from './pages/Creatures(Unused)';
 import SingleRoom from './pages/SingleRoom';
+
+
+// Log any GraphQL errors or network error that occurred
+import { onError } from "@apollo/client/link/error";
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
 
 
@@ -75,13 +88,13 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/landingpage" element={<LandingPage />} />
-                <Route path="/campaigns" element={<Campaign />} />
+                <Route path="/campaigns" element={<Campaigns />} />
                 <Route path="/campaigns/:id" element={<SingleCampaign />} />
                 {/* <Route path="/dungeons" element={<Dungeon />} /> */}
                 <Route path="/dungeons/:id" element={<SingleDungeon />} />
                 {/* <Route path="/rooms" element={<Rooms />} /> */}
                 <Route path="/rooms/:id" element={<SingleRoom />} />
-                <Route path="/creatures" element={<Creatures />} />
+                {/* <Route path="/creatures" element={<Creatures />} /> */}
                 {/* <Route path="/creatures/:id" element={<SingleCreature />} /> */}
                 <Route path="*" element={<Home />} />
               </Routes>
