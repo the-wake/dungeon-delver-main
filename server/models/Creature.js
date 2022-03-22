@@ -11,6 +11,7 @@ const creatureSchema = new Schema({
   room: {
     type: Schema.Types.ObjectId,
     ref: 'Room',
+    default: null,
   },
   hp: {
     type: Number,
