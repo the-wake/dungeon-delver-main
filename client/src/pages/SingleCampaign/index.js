@@ -37,7 +37,7 @@ const SingleCampaign = () => {
     <Container className='my-campaign-container'>
       <Row className="page-header">
         <Col xs={6}>
-          <h1 className="campaign-name">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
+          <h1 className="campaign-name mt-1">{campaignData.name}<EditCampaign campaign={campaignData} /></h1>
         </Col>
         <Col className="flex right-justify">
           <Link to={`/campaigns`}><h4>All Campaigns</h4></Link>

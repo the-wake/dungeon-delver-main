@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const Dungeon = require('./Dungeon.js');
 
-// This auto-generates _id, right?
+
 const roomSchema = new Schema({
   name: {
     type: String,
@@ -20,6 +20,14 @@ const roomSchema = new Schema({
   dungeon: {
     type: Schema.Types.ObjectId,
     ref: 'Dungeon',
+  },
+  town: {
+    type: Schema.Types.ObjectId,
+    ref: 'Town',
+  },
+  area: {
+    type: Schema.Types.ObjectId,
+    ref: 'Area',
   },
   is_active: {
     type: Boolean,
