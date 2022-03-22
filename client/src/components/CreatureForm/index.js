@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CreatureForm = ({ campaign, dungeon, room }) => {
+const CreatureForm = ({ campaign, area, room }) => {
   const [creatureName, setCreatureName] = useState('');
   const [roomOption, setRoomOption] = useState(room._id);
   const [hpOption, setHpOption] = useState('');
@@ -19,8 +19,8 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
   // console.log(roomOption);
 
 
-  const { currentSession, setCurrentSession, setRoom, setDungeon } = useSessionContext();
-  const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+  const { currentSession, setCurrentSession, setRoom, setArea } = useSessionContext();
+  const { currentCampaign, currentArea, currentRoom } = currentSession;
   const [onShow, setOnShow] = useState(false);
 
   const [addCreature, { error, data }] = useMutation(ADD_CREATURE);
@@ -75,11 +75,13 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
     }
 
     if (name === 'keyNpc') {
-      setKeyNpc(value);
+      setKeyNpc(!keyNpc);
+      console.log(keyNpc)
     }
 
     if (name === 'isAlive') {
-      setIsAlive(value);
+      setIsAlive(!isAlive);
+      console.log(isAlive)
     }
     console.log(value);
   };
@@ -120,14 +122,14 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                       selected={room._id}
                       name="roomOption">
 
-                      {currentDungeon.rooms && currentDungeon.rooms.map((room, pos) => (
+                      {currentArea.rooms && currentArea.rooms.map((room, pos) => (
                         <option key={pos} value={room._id}>{room.name}</option>
                       ))}
                     </Form.Select>
 
                     {error ? (
                       <div>
-                        <p className='error-text'>Please select a dungeon</p>
+                        <p className='error-text'>Please select an area</p>
                       </div>
                     ) : null}
                   </Form.Group>
@@ -163,7 +165,7 @@ const CreatureForm = ({ campaign, dungeon, room }) => {
                     ) : null}
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="controlTextArea">
+                  <Form.Group className="mb-3">
                     <Form.Label>Key NPC?</Form.Label>
                     <Form.Check
                       inline={true}

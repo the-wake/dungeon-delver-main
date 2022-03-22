@@ -2,11 +2,20 @@ const { Schema, model } = require('mongoose');
 const Campaign = require('./Campaign.js');
 
 // This auto-generates _id, right?
-const dungeonSchema = new Schema({
+const areaSchema = new Schema({
   name: {
     type: String,
     required: true,
     trim: true,
+  },
+  type: {
+    type: String,
+    required: true,
+    enum: [
+      'Dungeon',
+      'Town',
+      'Wilderness',
+    ]
   },
   rooms: [
     {
@@ -30,24 +39,24 @@ const dungeonSchema = new Schema({
 });
 
 // May want to add runValidators: true to the third argument object.
-dungeonSchema.pre('save', function (next) {
+areaSchema.pre('save', function (next) {
   Campaign.findOneAndUpdate(
     { _id: this.campaign },
-    { $addToSet: { dungeons: this._id } },
+    { $addToSet: { areas: this._id } },
     { new: true },
   ).exec();
   next();
 });
 
-dungeonSchema.pre('remove', function (next) {
+areaSchema.pre('remove', function (next) {
   Campaign.findOneAndUpdate(
     { _id: this.campaign },
-    { $pull: { dungeons: this._id } },
+    { $pull: { areas: this._id } },
     { new: true },
   ).exec();
   next();
 });
 
-const Dungeon = model('Dungeon', dungeonSchema);
+const Area = model('Area', areaSchema);
 
-module.exports = Dungeon;
+module.exports = Area;

@@ -5,9 +5,10 @@ export const QUERY_CAMPAIGNS = gql`
     getCampaigns {
       _id
       name
-      dungeons {
+      areas {
           _id
           name
+          type
       }
       is_active
       user {
@@ -23,20 +24,22 @@ export const QUERY_SINGLE_CAMPAIGN = gql`
     getCampaign(_id: $_id) {
       _id
       name
-      dungeons {
+      areas {
           _id
           name
+          type
       }
       is_active
     }
   }
 `;
 
-export const QUERY_DUNGEONS = gql`
-    query getDungeons {
-        getDungeons {
+export const QUERY_AREAS = gql`
+    query getAreas {
+        getAreas {
             _id
             name
+            type
             rooms {
                 _id
                 name
@@ -54,11 +57,12 @@ export const QUERY_DUNGEONS = gql`
     }
 `;
 
-export const QUERY_SINGLE_DUNGEON = gql`
-    query getDungeon($_id: ID!) {
-        getDungeon(_id: $_id) {
+export const QUERY_SINGLE_AREA = gql`
+    query getArea($_id: ID!) {
+        getArea(_id: $_id) {
             _id
             name
+            type
             rooms {
                 _id
                 name
@@ -73,8 +77,8 @@ export const QUERY_SINGLE_DUNGEON = gql`
 `;
 
 export const QUERY_ROOMS = gql`
-    query getRooms($dungeon: ID!) {
-        getRooms(dungeon: $dungeon) {
+    query getRooms($area: ID!) {
+        getRooms(area: $area) {
             _id
             name
             blurb
@@ -82,9 +86,10 @@ export const QUERY_ROOMS = gql`
                 _id
                 name
             }
-            dungeon {
+            area {
                 _id
                 name
+                type
             }
             is_active
         }
@@ -101,9 +106,10 @@ export const QUERY_SINGLE_ROOM = gql`
                 _id
                 name
             }
-            dungeon {
+            area {
                 _id
                 name
+                type
             }
             is_active
         }
@@ -156,9 +162,10 @@ export const QUERY_ME = gql`
         _id
         name
         is_active
-        dungeons {
-            _id
+        areas {
+          _id
           name
+          type
         }
       }
     }

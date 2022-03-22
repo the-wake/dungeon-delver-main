@@ -1,7 +1,7 @@
 import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
-import "./editDungeon.css";
+import "./editArea.css";
 
-import { EDIT_DUNGEON } from "../../utils/mutations";
+import { EDIT_AREA } from "../../utils/mutations";
 import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
@@ -9,29 +9,29 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditDungeon = ({ dungeon }) => {
-  const [dungeonName, setDungeonName] = useState('');
-  const { currentSession, setDungeon } = useSessionContext();
+const EditArea = ({ area }) => {
+  const [areaName, setAreaName] = useState('');
+  const { currentSession, setArea } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
 
 
-  const [editDungeon, { error, data }] = useMutation(EDIT_DUNGEON);
+  const [editArea, { error, data }] = useMutation(EDIT_AREA);
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
-    console.log(dungeon);
+    console.log(area);
     try {
-      const { data } = await editDungeon({
+      const { data } = await editArea({
         variables: {
-          _id: dungeon._id,
-          name: dungeonName,
-          campaign: dungeon.campaign._id,
+          _id: area._id,
+          name: areaName,
+          campaign: area.campaign._id,
           // is_active: true,
         },
       });
 
-      setDungeon({ currentDungeon: data });
-      setDungeonName('');
+      setArea({ currentArea: data });
+      setAreaName('');
 
       window.location.reload();
 
@@ -43,9 +43,9 @@ const EditDungeon = ({ dungeon }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'dungeonName') {
-      setDungeonName(value);
-      console.log(dungeonName);
+    if (name === 'areaName') {
+      setAreaName(value);
+      console.log(areaName);
     }
   };
 
@@ -58,7 +58,7 @@ const EditDungeon = ({ dungeon }) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Dungeon Name</Modal.Title>
+                  <Modal.Title>New Area Name</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -67,15 +67,15 @@ const EditDungeon = ({ dungeon }) => {
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      defaultValue={dungeon.name}
+                      defaultValue={area.name}
                       className="form-input"
                       type="text"
-                      placeholder="New Dungeon Name"
-                      name="dungeonName" />
+                      placeholder="New Area Name"
+                      name="areaName" />
 
                     {error ? (
                       <div>
-                        <p className="error-text">Please enter a dungeon name.</p>
+                        <p className="error-text">Please enter an area name.</p>
                       </div>
                     ) : null}
                   </Form.Group>
@@ -101,4 +101,4 @@ const EditDungeon = ({ dungeon }) => {
   );
 }
 
-export default EditDungeon;
+export default EditArea;

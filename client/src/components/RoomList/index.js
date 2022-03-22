@@ -8,8 +8,8 @@ import { QUERY_ME } from '../../utils/queries';
 import { useSessionContext } from '../../utils/SessionContext.js';
 import "./roomList.css";
 
-const RoomList = ({ campaign, dungeon, rooms }) => {
-  const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+const RoomList = ({ campaign, area, rooms }) => {
+  const { currentSession, setCampaign, setArea, setRoom } = useSessionContext();
 
   const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
     update(cache, { data: { removeRoom } }) {
@@ -34,17 +34,17 @@ const RoomList = ({ campaign, dungeon, rooms }) => {
     }
   };
 
-  if (!dungeon) {
-    return <h4>Please select a dungeon first.</h4>
+  if (!area) {
+    return <h4>Please select a area first.</h4>
   }
 
   if (!rooms.length) {
-    return <h4>You have no rooms in this dungeon.</h4>
+    return <h4>You have no rooms in this area.</h4>
   }
   // console.log(rooms);
-  // console.log(dungeon._id);
+  // console.log(area._id);
 
-  const roomList = rooms.filter(room => room.dungeon._id === dungeon._id);
+  const roomList = rooms.filter(room => room.area._id === area._id);
   console.log(roomList);
 
   return (
@@ -61,10 +61,10 @@ const RoomList = ({ campaign, dungeon, rooms }) => {
                   {/* <Link style={{ color: "seagreen" }} className='room-title' to={`/rooms/${room._id}`} */}
                   <Link className='room-title' to={`/rooms/${room._id}`}
                     onClick={() => {
-                      setDungeon({ currentDungeon: room.dungeon });
+                      setArea({ currentArea: room.area });
                       setRoom({ currentRoom: room });
                     }}
-                    state={{ campaignData: campaign, dungeonData: dungeon, roomData: room }}>
+                    state={{ campaignData: campaign, areaData: area, roomData: room }}>
                     {room.name}
                   </Link>
                   {Auth.loggedIn && (<CloseButton className="close-button float-end"

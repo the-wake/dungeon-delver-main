@@ -1,8 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth.js');
-const { User, Campaign, Creature, Dungeon, Room } = require('../models');
+const { User, Campaign, Creature, Area, Room } = require('../models');
 
-// It might be helpful if we establish the relationship hierarchy bottom-up (e.g. adding a Creatures field to Room, and Rooms field to Dungeon, etc.) alongside the top-down relationship.
 
 const resolvers = {
   Query: {
@@ -26,7 +25,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaigns = await Campaign.find({ user: user._id }).populate('user').populate('dungeons');
+      const campaigns = await Campaign.find({ user: user._id }).populate('user').populate('areas');
       
       if (!campaigns) {
         throw new AuthenticationError('You have no campaigns!')
@@ -36,30 +35,30 @@ const resolvers = {
       console.log(user._id);
       return campaigns;
     },
-    getDungeons: async (parent, args, { user }) => {
+    getAreas: async (parent, args, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeons = await Dungeon.find({ user: user._id }).populate('user').populate('campaign').populate('rooms');
-      console.log(dungeons);
+      const areas = await Area.find({ user: user._id }).populate('user').populate('campaign').populate('rooms');
+      console.log(areas);
       
-      if (!dungeons) {
-        throw new AuthenticationError('You have no dungeons!')
+      if (!areas) {
+        throw new AuthenticationError('You have no areas!')
       };
 
-      return dungeons;
+      return areas;
     },
-    getRooms: async (parent, { dungeon }, { user }) => {
+    getRooms: async (parent, { area }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
      
-      const rooms = await Room.find({ dungeon, user: user._id }).populate('user').populate('dungeon').populate('creatures');
+      const rooms = await Room.find({ area, user: user._id }).populate('user').populate('area').populate('creatures');
       console.log(rooms);
       
       if (!rooms) {
-        throw new AuthenticationError('You have no rooms in this dungeon!')
+        throw new AuthenticationError('You have no rooms in this area!')
       };
 
       return rooms;
@@ -83,7 +82,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaign = await Campaign.findOne({ _id: campaignId, user }).populate('user').populate('dungeons');
+      const campaign = await Campaign.findOne({ _id: campaignId, user }).populate('user').populate('areas');
       console.log(campaign);
       
       if (!campaign) {
@@ -92,26 +91,26 @@ const resolvers = {
 
       return campaign;
     },
-    getDungeon: async (parent, { dungeonId }, { user }) => {
+    getArea: async (parent, { areaId }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeon = await Dungeon.findOne({ _id: dungeonId, user }).populate('user').populate('campaign').populate('rooms');
-      console.log(dungeon);
+      const area = await Area.findOne({ _id: areaId, user }).populate('user').populate('campaign').populate('rooms');
+      console.log(area);
       
-      if (!dungeon) {
-        throw new AuthenticationError('Dungeon not found.')
+      if (!area) {
+        throw new AuthenticationError('Area not found.')
       };
 
-      return dungeon;
+      return area;
     },
     getRoom: async (parent, { roomId }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('dungeon').populate('creatures');
+      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('area').populate('creatures');
       console.log(room);
 
       if (!room) {
@@ -178,26 +177,26 @@ const resolvers = {
       return campaign;
     },
     // Still need to get this to populate to the currently focused campaign.
-    addDungeon: async (parent, { name, campaign, is_active }, { user }) => {
+    addArea: async (parent, { name, type, campaign, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeon = await Dungeon.create({ name, campaign, is_active, user });
-      console.log(dungeon);
+      const area = await Area.create({ name, type, campaign, is_active, user });
+      console.log(area);
 
-      if (!dungeon) {
+      if (!area) {
         throw new AuthenticationError('Something went wrong. Please make sure you\'ve filled out the necessary fields and have entered a unique name.')
       };
 
-      return dungeon;
+      return area;
     },
-    addRoom: async (parent, { name, blurb, dungeon, is_active }, { user }) => {
+    addRoom: async (parent, { name, blurb, area, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.create({ name, blurb, dungeon, is_active, user });
+      const room = await Room.create({ name, blurb, area, is_active, user });
       console.log(room);
 
       if (!room) {
@@ -236,19 +235,19 @@ const resolvers = {
 
       return campaign;
     },
-    editDungeon: async (parent, { _id, name, is_active }, { user }) => {
+    editArea: async (parent, { _id, name, type, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const dungeon = await Dungeon.findOneAndUpdate({ _id, user }, { name, is_active }, { new: true });
-      console.log(dungeon);
+      const area = await Area.findOneAndUpdate({ _id, user }, { name, type, is_active }, { new: true });
+      console.log(area);
 
-      if (!dungeon) {
+      if (!area) {
         throw new AuthenticationError('Something went wrong. Please make sure you\'ve filled out the necessary fields and have entered a unique name.')
       };
 
-      return dungeon;
+      return area;
     },
     editRoom: async (parent, { _id, name, blurb, is_active }, { user }) => {
       if (!user) {
@@ -296,20 +295,20 @@ const resolvers = {
     },
 
 
-    removeDungeon: async (paprent, { _id }, { user }) => {
+    removeArea: async (paprent, { _id }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
       console.log(user);
 
-      const dungeon = await Dungeon.findOneAndDelete({ _id, user });
-      console.log(dungeon);
+      const area = await Area.findOneAndDelete({ _id, user });
+      console.log(area);
 
-      if (!dungeon) {
+      if (!area) {
         throw new AuthenticationError('Something went wrong.')
       };
 
-      return dungeon;
+      return area;
     },
     removeRoom: async (paprent, { _id }, { user }) => {
       if (!user) {

@@ -49,9 +49,9 @@ export const REMOVE_CAMPAIGN = gql`
     }
 `;
 
-export const ADD_DUNGEON = gql`
-    mutation addDungeon($name: String!, $campaign: ID!, $is_active: Boolean) {
-        addDungeon(name: $name, campaign: $campaign, is_active: $is_active) {
+export const ADD_AREA = gql`
+    mutation addArea($name: String!, $type: String!, $campaign: ID!, $is_active: Boolean) {
+        addArea(name: $name, type: $type, campaign: $campaign, is_active: $is_active) {
             _id
             name
             is_active
@@ -59,9 +59,9 @@ export const ADD_DUNGEON = gql`
     }
 `;
 
-export const EDIT_DUNGEON = gql`
-    mutation editDungeon($_id: ID!, $name: String!, $campaign: ID, $is_active: Boolean) {
-        editDungeon(_id: $_id, name: $name, campaign: $campaign, is_active: $is_active) {
+export const EDIT_AREA = gql`
+    mutation editArea($_id: ID!, $name: String!, $type: String!, $campaign: ID, $is_active: Boolean) {
+        editArea(_id: $_id, name: $name, type: $type, campaign: $campaign, is_active: $is_active) {
             _id
             name
             is_active
@@ -69,17 +69,17 @@ export const EDIT_DUNGEON = gql`
     }
 `;
 
-export const REMOVE_DUNGEON = gql`
-    mutation removeDungeon($_id: ID!) {
-        removeDungeon(_id: $_id) {
+export const REMOVE_AREA = gql`
+    mutation removeArea($_id: ID!) {
+        removeArea(_id: $_id) {
             name
         }
     }
 `;
 
 export const ADD_ROOM = gql`
-    mutation addRoom($name: String!, $blurb: String, $dungeon: ID!, $is_active: Boolean) {
-        addRoom(name: $name, blurb: $blurb, dungeon: $dungeon, is_active: $is_active) {
+    mutation addRoom($name: String!, $blurb: String, $area: ID!, $is_active: Boolean) {
+        addRoom(name: $name, blurb: $blurb, area: $area, is_active: $is_active) {
             name
             blurb
             is_active
@@ -88,12 +88,12 @@ export const ADD_ROOM = gql`
 `;
 
 export const EDIT_ROOM = gql`
-    mutation editRoom($_id: ID!, $name: String, $dungeon: ID, $blurb: String, $is_active: Boolean) {
-        addRoom(id: $_id, name: $name, dungeon: $dungeon, blurb: $blurb, is_active: $is_active) {
+    mutation editRoom($_id: ID!, $name: String, $area: ID, $blurb: String, $is_active: Boolean) {
+        addRoom(id: $_id, name: $name, area: $area, blurb: $blurb, is_active: $is_active) {
             name
             blurb
             is_active
-            dungeon {
+            area {
                 name
                 campaign {
                     name
@@ -137,7 +137,7 @@ export const EDIT_CREATURE = gql`
             is_active
             room {
                 name
-                dungeon {
+                area {
                     name
                     campaign {
                         name

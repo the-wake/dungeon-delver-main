@@ -12,14 +12,14 @@ import { ADD_ROOM } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const RoomForm = ({ dungeon, campaign }) => {
-  const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
-  const { currentCampaign, currentDungeon, currentRoom } = currentSession;
+const RoomForm = ({ area, campaign }) => {
+  const { currentSession, setCampaign, setArea, setRoom } = useSessionContext();
+  const { currentCampaign, currentArea, currentRoom } = currentSession;
 
-  // console.log("dungeon", dungeon)
+  // console.log("area", area)
 
   const [roomText, setRoomText] = useState('');
-  const [dungeonOption, setDungeonOption] = useState(dungeon._id);
+  const [areaOption, setAreaOption] = useState(area._id);
   const [roomBlurb, setRoomBlurb] = useState('');
   const [onShow, setOnShow] = useState(false);
 
@@ -32,7 +32,7 @@ const RoomForm = ({ dungeon, campaign }) => {
       const { data } = await addRoom({
         variables: {
           name: roomText,
-          dungeon: dungeonOption,
+          area: areaOption,
           blurb: roomBlurb,
           is_active: true,
           user: Auth.getProfile(),
@@ -41,7 +41,7 @@ const RoomForm = ({ dungeon, campaign }) => {
       console.log("right here", data)
 
       setRoomText('');
-      setDungeonOption('');
+      setAreaOption('');
       setRoomBlurb('');
 
 
@@ -60,8 +60,8 @@ const RoomForm = ({ dungeon, campaign }) => {
       setRoomText(value);
     }
 
-    if (name === 'dungeonOption') {
-      setDungeonOption(value);
+    if (name === 'areaOption') {
+      setAreaOption(value);
     }
 
     if (name === 'blurbText') {
@@ -70,7 +70,7 @@ const RoomForm = ({ dungeon, campaign }) => {
     console.log(value);
   };
 
-  if (!dungeon) { return (<div>Loading...</div>) }
+  if (!area) { return (<div>Loading...</div>) }
 
   return (
     <div>
@@ -102,21 +102,21 @@ const RoomForm = ({ dungeon, campaign }) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                      <Form.Label>Associated Dungeon</Form.Label>
+                      <Form.Label>Associated Area</Form.Label>
 
                       <Form.Select
                         onChange={handleChange}
-                        selected={dungeon._id}
-                        name="dungeonOption">
+                        selected={area._id}
+                        name="areaOption">
 
-                        {currentCampaign.dungeons && currentCampaign.dungeons.map((dungeon, pos) => (
-                          <option key={pos} value={dungeon._id}>{dungeon.name}</option>
+                        {currentCampaign.areas && currentCampaign.areas.map((area, pos) => (
+                          <option key={pos} value={area._id}>{area.name}</option>
                         ))}
                       </Form.Select>
 
                       {error ? (
                         <div>
-                          <p className='error-text'>Please select a dungeon</p>
+                          <p className='error-text'>Please select a area</p>
                         </div>
                       ) : null}
                     </Form.Group>

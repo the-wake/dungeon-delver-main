@@ -25,9 +25,9 @@ const LandingPage = () => {
                     </Link>
                     </Col>
                    <Col>
-                   <Link to="/dungeons">
+                   <Link to="/areas">
                     <Card className='selectCard text-center dunge'>
-                      <span className='card-title my-auto blue'>Dungeons</span>
+                      <span className='card-title my-auto blue'>Areas</span>
                     </Card>
                     </Link>
                     </Col>

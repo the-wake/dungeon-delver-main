@@ -8,8 +8,8 @@ import { QUERY_ME } from '../../utils/queries';
 import { useSessionContext } from '../../utils/SessionContext.js';
 import "./creatureList.css";
 
-const CreatureList = ({ campaign, dungeon, room, creatures }) => {
-  const { currentSession, setCampaign, setDungeon, setRoom } = useSessionContext();
+const CreatureList = ({ campaign, area, room, creatures }) => {
+  const { currentSession, setCampaign, setArea, setRoom } = useSessionContext();
 
   // const [removeRoom, { error }] = useMutation(REMOVE_ROOM, {
   //     update(cache, { data: { removeRoom } }) {
@@ -42,7 +42,7 @@ const CreatureList = ({ campaign, dungeon, room, creatures }) => {
   }
 
   if (!creatures.length) {
-    return <h4>You have no creatures in this dungeon.</h4>
+    return <h4>You have no creatures in this area.</h4>
   }
 
   const creatureList = creatures.filter(creature => creature.room._id === room._id);

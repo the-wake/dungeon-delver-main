@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
-const Dungeon = require('./Dungeon.js');
+const Area = require('./Area.js');
 
-// This auto-generates _id, right?
+
 const roomSchema = new Schema({
   name: {
     type: String,
@@ -17,9 +17,9 @@ const roomSchema = new Schema({
       ref: 'Creature',
     }
   ],
-  dungeon: {
+  area: {
     type: Schema.Types.ObjectId,
-    ref: 'Dungeon',
+    ref: 'Area',
   },
   is_active: {
     type: Boolean,
@@ -33,8 +33,8 @@ const roomSchema = new Schema({
 });
 
 roomSchema.pre('save', function (next) {
-  Dungeon.findOneAndUpdate(
-    { _id: this.dungeon },
+  Area.findOneAndUpdate(
+    { _id: this.area },
     { $addToSet: { rooms: this._id } },
     { new: true },
   ).exec();
@@ -42,8 +42,8 @@ roomSchema.pre('save', function (next) {
 });
 
 roomSchema.pre('remove', function (next) {
-  Dungeon.findOneAndUpdate(
-    { _id: this.dungeon },
+  Area.findOneAndUpdate(
+    { _id: this.area },
     { $pull: { rooms: this._id } },
     { new: true },
   ).exec();

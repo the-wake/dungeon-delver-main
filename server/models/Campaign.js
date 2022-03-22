@@ -7,10 +7,10 @@ const campaignSchema = new Schema({
     required: true,
     trim: true,
   },
-  dungeons: [
+  areas: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Dungeon',
+      ref: 'Area',
     }
   ],
   is_active: {
