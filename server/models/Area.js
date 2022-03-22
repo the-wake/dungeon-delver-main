@@ -1,11 +1,16 @@
 const { Schema, model } = require('mongoose');
+const Campaign = require('./Campaign.js');
 
-
+// This auto-generates _id, right?
 const areaSchema = new Schema({
   name: {
     type: String,
     required: true,
     trim: true,
+  },
+  areaType: {
+    type: String,
+    required: true,
   },
   rooms: [
     {
@@ -26,15 +31,26 @@ const areaSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-},
-  {
-    toJSON: {
-      virtuals: true,
-    }
-  }
-);
+});
 
-// We could also add a pre-delete middleware, but I don't think we want to add a delete campaign route since that could really mess up someone's whole day.
+// May want to add runValidators: true to the third argument object.
+areaSchema.pre('save', function (next) {
+  Campaign.findOneAndUpdate(
+    { _id: this.campaign },
+    { $addToSet: { areas: this._id } },
+    { new: true },
+  ).exec();
+  next();
+});
+
+areaSchema.pre('remove', function (next) {
+  Campaign.findOneAndUpdate(
+    { _id: this.campaign },
+    { $pull: { areas: this._id } },
+    { new: true },
+  ).exec();
+  next();
+});
 
 const Area = model('Area', areaSchema);
 

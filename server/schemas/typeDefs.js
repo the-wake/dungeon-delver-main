@@ -10,12 +10,12 @@ const typeDefs = gql`
   type Campaign {
     _id: ID!
     name: String!
-    dungeons: [Dungeon]
+    areas: [Area]
     is_active: Boolean!
     user: User!
   }
 
-  type Dungeon {
+  type Area {
     _id: ID!
     name: String!
     rooms: [Room]
@@ -30,7 +30,7 @@ const typeDefs = gql`
     blurb: String
     creatures: [Creature]
     is_active: Boolean!
-    dungeon: Dungeon!
+    area: Area!
     user: User!
   }
 
@@ -55,11 +55,11 @@ const typeDefs = gql`
     allUsers: [User]
     me: User
     getCampaigns: [Campaign]
-    getDungeons: [Dungeon]
-    getRooms(dungeon: ID!): [Room]
+    getAreas: [Area]
+    getRooms(area: ID!): [Room]
     getCreatures(room: ID!): [Creature]
     getCampaign(campaignId: ID!): Campaign
-    getDungeon(dungeonId: ID!): Dungeon
+    getArea(areaId: ID!): Area
     getRoom(roomId: ID!): Room
     getCreature(creatureId: ID!): Creature
   }
@@ -68,15 +68,15 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addCampaign(name: String!, is_active: Boolean): Campaign
-    addDungeon(name: String!, campaign: ID!, is_active: Boolean): Dungeon
-    addRoom(name: String!, blurb: String, dungeon: ID!, is_active: Boolean): Room
+    addArea(name: String!, campaign: ID!, is_active: Boolean): Area
+    addRoom(name: String!, blurb: String, area: ID!, is_active: Boolean): Room
     addCreature(name: String!, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     editCampaign(_id: ID!, name: String, is_active: Boolean): Campaign
-    editDungeon(_id: ID!, name: String, campaign: ID, is_active: Boolean): Dungeon
-    editRoom(_id: ID!, name: String, dungeon: ID, blurb: String, is_active: Boolean): Room
+    editArea(_id: ID!, name: String, campaign: ID, is_active: Boolean): Area
+    editRoom(_id: ID!, name: String, area: ID, blurb: String, is_active: Boolean): Room
     editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     removeCampaign(_id: ID!): Campaign
-    removeDungeon(_id: ID!): Dungeon
+    removeArea(_id: ID!): Area
     removeRoom(_id: ID!): Room
     removeCreature(_id: ID!): Creature
   }

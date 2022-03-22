@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const Dungeon = require('./Dungeon.js');
+const Area = require('./Area.js');
 
 
 const roomSchema = new Schema({
@@ -17,14 +17,6 @@ const roomSchema = new Schema({
       ref: 'Creature',
     }
   ],
-  dungeon: {
-    type: Schema.Types.ObjectId,
-    ref: 'Dungeon',
-  },
-  town: {
-    type: Schema.Types.ObjectId,
-    ref: 'Town',
-  },
   area: {
     type: Schema.Types.ObjectId,
     ref: 'Area',
@@ -41,8 +33,8 @@ const roomSchema = new Schema({
 });
 
 roomSchema.pre('save', function (next) {
-  Dungeon.findOneAndUpdate(
-    { _id: this.dungeon },
+  Area.findOneAndUpdate(
+    { _id: this.area },
     { $addToSet: { rooms: this._id } },
     { new: true },
   ).exec();
@@ -50,8 +42,8 @@ roomSchema.pre('save', function (next) {
 });
 
 roomSchema.pre('remove', function (next) {
-  Dungeon.findOneAndUpdate(
-    { _id: this.dungeon },
+  Area.findOneAndUpdate(
+    { _id: this.area },
     { $pull: { rooms: this._id } },
     { new: true },
   ).exec();

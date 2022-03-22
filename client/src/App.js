@@ -23,8 +23,8 @@ import SignUp from './pages/SignUp';
 import LandingPage from './pages/LandingPage';
 import Campaigns from './pages/Campaigns';
 import SingleCampaign from './pages/SingleCampaign';
-import Dungeons from './pages/Dungeons(Unused)';
-import SingleDungeon from './pages/SingleDungeon';
+import Areas from './pages/Areas(Unused)';
+import SingleArea from './pages/SingleArea';
 import Creatures from './pages/Creatures(Unused)';
 import SingleRoom from './pages/SingleRoom';
 
@@ -90,8 +90,8 @@ function App() {
                 <Route path="/landingpage" element={<LandingPage />} />
                 <Route path="/campaigns" element={<Campaigns />} />
                 <Route path="/campaigns/:id" element={<SingleCampaign />} />
-                {/* <Route path="/dungeons" element={<Dungeon />} /> */}
-                <Route path="/dungeons/:id" element={<SingleDungeon />} />
+                {/* <Route path="/areas" element={<Area />} /> */}
+                <Route path="/areas/:id" element={<SingleArea />} />
                 {/* <Route path="/rooms" element={<Rooms />} /> */}
                 <Route path="/rooms/:id" element={<SingleRoom />} />
                 {/* <Route path="/creatures" element={<Creatures />} /> */}

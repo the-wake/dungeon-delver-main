@@ -7,7 +7,7 @@ export const useSessionContext = () => useContext(SessionContext);
 const SessionProvider = (props) => {
   const [currentSession, setCurrentSession] = useState({
     currentCampaign: {},
-    currentDungeon: {},
+    currentArea: {},
     currentRoom: {},
   });
 
@@ -20,21 +20,21 @@ const SessionProvider = (props) => {
       {
         ...currentSession,
         currentCampaign: campaign.currentCampaign,
-        currentDungeon: {},
+        currentArea: {},
         currentRoom: {},
       }
     )
   };
 
-  const setDungeon = (dungeon) => {
-    if (!dungeon) {
+  const setArea = (area) => {
+    if (!area) {
       return;
     } 
 
     setCurrentSession(
       {
         ...currentSession,
-        currentDungeon: dungeon.currentDungeon,
+        currentArea: area.currentArea,
         currentRoom: {},
       }
     )
@@ -54,7 +54,7 @@ const SessionProvider = (props) => {
   };
 
   return (
-    <SessionContext.Provider value={{ currentSession, setCampaign, setDungeon, setRoom }} {...props} />
+    <SessionContext.Provider value={{ currentSession, setCampaign, setArea, setRoom }} {...props} />
   );
 };
 

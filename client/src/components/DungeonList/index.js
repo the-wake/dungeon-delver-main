@@ -3,20 +3,20 @@ import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useParams, useLocation } from 'react-router-dom';
-import { REMOVE_DUNGEON } from '../../utils/mutations';
+import { REMOVE_AREA } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 import { useSessionContext } from '../../utils/SessionContext.js';
-import "./dungeonList.css";
+import "./areaList.css";
 
-const DungeonList = ({ dungeons, campaign }) => {
-  const { currentSession, setCampaign, setDungeon } = useSessionContext();
+const AreaList = ({ areas, campaign }) => {
+  const { currentSession, setCampaign, setArea } = useSessionContext();
 
-  const [removeDungeon, { error }] = useMutation(REMOVE_DUNGEON, {
-    update(cache, { data: { removeDungeon } }) {
+  const [removeArea, { error }] = useMutation(REMOVE_AREA, {
+    update(cache, { data: { removeArea } }) {
       try {
         cache.writeQuery({
           query: QUERY_ME,
-          data: { me: removeDungeon },
+          data: { me: removeArea },
         });
       } catch (error) {
         console.error(error);
@@ -24,9 +24,9 @@ const DungeonList = ({ dungeons, campaign }) => {
     },
   });
 
-  const handleRemoveDungeon = async (_id) => {
+  const handleRemoveArea = async (_id) => {
     try {
-      const { data } = await removeDungeon({
+      const { data } = await removeArea({
         variables: { _id },
       });
     } catch (err) {
@@ -38,42 +38,42 @@ const DungeonList = ({ dungeons, campaign }) => {
     return <h4>Please select a campaign first.</h4>
   }
 
-  if (!dungeons.length) {
-    return <h4>You have no dungeons in this campaign.</h4>
+  if (!areas.length) {
+    return <h4>You have no areas in this campaign.</h4>
   }
-  // console.log(dungeons);
+  // console.log(areas);
   // console.log(campaign._id);
 
-  const dungeonList = dungeons.filter(dungeon => dungeon.campaign._id === campaign._id);
-  // console.log(dungeonList);
+  const areaList = areas.filter(area => area.campaign._id === campaign._id);
+  // console.log(areaList);
 
   return (
     <Container>
 
       <Row xs={1} md={2} lg={3} className="g-4">
-        {dungeonList && dungeonList.map((dungeon, pos) => (
+        {areaList && areaList.map((area, pos) => (
           <Col key={pos}>
             {/* <Card style={{ background: "black", color: "red" }}> */}
             <Card>
               {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
-                <Card.Title key={dungeon._id}>
-                  {/* <Link className='dungeon-title' style={{ color: "red" }} to={`/dungeons/${dungeon._id}`} */}
-                  <Link className='dungeon-title' to={`/dungeons/${dungeon._id}`}
+                <Card.Title key={area._id}>
+                  {/* <Link className='area-title' style={{ color: "red" }} to={`/areas/${area._id}`} */}
+                  <Link className='area-title' to={`/areas/${area._id}`}
                     onClick={() => {
-                      setCampaign({ currentCampaign: dungeon.campaign });
-                      setDungeon({ currentDungeon: dungeon });
+                      setCampaign({ currentCampaign: area.campaign });
+                      setArea({ currentArea: area });
                     }}
-                    state={{ campaignData: campaign, dungeonData: dungeon }}>
-                    {dungeon.name}
+                    state={{ campaignData: campaign, areaData: area }}>
+                    {area.name}
                   </Link>
                   {Auth.loggedIn && (<CloseButton className="close-button float-end"
-                    onClick={() => handleRemoveDungeon(dungeon)}>
+                    onClick={() => handleRemoveArea(area)}>
 
                   </CloseButton>)}
                 </Card.Title>
                 <Card.Text className='hidden'>
-                  We can add a field for dungeon description here. Need to add another field to ADD_DUNGEON.
+                  We can add a field for area description here. Need to add another field to ADD_AREA.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -84,4 +84,4 @@ const DungeonList = ({ dungeons, campaign }) => {
   );
 };
 
-export default DungeonList;
+export default AreaList;

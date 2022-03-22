@@ -7,32 +7,32 @@ import { useMutation } from '@apollo/client';
 import { Button, Container, Row, Modal } from 'react-bootstrap';
 
 //actions
-import { ADD_DUNGEON } from '../../utils/mutations';
+import { ADD_AREA } from '../../utils/mutations';
 // import { QUERY_CAMPAIGNS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 import { isRequiredArgument } from 'graphql';
 
-const DungeonForm = (props) => {
-  const [dungeonName, setDungeonName] = useState('');
+const AreaForm = (props) => {
+  const [areaName, setAreaName] = useState('');
   const [onShow, setOnShow] = useState(false);
 
-  const [addDungeon, { error, data }] = useMutation(ADD_DUNGEON);
+  const [addArea, { error, data }] = useMutation(ADD_AREA);
 
-  const handleDungeonSubmit = async (event) => {
+  const handleAreaSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addDungeon({
+      const { data } = await addArea({
         variables: {
-          name: dungeonName,
+          name: areaName,
           campaign: props.campaign._id,
           is_active: true,
           user: Auth.getProfile(),
         },
       });
-      // console.log("Dungeon Data:", data)
+      // console.log("Area Data:", data)
 
-      setDungeonName('');
+      setAreaName('');
 
       window.location.reload();
 
@@ -45,8 +45,8 @@ const DungeonForm = (props) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'dungeonName') {
-      setDungeonName(value);
+    if (name === 'areaName') {
+      setAreaName(value);
     }
   };
 
@@ -58,9 +58,9 @@ const DungeonForm = (props) => {
         <>
           <Container>
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
-              <Form onSubmit={handleDungeonSubmit}>
+              <Form onSubmit={handleAreaSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Dungeon Name</Modal.Title>
+                  <Modal.Title>New Area Name</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -71,12 +71,12 @@ const DungeonForm = (props) => {
                       onChange={handleChange}
                       className="form-input"
                       type="text"
-                      placeholder="Dungeon Name"
-                      name="dungeonName" />
+                      placeholder="Area Name"
+                      name="areaName" />
 
                     {error ? (
                       <div>
-                        <p className="error-text">Please enter a dungeon name.</p>
+                        <p className="error-text">Please enter an area name.</p>
                       </div>
                     ) : null}
                   </Form.Group>
@@ -84,7 +84,7 @@ const DungeonForm = (props) => {
                 </Modal.Body>
               </Form>
               <Modal.Footer>
-                <Button onClick={handleDungeonSubmit} variant="outline-dark">
+                <Button onClick={handleAreaSubmit} variant="outline-dark">
                   Submit
                 </Button>
               </Modal.Footer>
@@ -92,7 +92,7 @@ const DungeonForm = (props) => {
           </Container>
           <Container>
             <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-4 right-element" variant="outline-dark">
-              Add Dungeon
+              Add Area
             </Button>
           </Container>
         </>
@@ -108,4 +108,4 @@ const DungeonForm = (props) => {
   );
 };
 
-export default DungeonForm;
+export default AreaForm;
