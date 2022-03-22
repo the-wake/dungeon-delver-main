@@ -8,6 +8,7 @@ export const QUERY_CAMPAIGNS = gql`
       areas {
           _id
           name
+          type
       }
       is_active
       user {
@@ -26,6 +27,7 @@ export const QUERY_SINGLE_CAMPAIGN = gql`
       areas {
           _id
           name
+          type
       }
       is_active
     }
@@ -37,6 +39,7 @@ export const QUERY_AREAS = gql`
         getAreas {
             _id
             name
+            type
             rooms {
                 _id
                 name
@@ -59,6 +62,7 @@ export const QUERY_SINGLE_AREA = gql`
         getArea(_id: $_id) {
             _id
             name
+            type
             rooms {
                 _id
                 name
@@ -85,6 +89,7 @@ export const QUERY_ROOMS = gql`
             area {
                 _id
                 name
+                type
             }
             is_active
         }
@@ -104,6 +109,7 @@ export const QUERY_SINGLE_ROOM = gql`
             area {
                 _id
                 name
+                type
             }
             is_active
         }
@@ -157,8 +163,9 @@ export const QUERY_ME = gql`
         name
         is_active
         areas {
-            _id
+          _id
           name
+          type
         }
       }
     }

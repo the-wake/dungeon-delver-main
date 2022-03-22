@@ -8,9 +8,14 @@ const areaSchema = new Schema({
     required: true,
     trim: true,
   },
-  areaType: {
+  type: {
     type: String,
     required: true,
+    enum: [
+      'Dungeon',
+      'Town',
+      'Wilderness',
+    ]
   },
   rooms: [
     {

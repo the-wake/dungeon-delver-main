@@ -13,8 +13,9 @@ import { ADD_AREA } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import { isRequiredArgument } from 'graphql';
 
-const AreaForm = (props) => {
+const AreaForm = ({ campaign }) => {
   const [areaName, setAreaName] = useState('');
+  const [areaType, setAreaType] = useState('Dungeon');
   const [onShow, setOnShow] = useState(false);
 
   const [addArea, { error, data }] = useMutation(ADD_AREA);
@@ -25,14 +26,16 @@ const AreaForm = (props) => {
       const { data } = await addArea({
         variables: {
           name: areaName,
-          campaign: props.campaign._id,
+          type: areaType,
+          campaign: campaign._id,
           is_active: true,
           user: Auth.getProfile(),
         },
       });
-      // console.log("Area Data:", data)
+      console.log("Area Data:", data)
 
       setAreaName('');
+      setAreaType('');
 
       window.location.reload();
 
@@ -48,6 +51,12 @@ const AreaForm = (props) => {
     if (name === 'areaName') {
       setAreaName(value);
     }
+
+    if (name === 'areaType') {
+      setAreaType(value);
+    }
+
+    console.log(value)
   };
 
 
@@ -60,23 +69,57 @@ const AreaForm = (props) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleAreaSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Area Name</Modal.Title>
+                  <Modal.Title>Add Area to {campaign.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                   <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Label></Form.Label>
+                    <Form.Label>{areaType} Name</Form.Label>
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
                       className="form-input"
                       type="text"
-                      placeholder="Area Name"
                       name="areaName" />
 
                     {error ? (
                       <div>
-                        <p className="error-text">Please enter an area name.</p>
+                        <p className="error-text">Please enter a name.</p>
+                      </div>
+                    ) : null}
+                  </Form.Group>
+
+                  <Form.Group name="areaType" onChange={handleChange} className="mb-3">
+                    <Form.Label>Type</Form.Label>
+                    <Form.Check
+                      defaultChecked={true}
+                      name="areaType"
+                      label="Dungeon"
+                      type="radio"
+                      className="form-input"
+                      value="Dungeon"
+                      id="Dungeon"
+                    />
+                    <Form.Check
+                      name="areaType"
+                      label="Town"
+                      type="radio" 
+                      className="form-input"
+                      value="Town"
+                      id="Town"
+                    />
+                    <Form.Check
+                      name="areaType"
+                      label="Wilderness"
+                      type="radio" 
+                      className="form-input"
+                      value="Wilderness"
+                      id="Wilderness"
+                    />
+
+                    {error ? (
+                      <div>
+                        <p className="error-text">Please enter an area type.</p>
                       </div>
                     ) : null}
                   </Form.Group>

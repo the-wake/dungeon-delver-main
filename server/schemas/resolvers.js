@@ -177,13 +177,13 @@ const resolvers = {
       return campaign;
     },
     // Still need to get this to populate to the currently focused campaign.
-    addArea: async (parent, { name, campaign, is_active }, { user }) => {
+    addArea: async (parent, { name, type, campaign, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const area = await Area.create({ name, campaign, is_active, user });
-      console.log(dungareaeon);
+      const area = await Area.create({ name, type, campaign, is_active, user });
+      console.log(area);
 
       if (!area) {
         throw new AuthenticationError('Something went wrong. Please make sure you\'ve filled out the necessary fields and have entered a unique name.')
@@ -235,12 +235,12 @@ const resolvers = {
 
       return campaign;
     },
-    editArea: async (parent, { _id, name, is_active }, { user }) => {
+    editArea: async (parent, { _id, name, type, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const area = await Area.findOneAndUpdate({ _id, user }, { name, is_active }, { new: true });
+      const area = await Area.findOneAndUpdate({ _id, user }, { name, type, is_active }, { new: true });
       console.log(area);
 
       if (!area) {

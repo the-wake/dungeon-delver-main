@@ -50,8 +50,8 @@ export const REMOVE_CAMPAIGN = gql`
 `;
 
 export const ADD_AREA = gql`
-    mutation addArea($name: String!, $campaign: ID!, $is_active: Boolean) {
-        addArea(name: $name, campaign: $campaign, is_active: $is_active) {
+    mutation addArea($name: String!, $type: String!, $campaign: ID!, $is_active: Boolean) {
+        addArea(name: $name, type: $type, campaign: $campaign, is_active: $is_active) {
             _id
             name
             is_active
@@ -60,8 +60,8 @@ export const ADD_AREA = gql`
 `;
 
 export const EDIT_AREA = gql`
-    mutation editArea($_id: ID!, $name: String!, $campaign: ID, $is_active: Boolean) {
-        editArea(_id: $_id, name: $name, campaign: $campaign, is_active: $is_active) {
+    mutation editArea($_id: ID!, $name: String!, $type: String!, $campaign: ID, $is_active: Boolean) {
+        editArea(_id: $_id, name: $name, type: $type, campaign: $campaign, is_active: $is_active) {
             _id
             name
             is_active
