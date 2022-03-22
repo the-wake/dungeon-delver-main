@@ -75,11 +75,13 @@ const CreatureForm = ({ campaign, area, room }) => {
     }
 
     if (name === 'keyNpc') {
-      setKeyNpc(value);
+      setKeyNpc(!keyNpc);
+      console.log(keyNpc)
     }
 
     if (name === 'isAlive') {
-      setIsAlive(value);
+      setIsAlive(!isAlive);
+      console.log(isAlive)
     }
     console.log(value);
   };
@@ -163,7 +165,7 @@ const CreatureForm = ({ campaign, area, room }) => {
                     ) : null}
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="controlTextArea">
+                  <Form.Group className="mb-3">
                     <Form.Label>Key NPC?</Form.Label>
                     <Form.Check
                       inline={true}

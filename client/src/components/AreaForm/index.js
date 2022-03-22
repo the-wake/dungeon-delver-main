@@ -89,7 +89,7 @@ const AreaForm = ({ campaign }) => {
                     ) : null}
                   </Form.Group>
 
-                  <Form.Group name="areaType" onChange={handleChange} className="mb-3">
+                  <Form.Group onChange={handleChange} className="mb-3">
                     <Form.Label>Type</Form.Label>
                     <Form.Check
                       defaultChecked={true}

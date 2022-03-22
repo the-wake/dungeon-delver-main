@@ -1,4 +1,5 @@
-import { Card, Container, Row, Col, Button, CloseButton } from 'react-bootstrap';
+import { useState } from 'react';
+import { Card, Container, Row, Col, Button, CloseButton, Form } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -10,6 +11,22 @@ import "./areaList.css";
 
 const AreaList = ({ areas, campaign }) => {
   const { currentSession, setCampaign, setArea } = useSessionContext();
+  const defaultList = [
+    { area: 'Dungeon', visible: true },
+    { area: 'Town', visible: true },
+    { area: 'Wilderness', visible: true },
+  ];
+  // const defaultList = {
+  //   Dungeon: true,
+  //   Town: true,
+  //   Wilderness: true,
+  // };
+  const [displayedTypes, setDisplayedTypes] = useState(defaultList);
+  // const [displayDungeon, setDisplayDungeon] = useState(true);
+  // const [displayTown, setDisplayTown] = useState(true);
+  // const [displayWilderness, setDisplayWilderness] = useState(true);
+  // const displayedTypes = ['Dungeon', 'Town', 'Wilderness'];
+  console.log(displayedTypes[0].visible, displayedTypes[1].visible, displayedTypes[2].visible);
 
   const [removeArea, { error }] = useMutation(REMOVE_AREA, {
     update(cache, { data: { removeArea } }) {
@@ -23,6 +40,88 @@ const AreaList = ({ areas, campaign }) => {
       }
     },
   });
+
+  const handleListUpdate = (event) => {
+    const { name } = event.target;
+    setDisplayedTypes(prevState => prevState.map(
+      element => element.area === name ? { ...element, visible: !element.visible } : element
+    ));
+  };
+
+  // const handleListUpdate = (event) => {
+  //   const { name } = event.target;
+  //   setDisplayedTypes(prevState => { return {...prevState, name: !name }});
+  //   console.log(displayedTypes);
+  // };
+
+  // const handleListUpdate = (event) => {
+  //   const { name, value } = event.target;
+  //   if (displayedTypes.includes(name)) {
+  //     handleRemove(name)
+  //   }
+  //   else {
+  //     handleAdd(name)
+  //   }
+  //   console.log(displayedTypes);
+  // };
+
+  // const handleRemove = (name) => {
+  //   console.log(name);
+  //   setDisplayedTypes(displayedTypes.filter(item => item.name !== name))
+  // };
+
+  // const handleAdd = (name) => {
+  //   console.log(name);
+  //   setDisplayedTypes(displayedTypes => [...displayedTypes, { name: name }]);
+  // }
+
+  // const arrayAdd = (area) => {
+  //   setDisplayedTypes(
+  //     displayedTypes.push(area)
+  //   );
+  // };
+
+  // const arrayRemove = (area) => {
+  //   const index = displayedTypes.indexOf(area)
+  //   if (index > -1) {
+  //     setDisplayedTypes(
+  //       displayedTypes.splice(index, 1)
+  //     );
+  //     console.log(displayedTypes)
+  //   };
+  // };
+
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   console.log(`displayedTypes includes ${name} status: `, displayedTypes.includes(name));
+
+  //   if (displayedTypes.includes(name)) {
+  //     arrayRemove(name);
+  //     console.log(`Removed ${name} from displayed`);
+  //     // console.log(displayedTypes)
+  //   }
+
+  //   else {
+  //     if (!displayedTypes.includes(name)) {
+  //       arrayAdd(name);
+  //       console.log(`Added ${name} to displayed`);
+  //       // console.log(displayedTypes)
+  //     }
+  //   }
+  //   // setDisplayDungeon(!displayDungeon);
+
+  //   // if (name === 'towns') {
+  //   //   setDisplayTown(!displayTown);
+  //   // }
+
+  //   // if (name === 'wilderness') {
+  //   //   setDisplayWilderness(!displayWilderness);
+  //   // }
+
+  //   // console.log('Dungeons: ', displayDungeon)
+  //   // console.log('Towns: ', displayTown)
+  //   // console.log('Wilderness: ', displayWilderness)
+  // };
 
   const handleRemoveArea = async (_id) => {
     try {
@@ -44,14 +143,58 @@ const AreaList = ({ areas, campaign }) => {
   // console.log(areas);
   // console.log(campaign._id);
 
-  const areaList = areas.filter(area => area.campaign._id === campaign._id);
+  const typeIndex = (name) => {
+    return displayedTypes.findIndex(target => target.area === name);
+  };
+
+  const areaList = areas.filter(area => area.campaign._id === campaign._id).filter(area => displayedTypes[typeIndex(area.type)].visible === true);
   // console.log(areaList);
 
   return (
     <Container>
+      <Row className="g-4">
+        <Form>
+          <Form.Group className='mb-3'>
+            <Form.Label>Display:</Form.Label>
+            <br />
+            <Form.Check
+              className='form-input'
+              onChange={handleListUpdate}
+              inline={true}
+              defaultChecked={true}
+              name='Dungeon'
+              label='Dungeons'
+              type='checkbox'
+              id='dungeons'
+            />
+            <Form.Check
+              className='form-input'
+              onChange={handleListUpdate}
+              inline={true}
+              defaultChecked={true}
+              name='Town'
+              label='Towns'
+              type='checkbox'
+              id='towns'
+            />
+            <Form.Check
+              className='form-input'
+              onChange={handleListUpdate}
+              inline={true}
+              defaultChecked={true}
+              name='Wilderness'
+              label='Wilderness'
+              type='checkbox'
+              id='wilderness'
+            />
+
+          </Form.Group>
+        </Form>
+      </Row>
 
       <Row xs={1} md={2} lg={3} className="g-4">
         {areaList && areaList.map((area, pos) => (
+
           <Col key={pos}>
             {/* <Card style={{ background: "black", color: "red" }}> */}
             <Card>
