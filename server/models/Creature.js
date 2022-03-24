@@ -19,6 +19,9 @@ const creatureSchema = new Schema({
   loot: {
     type: String,
   },
+  notes: {
+    type: String,
+  },
   key_npc: {
     type: Boolean,
     default: false,

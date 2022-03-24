@@ -17,6 +17,9 @@ const roomSchema = new Schema({
       ref: 'Creature',
     }
   ],
+  notes: {
+    type: String,
+  },
   area: {
     type: Schema.Types.ObjectId,
     ref: 'Area',

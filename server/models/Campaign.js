@@ -13,6 +13,9 @@ const campaignSchema = new Schema({
       ref: 'Area',
     }
   ],
+  notes: {
+    type: String,
+  },
   is_active: {
     type: Boolean,
     required: true,

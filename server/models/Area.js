@@ -23,6 +23,9 @@ const areaSchema = new Schema({
       ref: 'Room',
     }
   ],
+  notes: {
+    type: String,
+  },
   campaign: {
     type: Schema.Types.ObjectId,
     ref: 'Campaign',
