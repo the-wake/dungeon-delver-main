@@ -50,7 +50,7 @@ const SingleCampaign = () => {
         <Col>
           <AreaForm areas={areas} campaign={campaignData}></AreaForm>
           {/* <h2 className="mb-3 mt-3 mx-3" style={{ color: "red", fontSize: "xxx-large" }}>Areas in {campaignData.name}</h2> */}
-          <h2 className="mb-3 mt-3 mx-3">Areas in {campaignData.name}</h2>
+          <h2 className="mb-1 mt-3">Areas in {campaignData.name}</h2>
         </Col>
         {loading ? (
           <h2>

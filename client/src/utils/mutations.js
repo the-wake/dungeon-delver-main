@@ -64,7 +64,7 @@ export const ADD_AREA = gql`
 `;
 
 export const EDIT_AREA = gql`
-  mutation editArea($_id: ID!, $name: String!, $type: String!, $notes: String, $campaign: ID, $is_active: Boolean) {
+  mutation editArea($_id: ID!, $name: String, $type: String, $notes: String, $campaign: ID, $is_active: Boolean) {
     editArea(_id: $_id, name: $name, type: $type, notes: $notes, campaign: $campaign, is_active: $is_active) {
       _id
       name

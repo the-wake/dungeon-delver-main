@@ -67,7 +67,7 @@ const SingleRoom = () => {
       <Row>
         <Col>
           <CreatureForm campaign={campaignData} area={areaData} room={roomData}></CreatureForm>
-          <h2 className="mb-3 mt-3 mx-3">Creatures in {roomData.name}</h2>
+          <h2 className="mb-1 mt-3">Creatures in {roomData.name}</h2>
         </Col>
         {loading ? (
           <h2>
