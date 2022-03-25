@@ -10,6 +10,7 @@ export const QUERY_CAMPAIGNS = gql`
           name
           type
       }
+      notes
       is_active
       user {
         _id  
@@ -29,126 +30,133 @@ export const QUERY_SINGLE_CAMPAIGN = gql`
           name
           type
       }
+      notes
       is_active
     }
   }
 `;
 
 export const QUERY_AREAS = gql`
-    query getAreas {
-        getAreas {
-            _id
-            name
-            type
-            rooms {
-                _id
-                name
-            }
-            campaign {
-                _id
-                name
-            }
-            is_active
-            user {
-                _id
-                username
-            }
-        }
+  query getAreas {
+    getAreas {
+      _id
+      name
+      type
+      rooms {
+        _id
+        name
+      }
+      notes
+      campaign {
+        _id
+        name
+      }
+      is_active
+      user {
+        _id
+        username
+      }
     }
+  }
 `;
 
 export const QUERY_SINGLE_AREA = gql`
-    query getArea($_id: ID!) {
-        getArea(_id: $_id) {
-            _id
-            name
-            type
-            rooms {
-                _id
-                name
-            }
-            campaign {
-                _id
-                name
-            }
-            is_active
-        }
+  query getArea($_id: ID!) {
+    getArea(_id: $_id) {
+      _id
+      name
+      type
+      rooms {
+        _id
+        name
+      }
+      notes
+      campaign {
+        _id
+        name
+      }
+      is_active
     }
+  }
 `;
 
 export const QUERY_ROOMS = gql`
-    query getRooms($area: ID!) {
-        getRooms(area: $area) {
-            _id
-            name
-            blurb
-            creatures {
-                _id
-                name
-            }
-            area {
-                _id
-                name
-                type
-            }
-            is_active
-        }
+  query getRooms($area: ID!) {
+    getRooms(area: $area) {
+      _id
+      name
+      blurb
+      creatures {
+        _id
+        name
+      }
+      notes
+      area {
+        _id
+        name
+        type
+      }
+      is_active
     }
+  }
 `;
 
 export const QUERY_SINGLE_ROOM = gql`
-    query getRoom($_id: ID!) {
-        getRoom(_id: $_id) {
-            _id
-            name
-            blurb
-            creatures {
-                _id
-                name
-            }
-            area {
-                _id
-                name
-                type
-            }
-            is_active
-        }
+  query getRoom($_id: ID!) {
+    getRoom(_id: $_id) {
+      _id
+      name
+      blurb
+      creatures {
+        _id
+        name
+      }
+      notes
+      area {
+        _id
+        name
+        type
+      }
+      is_active
     }
+  }
 `;
 
 export const QUERY_CREATURES = gql`
-    query getCreatures($room: ID!) {
-        getCreatures(room: $room) {
-            _id
-            name
-            hp
-            loot
-            key_npc
-            is_alive
-            is_active
-            room {
-                _id
-                name
-            }
-        }
+  query getCreatures($room: ID!) {
+    getCreatures(room: $room) {
+      _id
+      name
+      hp
+      loot
+      notes
+      key_npc
+      is_alive
+      is_active
+      room {
+        _id
+        name
+      }
     }
+  }
 `;
 
 export const QUERY_SINGLE_CREATURE = gql`
-    query getCreature($_id: ID!) {
-        getCreature(_id: $_id) {
-            hp
-            name
-            loot
-            key_npc
-            is_alive
-            is_active
-            room {
-                _id
-                name
-            }
-        }
+  query getCreature($_id: ID!) {
+    getCreature(_id: $_id) {
+      hp
+      name
+      loot
+      notes
+      key_npc
+      is_alive
+      is_active
+      room {
+        _id
+        name
+      }
     }
+  }
 `;
 
 

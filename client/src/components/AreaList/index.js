@@ -16,17 +16,7 @@ const AreaList = ({ areas, campaign }) => {
     { area: 'Town', visible: true },
     { area: 'Wilderness', visible: true },
   ];
-  // const defaultList = {
-  //   Dungeon: true,
-  //   Town: true,
-  //   Wilderness: true,
-  // };
   const [displayedTypes, setDisplayedTypes] = useState(defaultList);
-  // const [displayDungeon, setDisplayDungeon] = useState(true);
-  // const [displayTown, setDisplayTown] = useState(true);
-  // const [displayWilderness, setDisplayWilderness] = useState(true);
-  // const displayedTypes = ['Dungeon', 'Town', 'Wilderness'];
-  console.log(displayedTypes[0].visible, displayedTypes[1].visible, displayedTypes[2].visible);
 
   const [removeArea, { error }] = useMutation(REMOVE_AREA, {
     update(cache, { data: { removeArea } }) {
@@ -47,81 +37,6 @@ const AreaList = ({ areas, campaign }) => {
       element => element.area === name ? { ...element, visible: !element.visible } : element
     ));
   };
-
-  // const handleListUpdate = (event) => {
-  //   const { name } = event.target;
-  //   setDisplayedTypes(prevState => { return {...prevState, name: !name }});
-  //   console.log(displayedTypes);
-  // };
-
-  // const handleListUpdate = (event) => {
-  //   const { name, value } = event.target;
-  //   if (displayedTypes.includes(name)) {
-  //     handleRemove(name)
-  //   }
-  //   else {
-  //     handleAdd(name)
-  //   }
-  //   console.log(displayedTypes);
-  // };
-
-  // const handleRemove = (name) => {
-  //   console.log(name);
-  //   setDisplayedTypes(displayedTypes.filter(item => item.name !== name))
-  // };
-
-  // const handleAdd = (name) => {
-  //   console.log(name);
-  //   setDisplayedTypes(displayedTypes => [...displayedTypes, { name: name }]);
-  // }
-
-  // const arrayAdd = (area) => {
-  //   setDisplayedTypes(
-  //     displayedTypes.push(area)
-  //   );
-  // };
-
-  // const arrayRemove = (area) => {
-  //   const index = displayedTypes.indexOf(area)
-  //   if (index > -1) {
-  //     setDisplayedTypes(
-  //       displayedTypes.splice(index, 1)
-  //     );
-  //     console.log(displayedTypes)
-  //   };
-  // };
-
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   console.log(`displayedTypes includes ${name} status: `, displayedTypes.includes(name));
-
-  //   if (displayedTypes.includes(name)) {
-  //     arrayRemove(name);
-  //     console.log(`Removed ${name} from displayed`);
-  //     // console.log(displayedTypes)
-  //   }
-
-  //   else {
-  //     if (!displayedTypes.includes(name)) {
-  //       arrayAdd(name);
-  //       console.log(`Added ${name} to displayed`);
-  //       // console.log(displayedTypes)
-  //     }
-  //   }
-  //   // setDisplayDungeon(!displayDungeon);
-
-  //   // if (name === 'towns') {
-  //   //   setDisplayTown(!displayTown);
-  //   // }
-
-  //   // if (name === 'wilderness') {
-  //   //   setDisplayWilderness(!displayWilderness);
-  //   // }
-
-  //   // console.log('Dungeons: ', displayDungeon)
-  //   // console.log('Towns: ', displayTown)
-  //   // console.log('Wilderness: ', displayWilderness)
-  // };
 
   const handleRemoveArea = async (_id) => {
     try {
@@ -215,8 +130,8 @@ const AreaList = ({ areas, campaign }) => {
 
                   </CloseButton>)}
                 </Card.Title>
-                <Card.Text className='hidden'>
-                  We can add a field for area description here. Need to add another field to ADD_AREA.
+                <Card.Text className={area.type}>
+                  {area.type}
                 </Card.Text>
               </Card.Body>
             </Card>

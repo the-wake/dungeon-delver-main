@@ -45,7 +45,7 @@ const RoomList = ({ campaign, area, rooms }) => {
   // console.log(area._id);
 
   const roomList = rooms.filter(room => room.area._id === area._id);
-  console.log(roomList);
+  // console.log(roomList);
 
   return (
     <Container>

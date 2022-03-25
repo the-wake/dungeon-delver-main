@@ -1,9 +1,11 @@
 import "./singleArea.css";
 
-import { Container, Col, Row, Button } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import EditArea from '../../components/EditArea';
 import RoomForm from '../../components/RoomForm';
@@ -12,18 +14,63 @@ import { QUERY_ROOMS } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { Link } from 'react-router-dom';
 
+import { EDIT_AREA } from '../../utils/mutations';
 
 
 const SingleArea = () => {
+  const location = useLocation();
+  var { areaData } = location.state;
+  
+  const notesDefault = () => {
+    if (!areaData.notes) {
+      return false;
+    }
+    return true;
+  };
+
+  const [areaNotes, setAreaNotes] = useState(areaData.notes);
+  const [showNotes, setShowNotes] = useState(notesDefault());
   const { currentSession } = useSessionContext();
   // console.log(currentSession);
+  // console.log('showNotes = ', showNotes);
 
-  const location = useLocation();
-  const { areaData } = location.state;
 
-  // I used to pull the campaign data from the state, but now I can populate it from the area's data.
+  const [editArea, { error, updatedNote }] = useMutation(EDIT_AREA);
+
   const campaignData = areaData.campaign;
-  console.log(campaignData);
+
+  // No event argument or prevent default, since this isn't updated by form submission but rather each time handleChange is run.
+  const handleAreaSubmit = async () => {
+    try {
+      const { updatedNote } = await editArea({
+        variables: {
+          _id: areaData._id,
+          notes: areaNotes,
+        },
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'areaNotes') {
+      setAreaNotes(value);
+    }
+  };
+
+  // This works unless the user uses back/forward arrows. That will cause the areaData's note value to revert to how it was previously rendered.
+  useEffect(() => {
+    handleAreaSubmit();
+    areaData.notes = areaNotes;
+  }, [areaNotes]);
+
+  const toggleNotes = () => {
+    setShowNotes(!showNotes);
+  }
 
   const { loading, data } = useQuery(QUERY_ROOMS, {
     variables: { area: areaData._id },
@@ -31,9 +78,9 @@ const SingleArea = () => {
 
   const rooms = data?.getRooms || [];
 
-  if (!loading) {
-    console.log(rooms)
-  };
+  // if (!loading) {
+  //   console.log(rooms)
+  // };
 
 
   return (
@@ -50,12 +97,32 @@ const SingleArea = () => {
         </Col>
       </Row>
 
-      <hr className='w-100 m-auto' />
+      <hr className="w-100 m-auto" />
+
+      <Row className="mt-2">
+        <Col>
+          <Form.Group controlId="controlTextArea">
+            <Form.Label className="interact mt-2" onClick={toggleNotes}>
+              {showNotes ? 'Hide ' : 'Show'} Notes
+            </Form.Label>
+            {showNotes ?
+              <Form.Control as="textarea" rows={4}
+                onChange={handleChange}
+                className="form-input"
+                type="textarea"
+                name="areaNotes"
+                defaultValue={areaData.notes}
+              />
+              : null
+            }
+          </Form.Group>
+        </Col>
+      </Row>
 
       <Row>
         <Col>
           <RoomForm area={areaData} campaign={campaignData}></RoomForm>
-          <h2 className="mb-3 mt-3 mx-3">Rooms in {areaData.name}</h2>
+          <h2 className="mb-1 mt-3">Rooms in {areaData.name}</h2>
         </Col>
         {loading ? (
           <h2>

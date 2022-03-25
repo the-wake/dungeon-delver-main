@@ -11,6 +11,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     areas: [Area]
+    notes: String
     is_active: Boolean!
     user: User!
   }
@@ -20,6 +21,7 @@ const typeDefs = gql`
     name: String!
     type: String!
     rooms: [Room]
+    notes: String
     is_active: Boolean!
     campaign: Campaign!
     user: User!
@@ -30,6 +32,7 @@ const typeDefs = gql`
     name: String!
     blurb: String
     creatures: [Creature]
+    notes: String
     is_active: Boolean!
     area: Area!
     user: User!
@@ -41,6 +44,7 @@ const typeDefs = gql`
     room: Room
     hp: Int
     loot: String
+    notes: String
     key_npc: Boolean!
     is_alive: Boolean!
     is_active: Boolean!
@@ -68,14 +72,14 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addCampaign(name: String!, is_active: Boolean): Campaign
-    addArea(name: String!, type: String!, campaign: ID!, is_active: Boolean): Area
-    addRoom(name: String!, blurb: String, area: ID!, is_active: Boolean): Room
-    addCreature(name: String!, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
-    editCampaign(_id: ID!, name: String, is_active: Boolean): Campaign
-    editArea(_id: ID!, name: String, type: String, campaign: ID, is_active: Boolean): Area
-    editRoom(_id: ID!, name: String, area: ID, blurb: String, is_active: Boolean): Room
-    editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
+    addCampaign(name: String!, notes: String, is_active: Boolean): Campaign
+    addArea(name: String!, type: String!, campaign: ID!, notes: String, is_active: Boolean): Area
+    addRoom(name: String!, blurb: String, area: ID!, notes: String, is_active: Boolean): Room
+    addCreature(name: String!, room: ID, hp: Int, loot: String, notes: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
+    editCampaign(_id: ID!, name: String, notes: String, is_active: Boolean): Campaign
+    editArea(_id: ID!, name: String, type: String, campaign: ID, notes: String, is_active: Boolean): Area
+    editRoom(_id: ID!, name: String, area: ID, blurb: String, notes: String, is_active: Boolean): Room
+    editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, notes: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     removeCampaign(_id: ID!): Campaign
     removeArea(_id: ID!): Area
     removeRoom(_id: ID!): Room

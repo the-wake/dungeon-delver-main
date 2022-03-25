@@ -13,3 +13,24 @@
 .hidden {
     display: none;
 }
+
+.Dungeon {
+  font-family: 'Cinzel Decorative', serif;
+  color: darkred;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.Town {
+  font-family: 'Cinzel Decorative', serif;
+  color: rgb(100, 71, 17);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.Wilderness {
+  font-family: 'Cinzel Decorative', serif;
+  color: rgb(0, 70, 0);
+  font-weight: bold;
+  font-style: italic;
+}

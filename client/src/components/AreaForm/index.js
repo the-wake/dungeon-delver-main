@@ -16,6 +16,7 @@ import { isRequiredArgument } from 'graphql';
 const AreaForm = ({ campaign }) => {
   const [areaName, setAreaName] = useState('');
   const [areaType, setAreaType] = useState('Dungeon');
+  const [areaNotes, setAreaNotes] = useState('');
   const [onShow, setOnShow] = useState(false);
 
   const [addArea, { error, data }] = useMutation(ADD_AREA);
@@ -28,6 +29,7 @@ const AreaForm = ({ campaign }) => {
           name: areaName,
           type: areaType,
           campaign: campaign._id,
+          notes: areaNotes,
           is_active: true,
           user: Auth.getProfile(),
         },
@@ -36,6 +38,7 @@ const AreaForm = ({ campaign }) => {
 
       setAreaName('');
       setAreaType('');
+      setAreaNotes('');
 
       window.location.reload();
 
@@ -56,7 +59,11 @@ const AreaForm = ({ campaign }) => {
       setAreaType(value);
     }
 
-    console.log(value)
+    if (name === 'areaNotes') {
+      setAreaNotes(value);
+    }
+
+    // console.log(value)
   };
 
 
@@ -80,7 +87,8 @@ const AreaForm = ({ campaign }) => {
                       onChange={handleChange}
                       className="form-input"
                       type="text"
-                      name="areaName" />
+                      name="areaName"
+                    />
 
                     {error ? (
                       <div>
@@ -103,7 +111,7 @@ const AreaForm = ({ campaign }) => {
                     <Form.Check
                       name="areaType"
                       label="Town"
-                      type="radio" 
+                      type="radio"
                       className="form-input"
                       value="Town"
                       id="Town"
@@ -111,7 +119,7 @@ const AreaForm = ({ campaign }) => {
                     <Form.Check
                       name="areaType"
                       label="Wilderness"
-                      type="radio" 
+                      type="radio"
                       className="form-input"
                       value="Wilderness"
                       id="Wilderness"
@@ -122,6 +130,16 @@ const AreaForm = ({ campaign }) => {
                         <p className="error-text">Please enter an area type.</p>
                       </div>
                     ) : null}
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="controlTextArea">
+                    <Form.Label>Notes</Form.Label>
+                    <Form.Control as="textarea" rows={4}
+                      onChange={handleChange}
+                      className="form-input"
+                      type="textarea"
+                      name="areaNotes"
+                    />
                   </Form.Group>
 
                 </Modal.Body>

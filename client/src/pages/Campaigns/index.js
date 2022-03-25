@@ -25,16 +25,15 @@ const Campaigns = () => {
 
   const campaigns = data?.getCampaigns || [];
 
-  if (!loading) {
-    console.log(campaigns)
-  };
+  // if (!loading) {
+  //   console.log(campaigns)
+  // };
 
   return (
     <Container className='my-campaign-container'>
       <Col>
-        <CampaignForm
-          campaigns={campaigns} />
-        <h1 className="mb-3 mt-3 mx-3">My Campaigns</h1>
+        <CampaignForm campaigns={campaigns}/>
+        <h1 className="mb-3 mt-1">My Campaigns</h1>
         {loading ? (
           <h2>
             Retrieving Data...

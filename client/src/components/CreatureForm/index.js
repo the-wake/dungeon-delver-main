@@ -28,10 +28,19 @@ const CreatureForm = ({ campaign, area, room }) => {
   const handleCreatureSubmit = async (event) => {
     event.preventDefault();
     try {
+
+      const roomHandler = (room) => {
+        if (room === 'No Room Assigned') {
+          return null;
+        }
+        return room;
+      };
+
       const { data } = await addCreature({
         variables: {
           name: creatureName,
           room: roomOption,
+          // room: roomHandler(roomOption),
           hp: hpOption,
           loot: creatureLoot,
           key_npc: keyNpc,
@@ -84,6 +93,7 @@ const CreatureForm = ({ campaign, area, room }) => {
       console.log(isAlive)
     }
     console.log(value);
+    console.log(typeof value);
   };
 
 
@@ -125,6 +135,8 @@ const CreatureForm = ({ campaign, area, room }) => {
                       {currentArea.rooms && currentArea.rooms.map((room, pos) => (
                         <option key={pos} value={room._id}>{room.name}</option>
                       ))}
+                      {/* <option value={null}>No Room Assigned</option> */}
+
                     </Form.Select>
 
                     {error ? (
@@ -157,12 +169,8 @@ const CreatureForm = ({ campaign, area, room }) => {
                       className="form-input"
                       type="textarea"
                       placeholder="Amethyst of Evermore, Crown of Kings, etc."
-                      name="creatureLoot" />
-                    {error ? (
-                      <div>
-                        <p className='error-text'>Please add some loot. Creatures can be generous, too.</p>
-                      </div>
-                    ) : null}
+                      name="creatureLoot"
+                    />
                   </Form.Group>
 
                   <Form.Group className="mb-3">
@@ -182,7 +190,7 @@ const CreatureForm = ({ campaign, area, room }) => {
                       type="checkbox"
                       name="isAlive" />
                   </Form.Group>
-                  
+
                 </Modal.Body>
               </Form>
               <Modal.Footer>

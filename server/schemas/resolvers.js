@@ -162,12 +162,12 @@ const resolvers = {
       return { token, user };
     },
     // ADD ROUTES
-    addCampaign: async (parent, { name, is_active }, { user }) => {
+    addCampaign: async (parent, { name, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaign = await Campaign.create({ name, is_active, user });
+      const campaign = await Campaign.create({ name, notes, is_active, user });
       console.log(campaign);
 
       if (!campaign) {
@@ -177,12 +177,12 @@ const resolvers = {
       return campaign;
     },
     // Still need to get this to populate to the currently focused campaign.
-    addArea: async (parent, { name, type, campaign, is_active }, { user }) => {
+    addArea: async (parent, { name, type, campaign, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const area = await Area.create({ name, type, campaign, is_active, user });
+      const area = await Area.create({ name, type, campaign, notes, is_active, user });
       console.log(area);
 
       if (!area) {
@@ -191,12 +191,12 @@ const resolvers = {
 
       return area;
     },
-    addRoom: async (parent, { name, blurb, area, is_active }, { user }) => {
+    addRoom: async (parent, { name, blurb, area, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.create({ name, blurb, area, is_active, user });
+      const room = await Room.create({ name, blurb, area, notes, is_active, user });
       console.log(room);
 
       if (!room) {
@@ -205,12 +205,12 @@ const resolvers = {
 
       return room;
     },
-    addCreature: async (parent, { name, room, hp, loot, key_npc, is_alive, is_active }, { user }) => {
+    addCreature: async (parent, { name, room, hp, loot, notes, key_npc, is_alive, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const creature = await Creature.create({ name, room, hp, loot, key_npc, user, is_alive, is_active });
+      const creature = await Creature.create({ name, room, hp, loot, notes, key_npc, user, is_alive, is_active });
       console.log(creature);
 
       if (!creature) {
@@ -220,12 +220,12 @@ const resolvers = {
       return creature;
     },
     // EDIT ROUTES
-    editCampaign: async (parent, { _id, name, is_active }, { user }) => {
+    editCampaign: async (parent, { _id, name, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const campaign = await Campaign.findOneAndUpdate({ _id, user }, { name, is_active }, { new: true });
+      const campaign = await Campaign.findOneAndUpdate({ _id, user }, { name, notes, is_active }, { new: true });
       console.log(campaign);
       console.log(user);
 
@@ -235,12 +235,12 @@ const resolvers = {
 
       return campaign;
     },
-    editArea: async (parent, { _id, name, type, is_active }, { user }) => {
+    editArea: async (parent, { _id, name, type, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const area = await Area.findOneAndUpdate({ _id, user }, { name, type, is_active }, { new: true });
+      const area = await Area.findOneAndUpdate({ _id, user }, { name, type, notes, is_active }, { new: true });
       console.log(area);
 
       if (!area) {
@@ -249,12 +249,12 @@ const resolvers = {
 
       return area;
     },
-    editRoom: async (parent, { _id, name, blurb, is_active }, { user }) => {
+    editRoom: async (parent, { _id, name, blurb, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOneAndUpdate({ _id, user }, { name, blurb, is_active }, { new: true });
+      const room = await Room.findOneAndUpdate({ _id, user }, { name, blurb, notes, is_active }, { new: true });
       console.log(room);
 
       if (!room) {
@@ -263,12 +263,12 @@ const resolvers = {
 
       return room;
     },
-    editCreature: async (parent, { _id, name, room, hp, loot, key_npc, is_alive, is_active }, { user }) => {
+    editCreature: async (parent, { _id, name, room, hp, loot, notes, key_npc, is_alive, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const creature = await Creature.findOneAndUpdate({ _id, user }, { name, room, hp, loot, key_npc, is_alive, is_active }, { new: true });
+      const creature = await Creature.findOneAndUpdate({ _id, user }, { name, room, hp, loot, notes, key_npc, is_alive, is_active }, { new: true });
       console.log(creature);
 
       if (!creature) {
@@ -293,8 +293,6 @@ const resolvers = {
 
       return campaign;
     },
-
-
     removeArea: async (paprent, { _id }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');

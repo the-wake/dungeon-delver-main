@@ -22,6 +22,12 @@
   text-align: right;
 }
 
+.interact {
+  cursor: pointer;
+  color: #0D6EFD;
+  /* text-decoration: underline; */
+}
+
 .icon {
   display: inline;
   cursor: pointer;
