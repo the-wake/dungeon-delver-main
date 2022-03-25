@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 
 import { useParams, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import EditArea from '../../components/EditArea';
 import RoomForm from '../../components/RoomForm';
@@ -30,6 +29,7 @@ const SingleArea = () => {
 
   const [areaNotes, setAreaNotes] = useState(areaData.notes);
   const [showNotes, setShowNotes] = useState(notesDefault());
+
   const { currentSession } = useSessionContext();
   // console.log(currentSession);
   // console.log('showNotes = ', showNotes);
@@ -46,7 +46,7 @@ const SingleArea = () => {
         variables: {
           _id: areaData._id,
           notes: areaNotes,
-        },
+        }
       });
 
     } catch (error) {
@@ -70,7 +70,7 @@ const SingleArea = () => {
 
   const toggleNotes = () => {
     setShowNotes(!showNotes);
-  }
+  };
 
   const { loading, data } = useQuery(QUERY_ROOMS, {
     variables: { area: areaData._id },

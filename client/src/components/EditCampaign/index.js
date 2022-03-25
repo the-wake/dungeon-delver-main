@@ -75,7 +75,7 @@ const EditCampaign = ({ campaign }) => {
 
                     {error ? (
                       <div>
-                        <p className="error-text">Please enter a campaign name.</p>
+                        <p className="error-text">Campaign name can't be blank.</p>
                       </div>
                     ) : null}
                   </Form.Group>

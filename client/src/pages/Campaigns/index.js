@@ -14,8 +14,6 @@ import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 
 
-
-
 const Campaigns = () => {
   if (!Auth.loggedIn()) {
     window.location = `/login`
