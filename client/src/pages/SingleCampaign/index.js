@@ -29,9 +29,9 @@ const SingleCampaign = () => {
 
   const areas = data?.getAreas || [];
 
-  if (!loading) {
-    console.log(areas)
-  };
+  // if (!loading) {
+  //   console.log(areas)
+  // };
 
   return (
     <Container className='my-campaign-container'>

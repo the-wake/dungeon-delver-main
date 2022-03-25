@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_CAMPAIGN = gql`
-  mutation addCampaign($name: String!, $notes: String!, $is_active: Boolean!) {
+  mutation addCampaign($name: String!, $notes: String, $is_active: Boolean!) {
     addCampaign(name: $name, notes: $notes, is_active: $is_active) {
       name
       notes

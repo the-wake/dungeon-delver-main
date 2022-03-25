@@ -30,7 +30,7 @@ const EditCampaign = ({ campaign }) => {
       });
       console.log(data);
       setCampaign({ currentCampaign: campaign });
-      console.log('*****************************\nCurrent Session:\n', currentSession);
+      // console.log('*****************************\nCurrent Session:\n', currentSession);
 
       setCampaignName('');
 

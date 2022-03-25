@@ -14,7 +14,7 @@ import { ADD_CAMPAIGN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const CampaignForm = (props) => {
-  const [campaignText, setCampaignText] = useState('');
+  const [campaignName, setCampaignName] = useState('');
 
   const [addCampaign, { error, data }] = useMutation(ADD_CAMPAIGN);
 
@@ -51,7 +51,7 @@ const CampaignForm = (props) => {
     try {
       const { data } = await addCampaign({
         variables: {
-          name: campaignText,
+          name: campaignName,
           is_active: true,
           user: Auth.getProfile(),
         },
@@ -61,7 +61,7 @@ const CampaignForm = (props) => {
       // console.log(data._id);
       // console.log(data.name);
 
-      setCampaignText('');
+      setCampaignName('');
 
       // I'd like to have this redirect to the new campaign when submitted, but I can't figure out how to capture the ID from the newly-added campaign (since it's not passed in the variables).
 
@@ -77,8 +77,8 @@ const CampaignForm = (props) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'campaignText') {
-      setCampaignText(value);
+    if (name === 'campaignName') {
+      setCampaignName(value);
     }
   };
 
@@ -99,9 +99,9 @@ const CampaignForm = (props) => {
                       onChange={handleChange}
                       className="form-input"
                       type="text"
-                      placeholder="Campaign name"
+                      placeholder="Campaign Name"
                       // style={{ background: "beige" }} 
-                      name="campaignText" />
+                      name="campaignName" />
                     {/* <Button onClick={handleCampaignSubmit} className="mt-4 mb-4" variant='outline-dark' style={{ color: "beige", background: "black" }}> */}
                     <Button onClick={handleCampaignSubmit} className="mt-4 mb-4" variant='outline-dark'>
                       Add

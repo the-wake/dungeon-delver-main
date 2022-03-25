@@ -63,7 +63,7 @@ const AreaForm = ({ campaign }) => {
       setAreaNotes(value);
     }
 
-    console.log(value)
+    // console.log(value)
   };
 
 

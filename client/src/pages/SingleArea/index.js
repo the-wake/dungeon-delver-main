@@ -20,12 +20,19 @@ import { EDIT_AREA } from '../../utils/mutations';
 const SingleArea = () => {
   const location = useLocation();
   var { areaData } = location.state;
+  
+  const notesDefault = () => {
+    if (!areaData.notes) {
+      return false;
+    }
+    return true;
+  };
 
   const [areaNotes, setAreaNotes] = useState(areaData.notes);
-  const [showNotes, setShowNotes] = useState(true);
+  const [showNotes, setShowNotes] = useState(notesDefault());
   const { currentSession } = useSessionContext();
   // console.log(currentSession);
-  console.log('showNotes = ', showNotes);
+  // console.log('showNotes = ', showNotes);
 
 
   const [editArea, { error, updatedNote }] = useMutation(EDIT_AREA);
@@ -71,9 +78,9 @@ const SingleArea = () => {
 
   const rooms = data?.getRooms || [];
 
-  if (!loading) {
-    console.log(rooms)
-  };
+  // if (!loading) {
+  //   console.log(rooms)
+  // };
 
 
   return (
