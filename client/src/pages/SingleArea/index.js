@@ -30,7 +30,7 @@ const SingleArea = () => {
   const [areaNotes, setAreaNotes] = useState(areaData.notes);
   const [showNotes, setShowNotes] = useState(notesDefault());
 
-  const { currentSession } = useSessionContext();
+  // const { currentSession } = useSessionContext();
   // console.log(currentSession);
   // console.log('showNotes = ', showNotes);
 
@@ -135,6 +135,6 @@ const SingleArea = () => {
 
     </Container>
   );
-}
+};
 
 export default SingleArea;

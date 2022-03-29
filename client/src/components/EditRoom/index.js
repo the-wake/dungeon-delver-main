@@ -1,7 +1,7 @@
 import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
-import "./editArea.css";
+import "./editRoom.css";
 
-import { EDIT_AREA } from "../../utils/mutations";
+import { EDIT_ROOM } from "../../utils/mutations";
 import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
@@ -9,28 +9,29 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditArea = ({ area }) => {
-  const [areaName, setAreaName] = useState(area.name);
-  const { currentSession, setArea } = useSessionContext();
+const EditRoom = ({ room }) => {
+  const [roomName, setRoomName] = useState(room.name);
+  // const [roomArea, setRoomArea] = useState(room.area);
+  const { currentSession, setRoom } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
 
-  const [editArea, { error, data }] = useMutation(EDIT_AREA);
+  const [editRoom, { error, data }] = useMutation(EDIT_ROOM);
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
-    console.log(area);
+    console.log(room);
     try {
-      const { data } = await editArea({
+      const { data } = await editRoom({
         variables: {
-          _id: area._id,
-          name: areaName,
-          campaign: area.campaign._id,
+          _id: room._id,
+          name: roomName,
+          // area: room.area._id,
           // is_active: true,
         },
       });
 
-      setArea({ currentArea: data });
-      // setAreaName('');
+      setRoom({ currentRoom: data });
+      // setRoomName('');
 
       window.location.reload();
 
@@ -42,10 +43,15 @@ const EditArea = ({ area }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'areaName') {
-      setAreaName(value);
-      console.log(areaName);
+    if (name === 'roomName') {
+      setRoomName(value);
+      console.log(roomName);
     }
+
+    // if (name === 'roomArea') {
+    //   setRoomArea(value);
+    //   console.log(roomArea);
+    // }
   };
 
 
@@ -57,28 +63,41 @@ const EditArea = ({ area }) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>Edit {area.type}</Modal.Title>
+                  <Modal.Title>Update Room</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
-                  {/* TODO: Also make an option for changing area type. */}
                   <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Label></Form.Label>
+                    <Form.Label>Room Name</Form.Label>
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      defaultValue={area.name}
+                      defaultValue={room.name}
                       className="form-input"
                       type="text"
-                      placeholder="New Area Name"
-                      name="areaName"
+                      placeholder="New Room Name"
+                      name="roomName"
                     />
 
-                    {error ? (
+                    {/* TODO: Add room selector once we get the context sorted out. */}
+                    {/* <Form.Label>Parent Area</Form.Label>
+                    <Form.Select
+                      onChange={handleChange}
+                      defaultValue={room.area}
+                      name="roomArea"
+                    >
+
+                      <option value='placeholder1'>Placeholder 1</option>
+                      <option value='placeholder2'>Placeholder 2</option>
+                      <option value='placeholder3'>Placeholder 3</option>
+
+                    </Form.Select> */}
+
+                    {/* {error ? (
                       <div>
-                        <p className="error-text">Please enter an area name.</p>
+                        <p className="error-text">Please enter a room name.</p>
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </Form.Group>
 
                 </Modal.Body>
@@ -102,4 +121,4 @@ const EditArea = ({ area }) => {
   );
 }
 
-export default EditArea;
+export default EditRoom;
