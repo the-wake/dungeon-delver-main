@@ -1,7 +1,7 @@
 import { Container, Col, Row, Button, Modal, Form } from "react-bootstrap";
-import "./editCampaign.css";
+import "./editRoom.css";
 
-import { EDIT_CAMPAIGN } from "../../utils/mutations";
+import { EDIT_ROOM } from "../../utils/mutations";
 import { useSessionContext } from "../../utils/SessionContext.js";
 
 import Auth from "../../utils/auth";
@@ -9,30 +9,29 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EditCampaign = ({ campaign }) => {
-  const [campaignName, setCampaignName] = useState('');
-  const { currentSession, setCampaign } = useSessionContext();
+const EditRoom = ({ room }) => {
+  const [roomName, setRoomName] = useState(room.name);
+  // const [roomArea, setRoomArea] = useState(room.area);
+  const { currentSession, setRoom } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
 
-  // var campaignId = campaign._id;
-  // console.log(campaignId);
-  const [editCampaign, { error, data }] = useMutation(EDIT_CAMPAIGN);
+  const [editRoom, { error, data }] = useMutation(EDIT_ROOM);
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
+    console.log(room);
     try {
-      const { data } = await editCampaign({
+      const { data } = await editRoom({
         variables: {
-          _id: campaign._id,
-          name: campaignName,
-          is_active: true,
+          _id: room._id,
+          name: roomName,
+          // area: room.area._id,
+          // is_active: true,
         },
       });
-      console.log(data);
-      setCampaign({ currentCampaign: campaign });
-      // console.log('*****************************\nCurrent Session:\n', currentSession);
 
-      setCampaignName('');
+      setRoom({ currentRoom: data });
+      // setRoomName('');
 
       window.location.reload();
 
@@ -44,9 +43,15 @@ const EditCampaign = ({ campaign }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'campaignName') {
-      setCampaignName(value);
+    if (name === 'roomName') {
+      setRoomName(value);
+      console.log(roomName);
     }
+
+    // if (name === 'roomArea') {
+    //   setRoomArea(value);
+    //   console.log(roomArea);
+    // }
   };
 
 
@@ -58,26 +63,41 @@ const EditCampaign = ({ campaign }) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Campaign Name</Modal.Title>
+                  <Modal.Title>Update Room</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                   <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Label></Form.Label>
+                    <Form.Label>Room Name</Form.Label>
                     <Form.Control
                       autoFocus
                       onChange={handleChange}
-                      defaultValue={campaign.name}
+                      defaultValue={room.name}
                       className="form-input"
                       type="text"
-                      placeholder="Enter the name of your campaign"
-                      name="campaignName" />
+                      placeholder="New Room Name"
+                      name="roomName"
+                    />
 
-                    {error ? (
+                    {/* TODO: Add room selector once we get the context sorted out. */}
+                    {/* <Form.Label>Parent Area</Form.Label>
+                    <Form.Select
+                      onChange={handleChange}
+                      defaultValue={room.area}
+                      name="roomArea"
+                    >
+
+                      <option value='placeholder1'>Placeholder 1</option>
+                      <option value='placeholder2'>Placeholder 2</option>
+                      <option value='placeholder3'>Placeholder 3</option>
+
+                    </Form.Select> */}
+
+                    {/* {error ? (
                       <div>
-                        <p className="error-text">Campaign name can't be blank.</p>
+                        <p className="error-text">Please enter a room name.</p>
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </Form.Group>
 
                 </Modal.Body>
@@ -88,11 +108,7 @@ const EditCampaign = ({ campaign }) => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            {/* <Button onClick={() => setOnShow(!onShow)} className="right-element" variant="outline-dark">
-              Edit Campaign
-            </Button> */}
             <i className="bi-pencil icon" onClick={() => setOnShow(!onShow)} />
-            {/* <Button onClick={() => setOnShow(!onShow)} className="mt-4 mb-5" variant="danger" style={{ color: "black" }}> */}
           </>
         ) : (
           <p>
@@ -105,4 +121,4 @@ const EditCampaign = ({ campaign }) => {
   );
 }
 
-export default EditCampaign;
+export default EditRoom;

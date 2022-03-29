@@ -249,12 +249,12 @@ const resolvers = {
 
       return area;
     },
-    editRoom: async (parent, { _id, name, blurb, notes, is_active }, { user }) => {
+    editRoom: async (parent, { _id, name, area, blurb, notes, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOneAndUpdate({ _id, user }, { name, blurb, notes, is_active }, { new: true });
+      const room = await Room.findOneAndUpdate({ _id, user }, { name, area, blurb, notes, is_active }, { new: true });
       console.log(room);
 
       if (!room) {

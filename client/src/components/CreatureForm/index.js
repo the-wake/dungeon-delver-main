@@ -130,7 +130,8 @@ const CreatureForm = ({ campaign, area, room }) => {
                     <Form.Select
                       onChange={handleChange}
                       selected={room._id}
-                      name="roomOption">
+                      name="roomOption"
+                    >
 
                       {currentArea.rooms && currentArea.rooms.map((room, pos) => (
                         <option key={pos} value={room._id}>{room.name}</option>

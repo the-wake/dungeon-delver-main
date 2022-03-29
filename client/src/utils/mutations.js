@@ -95,17 +95,11 @@ export const ADD_ROOM = gql`
 
 export const EDIT_ROOM = gql`
   mutation editRoom($_id: ID!, $name: String, $area: ID, $blurb: String, $notes: String, $is_active: Boolean) {
-    addRoom(id: $_id, name: $name, area: $area, blurb: $blurb, notes: $notes, is_active: $is_active) {
+    editRoom(_id: $_id, name: $name, area: $area, blurb: $blurb, notes: $notes, is_active: $is_active) {
       name
       blurb
       notes
       is_active
-      area {
-        name
-        campaign {
-          name
-        }
-      }
     }
   }
 `;

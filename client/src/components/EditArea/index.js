@@ -10,10 +10,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const EditArea = ({ area }) => {
-  const [areaName, setAreaName] = useState('');
+  const [areaName, setAreaName] = useState(area.name);
   const { currentSession, setArea } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
-
 
   const [editArea, { error, data }] = useMutation(EDIT_AREA);
 
@@ -31,7 +30,7 @@ const EditArea = ({ area }) => {
       });
 
       setArea({ currentArea: data });
-      setAreaName('');
+      // setAreaName('');
 
       window.location.reload();
 
@@ -58,10 +57,11 @@ const EditArea = ({ area }) => {
             <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
               <Form onSubmit={handleEditSubmit}>
                 <Modal.Header closeButton>
-                  <Modal.Title>New Area Name</Modal.Title>
+                  <Modal.Title>Edit {area.type}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
+                  {/* TODO: Also make an option for changing area type. */}
                   <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label></Form.Label>
                     <Form.Control
@@ -71,7 +71,8 @@ const EditArea = ({ area }) => {
                       className="form-input"
                       type="text"
                       placeholder="New Area Name"
-                      name="areaName" />
+                      name="areaName"
+                    />
 
                     {error ? (
                       <div>

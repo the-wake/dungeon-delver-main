@@ -1,15 +1,19 @@
 import "./singleRoom.css";
 
-import { Container, Col, Row, Button } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { Container, Col, Row, Button, Form } from "react-bootstrap";
 
 import { useParams, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
+import EditRoom from '../../components/EditRoom';
 import CreatureForm from '../../components/CreatureForm';
 import CreatureList from '../../components/CreatureList';
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { Link } from 'react-router-dom';
+
+import { EDIT_ROOM } from '../../utils/mutations';
 
 const SingleRoom = () => {
   const { currentSession } = useSessionContext();
@@ -24,6 +28,54 @@ const SingleRoom = () => {
   console.log(campaignData);
   console.log(areaData);
   console.log(roomData);
+
+  const notesDefault = () => {
+    if (!roomData.notes) {
+      return false;
+    }
+    return true;
+  };
+
+  const [roomNotes, setRoomNotes] = useState(roomData.notes);
+  const [showNotes, setShowNotes] = useState(notesDefault());
+  const [editRoom, { error, updatedNote }] = useMutation(EDIT_ROOM);
+
+  // const { currentSession } = useSessionContext();
+  // console.log(currentSession);
+  // console.log('showNotes = ', showNotes);
+
+  // No event argument or prevent default, since this isn't updated by form submission but rather each time handleChange is run.
+  const handleAreaSubmit = async () => {
+    try {
+      const { updatedNote } = await editRoom({
+        variables: {
+          _id: roomData._id,
+          notes: roomNotes,
+        }
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'roomNotes') {
+      setRoomNotes(value);
+    }
+  };
+
+  // This works unless the user uses back/forward arrows. That will cause the areaData's note value to revert to how it was previously rendered.
+  useEffect(() => {
+    handleAreaSubmit();
+    roomData.notes = roomNotes;
+  }, [roomNotes]);
+
+  const toggleNotes = () => {
+    setShowNotes(!showNotes);
+  };
 
   const { loading, data } = useQuery(QUERY_CREATURES, {
     variables: { room: roomData._id },
@@ -41,7 +93,7 @@ const SingleRoom = () => {
     <Container className='my-room-container'>
       <Row className="page-header">
         <Col xs={6}>
-          <h1 className="area-name mt-1">{roomData.name}</h1>
+          <h1 className="area-name mt-1">{roomData.name}<EditRoom room={roomData} /></h1>
         </Col>
         <Col className="flex right-justify">
           {/* <EditRoom room={roomData}></EditRoom> */}
@@ -51,6 +103,26 @@ const SingleRoom = () => {
       </Row>
 
       <hr className='w-100 m-auto' />
+
+      <Row className="mt-2">
+        <Col>
+          <Form.Group controlId="controlTextArea">
+            <Form.Label className="interact mt-2" onClick={toggleNotes}>
+              {showNotes ? 'Hide ' : 'Show'} Notes
+            </Form.Label>
+            {showNotes ?
+              <Form.Control as="textarea" rows={4}
+                onChange={handleChange}
+                className="form-input"
+                type="textarea"
+                name="roomNotes"
+                defaultValue={roomData.notes}
+              />
+              : null
+            }
+          </Form.Group>
+        </Col>
+      </Row>
 
       {roomData.blurb ? (
         <Row>
