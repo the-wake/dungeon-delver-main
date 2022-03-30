@@ -169,7 +169,6 @@ const CreatureForm = ({ campaign, area, room }) => {
                       onChange={handleChange}
                       className="form-input"
                       type="textarea"
-                      placeholder="Amethyst of Evermore, Crown of Kings, etc."
                       name="creatureLoot"
                     />
                   </Form.Group>

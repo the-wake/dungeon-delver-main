@@ -132,7 +132,7 @@ const AreaForm = ({ campaign }) => {
                     ) : null}
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="controlTextArea">
+                  {/* <Form.Group className="mb-3" controlId="controlTextArea">
                     <Form.Label>Notes</Form.Label>
                     <Form.Control as="textarea" rows={4}
                       onChange={handleChange}
@@ -140,7 +140,7 @@ const AreaForm = ({ campaign }) => {
                       type="textarea"
                       name="areaNotes"
                     />
-                  </Form.Group>
+                  </Form.Group> */}
 
                 </Modal.Body>
               </Form>

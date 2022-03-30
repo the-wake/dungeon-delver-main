@@ -86,13 +86,12 @@ const RoomForm = ({ area, campaign }) => {
                   <Modal.Body>
 
                     <Form.Group className="mb-3" controlId="formBasicText">
-                      <Form.Label></Form.Label>
+                      <Form.Label>Room Name</Form.Label>
                       <Form.Control
                         autoFocus
                         onChange={handleChange}
                         className="form-input"
                         type="text"
-                        placeholder="Room name"
                         name="roomText" />
                       {error ? (
                         <div>
@@ -125,11 +124,10 @@ const RoomForm = ({ area, campaign }) => {
                       <Form.Label>Blurb</Form.Label>
                       <Form.Control as="textarea" rows={4}
                         onChange={handleChange}
-                        // id="text"
                         className="form-input"
                         type="textarea"
-                        placeholder="It's dark and cold, and there could be dragons lurking around the corner..."
-                        name="blurbText" />
+                        name="blurbText"
+                      />
                       {error ? (
                         <div>
                           <p className='error-text'>Please enter a blurb. Don't be shy.</p>

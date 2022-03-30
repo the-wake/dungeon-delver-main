@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const EditRoom = ({ room }) => {
   const [roomName, setRoomName] = useState(room.name);
+  const [roomBlurb, setRoomBlurb] = useState(room.blurb);
   // const [roomArea, setRoomArea] = useState(room.area);
   const { currentSession, setRoom } = useSessionContext();
   const [onShow, setOnShow] = useState(false);
@@ -25,6 +26,7 @@ const EditRoom = ({ room }) => {
         variables: {
           _id: room._id,
           name: roomName,
+          blurb: roomBlurb,
           // area: room.area._id,
           // is_active: true,
         },
@@ -46,6 +48,11 @@ const EditRoom = ({ room }) => {
     if (name === 'roomName') {
       setRoomName(value);
       console.log(roomName);
+    }
+
+    if (name === 'roomBlurb') {
+      setRoomBlurb(value);
+      console.log(roomBlurb);
     }
 
     // if (name === 'roomArea') {
@@ -75,8 +82,16 @@ const EditRoom = ({ room }) => {
                       defaultValue={room.name}
                       className="form-input"
                       type="text"
-                      placeholder="New Room Name"
                       name="roomName"
+                    />
+
+                    <Form.Label>Blurb</Form.Label>
+                    <Form.Control as="textarea" rows={4}
+                      onChange={handleChange}
+                      defaultValue={room.blurb}
+                      className="form-input"
+                      type="textarea"
+                      name="roomBlurb"
                     />
 
                     {/* TODO: Add room selector once we get the context sorted out. */}
