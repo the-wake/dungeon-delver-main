@@ -68,14 +68,20 @@ const CreatureList = ({ campaign, area, room, creatures }) => {
                                         onClick={() => handleRemoveCampaign(campaign)}></CloseButton>)} */}
                 </Card.Title>
                 <Card.Text>
-                  HP: {creature.hp}
+                  <span className="strong">HP:</span> {creature.hp}
                 </Card.Text>
                 <Card.Text>
-                  Status: {creature.is_alive ? 'Alive' : 'Dead'}
+                  <span className="strong">Status:</span> {creature.is_alive ? 'Alive' : 'Dead'}
                 </Card.Text>
-                <Card.Text>
-                  {creature?.loot}
-                </Card.Text>
+                {creature.loot ? (
+                  <>
+                    <hr />
+                    <Card.Text>
+                      {creature.loot}
+                    </Card.Text>
+                  </>
+                ) : (null)
+                }
               </Card.Body>
             </Card>
           </Col>
