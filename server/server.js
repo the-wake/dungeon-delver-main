@@ -14,9 +14,6 @@ const app = express();
 app.get(express.urlencoded({ extended: false }));
 app.get(express.json());
 
-// The wildcard route has been throwing some errors, so it's disabled for now.
-// app.get('*');
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 };
@@ -42,8 +39,6 @@ async function startApolloServer() {
   await server.start();
 
   // Additional middleware can be mounted at this point to run before Apollo.
-
-  // Mount Apollo middleware here.
   server.applyMiddleware({ app, path: '/graphql' });
 
   db.once('open', () => {
