@@ -54,7 +54,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
      
-      const rooms = await Room.find({ area, user: user._id }).populate('user').populate('area').populate('creatures');
+      const rooms = await Room.find({ area, user: user._id }).populate('user').populate('area').populate('creatures').populate('connections');
       console.log(rooms);
       
       if (!rooms) {
@@ -110,7 +110,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('area').populate('creatures');
+      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('area').populate('creatures').populate('connections');
       console.log(room);
 
       if (!room) {
@@ -205,12 +205,12 @@ const resolvers = {
 
       return room;
     },
-    addCreature: async (parent, { name, room, hp, loot, notes, key_npc, is_alive, is_active }, { user }) => {
+    addCreature: async (parent, { name, room, hp, loot, notes, connections, key_npc, is_alive, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const creature = await Creature.create({ name, room, hp, loot, notes, key_npc, user, is_alive, is_active });
+      const creature = await Creature.create({ name, room, hp, loot, notes, connections, key_npc, user, is_alive, is_active });
       console.log(creature);
 
       if (!creature) {
@@ -263,12 +263,12 @@ const resolvers = {
 
       return room;
     },
-    editCreature: async (parent, { _id, name, room, hp, loot, notes, key_npc, is_alive, is_active }, { user }) => {
+    editCreature: async (parent, { _id, name, room, hp, loot, notes, connections, key_npc, is_alive, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const creature = await Creature.findOneAndUpdate({ _id, user }, { name, room, hp, loot, notes, key_npc, is_alive, is_active }, { new: true });
+      const creature = await Creature.findOneAndUpdate({ _id, user }, { name, room, hp, loot, notes, connections, key_npc, is_alive, is_active }, { new: true });
       console.log(creature);
 
       if (!creature) {

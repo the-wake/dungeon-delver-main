@@ -164,5 +164,4 @@ const RoomForm = ({ area, campaign }) => {
   );
 };
 
-
 export default RoomForm;

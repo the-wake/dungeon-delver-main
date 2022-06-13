@@ -9,6 +9,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import EditRoom from '../../components/EditRoom';
 import CreatureForm from '../../components/CreatureForm';
 import CreatureList from '../../components/CreatureList';
+import RoomConnections from '../../components/RoomConnections';
 import { QUERY_CREATURES } from "../../utils/queries";
 import { useSessionContext } from '../../utils/SessionContext.js';
 import { Link } from 'react-router-dom';
@@ -149,6 +150,12 @@ const SingleRoom = () => {
           <CreatureList campaign={campaignData} area={areaData} room={roomData} creatures={creatures}></CreatureList>
         )}
 
+      </Row>
+
+      <Row>
+        <Col>
+          <RoomConnections area={areaData} room={roomData}></RoomConnections>
+        </Col>
       </Row>
 
     </Container>

@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// This auto-generates _id, right?
 const campaignSchema = new Schema({
   name: {
     type: String,
