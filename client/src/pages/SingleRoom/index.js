@@ -151,7 +151,7 @@ const SingleRoom = () => {
 
       <Row>
         <Col>
-          <RoomConnections area={areaData} room={roomData}></RoomConnections>
+          <RoomConnections campaign={campaignData} area={areaData} room={roomData}></RoomConnections>
         </Col>
       </Row>
 
