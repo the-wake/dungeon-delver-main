@@ -24,7 +24,7 @@ const roomSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Area',
   },
-  conncetions: [
+  connections: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Room',
