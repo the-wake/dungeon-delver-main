@@ -18,7 +18,6 @@ import { EDIT_ROOM } from '../../utils/mutations';
 
 const SingleRoom = () => {
   const { currentSession } = useSessionContext();
-  console.log(currentSession);
   const { currentCampaign, currentArea, currentRoom } = currentSession;
 
   const location = useLocation();
@@ -26,9 +25,7 @@ const SingleRoom = () => {
   const { campaignData } = location.state;
   const { areaData } = location.state;
   const { roomData } = location.state;
-  console.log(campaignData);
-  console.log(areaData);
-  console.log(roomData);
+  console.log(currentSession, campaignData, areaData, roomData);
 
   const notesDefault = () => {
     if (!roomData.notes) {

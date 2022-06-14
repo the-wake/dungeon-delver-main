@@ -5,13 +5,17 @@ import { useMutation } from '@apollo/client';
 
 import { EDIT_ROOM } from '../../utils/mutations';
 
-const RoomConncetions = (area, room) => {
+const RoomConncetions = ({ area, room }) => {
   // const { currentSession, setCampaign, setArea, setRoom } = useSessionContext();
   // const { currentCampaign, currentArea, currentRoom } = currentSession;
 
   // TODO: Distinguish the connection array from the connection to be pushed/pulled.
   const [connections, setConnectionValue] = useState(room.connections);
   const [editRoom, { error, data }] = useMutation(EDIT_ROOM);
+
+  var rooms = area.rooms;
+  console.log(rooms);
+  console.log(room);
 
 
   const handleRoomSubmit = async (event) => {
@@ -45,89 +49,24 @@ const RoomConncetions = (area, room) => {
     // this.setState( {
     //     key: key
     // })
-    console.log(`Key selected: ${key}`);
-    
+    addConnection(key)
 };
+
+const addConnection = (id) => {
+  console.log(`This will eventually add a room. Key: ${id}`)
+}
 
   return (
     <>
-      {/* <Container>
-            <Row>
-              <Modal show={onShow} onHide={() => setOnShow(false)} backdrop="static" keyboard={false} role="dialog">
-                <Form onSubmit={handleRoomSubmit}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>New Room</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                      <Form.Label>Room Name</Form.Label>
-                      <Form.Control
-                        autoFocus
-                        onChange={handleChange}
-                        className="form-input"
-                        type="text"
-                        name="roomText" />
-                      {error ? (
-                        <div>
-                          <p className='error-text'>Please enter a room name.</p>
-                        </div>
-                      ) : null}
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Label>Associated Area</Form.Label>
-
-                      <Form.Select
-                        onChange={handleChange}
-                        selected={area._id}
-                        name="areaOption">
-
-                        {currentCampaign.areas && currentCampaign.areas.map((area, pos) => (
-                          <option key={pos} value={area._id}>{area.name}</option>
-                        ))}
-                      </Form.Select>
-
-                      {error ? (
-                        <div>
-                          <p className='error-text'>Please select a area</p>
-                        </div>
-                      ) : null}
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="controlTextArea">
-                      <Form.Label>Blurb</Form.Label>
-                      <Form.Control as="textarea" rows={4}
-                        onChange={handleChange}
-                        className="form-input"
-                        type="textarea"
-                        name="blurbText"
-                      />
-                      {error ? (
-                        <div>
-                          <p className='error-text'>Please enter a blurb. Don't be shy.</p>
-                        </div>
-                      ) : null}
-                    </Form.Group>
-                  </Modal.Body>
-                </Form>
-                <Modal.Footer>
-                  <Button onClick={handleRoomSubmit} variant="primary">
-                    Submit
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-            </Row>
-          </Container> */}
-
-      <hr />
-      <Row xs={1} md={2} lg={3} className="g-4">
-        <p>Connection data goes here.</p>
-        {/* TODO: Populate connections */}
+      <hr className="mt-4"/>
+      <Row xs={2} md={4} lg={5}>
+        {/* {room.connections.map((connection, pos) => {
+          <p>{connection}</p>
+        })} */}
       </Row>
       <DropdownButton id="dropdown-basic-button" title="Add a Connection" onSelect={handleSelect}>
-        {area.area.rooms.map((room, pos) => (
-          <Dropdown.Item key={pos} value={room._id} eventKey={room.name}>{room.name}</Dropdown.Item>
+        {rooms.map((room, pos) => (
+          <Dropdown.Item key={pos} value={room._id} eventKey={room._id}>{room.name}</Dropdown.Item>
         ))}
         {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>

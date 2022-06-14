@@ -24,10 +24,12 @@ const roomSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Area',
   },
-  connections: {
-    type: Schema.Types.ObjectId,
-    ref: 'Room',
-  },
+  conncetions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Room',
+    }
+  ],
   is_active: {
     type: Boolean,
     required: true,
