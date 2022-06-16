@@ -26,11 +26,11 @@ const resolvers = {
       };
 
       const campaigns = await Campaign.find({ user: user._id }).populate('user').populate('areas');
-      
+
       if (!campaigns) {
         throw new AuthenticationError('You have no campaigns!')
       };
-      
+
       console.log(campaigns);
       console.log(user._id);
       return campaigns;
@@ -42,7 +42,7 @@ const resolvers = {
 
       const areas = await Area.find({ user: user._id }).populate('user').populate('campaign').populate('rooms');
       console.log(areas);
-      
+
       if (!areas) {
         throw new AuthenticationError('You have no areas!')
       };
@@ -53,10 +53,10 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
-     
+
       const rooms = await Room.find({ area, user: user._id }).populate('user').populate('area').populate('creatures').populate('connections');
       console.log(rooms);
-      
+
       if (!rooms) {
         throw new AuthenticationError('You have no rooms in this area!')
       };
@@ -70,11 +70,11 @@ const resolvers = {
 
       const creatures = await Creature.find({ roomId, user: user._id }).populate('user').populate('room');
       console.log(creatures);
-      
+
       if (!creatures) {
         throw new AuthenticationError('There are no creatures in this room!')
       };
-      
+
       return creatures;
     },
     getCampaign: async (parent, { campaignId }, { user }) => {
@@ -84,7 +84,7 @@ const resolvers = {
 
       const campaign = await Campaign.findOne({ _id: campaignId, user }).populate('user').populate('areas');
       console.log(campaign);
-      
+
       if (!campaign) {
         throw new AuthenticationError('Campaign not found.')
       };
@@ -98,7 +98,7 @@ const resolvers = {
 
       const area = await Area.findOne({ _id: areaId, user }).populate('user').populate('campaign').populate('rooms');
       console.log(area);
-      
+
       if (!area) {
         throw new AuthenticationError('Area not found.')
       };
@@ -158,7 +158,7 @@ const resolvers = {
 
       const token = signToken(user);
       console.log(`Logged in as ${user.username} Copy the following token into your GraphQL Headers as an Authentication key to validate your login on the backend.\n-----------------------------\nBearer ${token}`);
-      
+
       return { token, user };
     },
     // ADD ROUTES
@@ -263,6 +263,20 @@ const resolvers = {
 
       return room;
     },
+    addConnection: async (parent, { _id, connection }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Please log in first.');
+      };
+
+      const room = await Room.findOneAndUpdate({ _id, user }, { $push: { connections: connection } }, { new: true });
+      console.log(room);
+
+      if (!room) {
+        throw new AuthenticationError('Something went wrong. Please make sure you\'ve filled out the necessary fields.')
+      };
+
+      return room;
+    },
     editCreature: async (parent, { _id, name, room, hp, loot, notes, connections, key_npc, is_alive, is_active }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
@@ -284,7 +298,7 @@ const resolvers = {
       };
       console.log(user);
 
-      const campaign = await Campaign.findOneAndDelete({_id, user });
+      const campaign = await Campaign.findOneAndDelete({ _id, user });
       console.log(campaign)
 
       if (!campaign) {

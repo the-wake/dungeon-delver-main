@@ -57,10 +57,6 @@ const CampaignForm = (props) => {
         },
       });
 
-      console.log(data);
-      // console.log(data._id);
-      // console.log(data.name);
-
       setCampaignName('');
 
       // I'd like to have this redirect to the new campaign when submitted, but I can't figure out how to capture the ID from the newly-added campaign (since it's not passed in the variables).
