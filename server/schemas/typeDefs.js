@@ -33,8 +33,9 @@ const typeDefs = gql`
     blurb: String
     creatures: [Creature]
     notes: String
-    is_active: Boolean!
     area: Area!
+    connections: [Room]
+    is_active: Boolean!
     user: User!
   }
 

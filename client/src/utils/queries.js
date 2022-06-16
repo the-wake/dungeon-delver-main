@@ -96,6 +96,10 @@ export const QUERY_ROOMS = gql`
         name
         type
       }
+      connections {
+        _id
+        name
+      }
       is_active
     }
   }
@@ -116,6 +120,10 @@ export const QUERY_SINGLE_ROOM = gql`
         _id
         name
         type
+      }
+      connections {
+        _id
+        name
       }
       is_active
     }
