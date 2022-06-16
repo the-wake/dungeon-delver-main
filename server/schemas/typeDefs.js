@@ -80,7 +80,7 @@ const typeDefs = gql`
     editCampaign(_id: ID!, name: String, notes: String, is_active: Boolean): Campaign
     editArea(_id: ID!, name: String, type: String, campaign: ID, notes: String, is_active: Boolean): Area
     editRoom(_id: ID!, name: String, area: ID, blurb: String, notes: String, is_active: Boolean): Room
-    addConnection(_id: ID!, connection: String!): Room
+    addConnection(_id: ID!, connection: ID!): Room
     editCreature(_id: ID!, name: String, room: ID, hp: Int, loot: String, notes: String, key_npc: Boolean, is_alive: Boolean, is_active: Boolean): Creature
     removeCampaign(_id: ID!): Campaign
     removeArea(_id: ID!): Area

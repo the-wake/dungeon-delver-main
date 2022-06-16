@@ -99,7 +99,9 @@ export const EDIT_ROOM = gql`
       name
       blurb
       notes
-      connections
+      connections {
+        _id
+      }
       is_active
     }
   }
@@ -111,7 +113,9 @@ export const ADD_CONNECTION = gql`
       name
       blurb
       notes
-      connections
+      connections {
+        _id
+      }
       is_active
     }
   }
