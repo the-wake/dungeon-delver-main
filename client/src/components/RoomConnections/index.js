@@ -62,27 +62,29 @@ const RoomConncetions = ({ campaign, area, room }) => {
 
   return (
     <>
-      <hr className="mt-4 mb-2" />
-      <Row xs={2} md={4} lg={5}>
-        {roomConnections && roomConnections.map((connection, pos) => (
-          <Link className='room-title' to={`/rooms/${connection._id}`}
-            onClick={() => {
-              setArea({ currentArea: connection.area });
-              setRoom({ currentRoom: connection });
-            }}
-            state={{ campaignData: campaign, areaData: area, roomData: connection }}>
-            {connection.name}
-          </Link>
-        ))}
-      </Row>
-      <DropdownButton id="dropdown-basic-button" title="Add a Connection" className="mt-4" onSelect={handleSelect}>
-        {localRooms.map((room, pos) => (
-          <Dropdown.Item key={pos} value={room._id} eventKey={room._id}>{room.name}</Dropdown.Item>
-        ))}
-        {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+      {/* <hr className="mt-4 mb-2" /> */}
+      <Col xs={3}>
+        <DropdownButton id="dropdown-basic-button" title="Add a Connection" className="mt-4 mb-3" onSelect={handleSelect}>
+          {localRooms.map((room, pos) => (
+            <Dropdown.Item key={pos} value={room._id} eventKey={room._id}>{room.name}</Dropdown.Item>
+          ))}
+          {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-      </DropdownButton>
+        </DropdownButton>
+        {roomConnections && roomConnections.map((connection, pos) => (
+          <Row>
+            <Link className='room-connection mt-2' to={`/rooms/${connection._id}`}
+              onClick={() => {
+                setArea({ currentArea: connection.area });
+                setRoom({ currentRoom: connection });
+              }}
+              state={{ campaignData: campaign, areaData: area, roomData: connection }}>
+              {connection.name}
+            </Link>
+          </Row>
+        ))}
+      </Col>
     </>
   );
 };
@@ -126,3 +128,31 @@ export default RoomConncetions;
 // const [show, setShow] = useState(false);
 // const handleClose = () => setShow(false);
 // const handleShow = () => setShow(true);
+
+// Displayed as footer:
+
+// return (
+//   <>
+//     {/* <hr className="mt-4 mb-2" /> */}
+//     <Row xs={2} md={4} lg={5}>
+//       {roomConnections && roomConnections.map((connection, pos) => (
+//         <Link className='room-title' to={`/rooms/${connection._id}`}
+//           onClick={() => {
+//             setArea({ currentArea: connection.area });
+//             setRoom({ currentRoom: connection });
+//           }}
+//           state={{ campaignData: campaign, areaData: area, roomData: connection }}>
+//           {connection.name}
+//         </Link>
+//       ))}
+//     </Row>
+//     <DropdownButton id="dropdown-basic-button" title="Add a Connection" className="mt-4" onSelect={handleSelect}>
+//       {localRooms.map((room, pos) => (
+//         <Dropdown.Item key={pos} value={room._id} eventKey={room._id}>{room.name}</Dropdown.Item>
+//       ))}
+//       {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+//       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+//       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+//     </DropdownButton>
+//   </>
+// );

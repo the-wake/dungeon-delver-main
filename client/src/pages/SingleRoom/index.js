@@ -135,23 +135,29 @@ const SingleRoom = () => {
       }
 
       <Row>
-        <Col>
-          <CreatureForm campaign={campaignData} area={areaData} room={roomData}></CreatureForm>
-          <h2 className="mb-1 mt-3">Creatures in {roomData.name}</h2>
+        <Col xs={9}>
+          <Row>
+            <Col>
+              <CreatureForm campaign={campaignData} area={areaData} room={roomData}></CreatureForm>
+              <h2 className="mb-1 mt-3">Creatures in {roomData.name}</h2>
+            </Col>
+            {loading ? (
+              <h2>
+                Retrieving Data...
+              </h2>
+            ) : (
+              <CreatureList campaign={campaignData} area={areaData} room={roomData} creatures={creatures}></CreatureList>
+            )}
+
+          </Row>
         </Col>
-        {loading ? (
-          <h2>
-            Retrieving Data...
-          </h2>
-        ) : (
-          <CreatureList campaign={campaignData} area={areaData} room={roomData} creatures={creatures}></CreatureList>
-        )}
 
-      </Row>
-
-      <Row>
-        <Col>
-          <RoomConnections campaign={campaignData} area={areaData} room={roomData}></RoomConnections>
+        <Col xs={3}>
+          <Row>
+            <Col>
+              <RoomConnections campaign={campaignData} area={areaData} room={roomData}></RoomConnections>
+            </Col>
+          </Row>
         </Col>
       </Row>
 
@@ -161,3 +167,77 @@ const SingleRoom = () => {
 
 
 export default SingleRoom;
+
+
+// Layout with connection list across the bottom:
+
+// return (
+//   <Container className='my-room-container'>
+//     <Row className="page-header">
+//       <Col xs={6}>
+//         <h1 className="area-name mt-1">{roomData.name}<EditRoom room={roomData} /></h1>
+//       </Col>
+//       <Col className="flex right-justify">
+//         {/* <EditRoom room={roomData}></EditRoom> */}
+//         <Link to={`/areas/${areaData._id}`} state={{ campaignData, areaData }}><h4>{areaData.name}</h4>
+//         </Link>
+//       </Col>
+//     </Row>
+
+//     <hr className='w-100 m-auto' />
+
+//     <Row className="mt-2">
+//       <Col>
+//         <Form.Group controlId="controlTextArea">
+//           <Form.Label className="interact mt-2" onClick={toggleNotes}>
+//             {showNotes ? 'Hide ' : 'Show'} Notes
+//           </Form.Label>
+//           {showNotes ?
+//             <Form.Control as="textarea" rows={4}
+//               onChange={handleChange}
+//               className="form-input"
+//               type="textarea"
+//               name="roomNotes"
+//               defaultValue={roomData.notes}
+//             />
+//             : null
+//           }
+//         </Form.Group>
+//       </Col>
+//     </Row>
+
+//     {roomData.blurb ? (
+//       <Row>
+//         <Col className="blurb" xs={10} lg={8}>
+//           <div>
+//             <p>"{roomData.blurb}"</p>
+//           </div>
+//         </Col>
+//       </Row>
+//     ) :
+//       <></>
+//     }
+
+//     <Row>
+//       <Col>
+//         <CreatureForm campaign={campaignData} area={areaData} room={roomData}></CreatureForm>
+//         <h2 className="mb-1 mt-3">Creatures in {roomData.name}</h2>
+//       </Col>
+//       {loading ? (
+//         <h2>
+//           Retrieving Data...
+//         </h2>
+//       ) : (
+//         <CreatureList campaign={campaignData} area={areaData} room={roomData} creatures={creatures}></CreatureList>
+//       )}
+
+//     </Row>
+
+//     <Row>
+//       <Col>
+//         <RoomConnections campaign={campaignData} area={areaData} room={roomData}></RoomConnections>
+//       </Col>
+//     </Row>
+
+//   </Container>
+// );
