@@ -108,7 +108,7 @@ export const EDIT_ROOM = gql`
 `;
 
 export const ADD_CONNECTION = gql`
-  mutation addConnection($_id: ID!, $connection: String!) {
+  mutation addConnection($_id: ID!, $connection: ID!) {
     addConnection(_id: $_id, connection: $connection) {
       name
       blurb

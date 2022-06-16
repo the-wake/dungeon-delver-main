@@ -21,14 +21,7 @@ const RoomConnections = ({ campaign, area, room }) => {
   console.log(localConnections);
   console.log('Current room =', room)
 
-  // Displays the current connection whenever a state is called.
-  useEffect(() => {
-    console.log("newConnection useState = ", newConnection);
-  });
-
-
   const handleConnectionSubmit = async (event) => {
-
     try {
       const { data } = await addConnection({
         variables: {
@@ -58,10 +51,18 @@ const RoomConnections = ({ campaign, area, room }) => {
   // };
 
   // What runs when a specific room is selected from the dropdown menu.
+  // This will then run the mutation via the useEffect hook.
   const handleSelect = (key) => {
     setConnectionValue(key);
-    handleConnectionSubmit();
-  };
+  };  
+
+  // Uses the useEffect hook to sync the newConnection state and run it when updated.
+  useEffect(() => {
+    console.log('newConnection useState = ', newConnection);
+    if (newConnection) {
+      handleConnectionSubmit()
+    };
+  }, [newConnection]);
 
   return (
     <>
