@@ -77,6 +77,9 @@ const SingleArea = () => {
   });
 
   const rooms = data?.getRooms || [];
+  if (data) {
+    console.log(data);
+  }
 
   // if (!loading) {
   //   console.log(rooms)

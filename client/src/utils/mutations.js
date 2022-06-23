@@ -99,6 +99,23 @@ export const EDIT_ROOM = gql`
       name
       blurb
       notes
+      connections {
+        _id
+      }
+      is_active
+    }
+  }
+`;
+
+export const ADD_CONNECTION = gql`
+  mutation addConnection($_id: ID!, $connection: ID!) {
+    addConnection(_id: $_id, connection: $connection) {
+      name
+      blurb
+      notes
+      connections {
+        _id
+      }
       is_active
     }
   }

@@ -22,10 +22,10 @@ const SingleRoom = () => {
 
   const location = useLocation();
   // May want/need to add more state data.
-  const { campaignData } = location.state;
-  const { areaData } = location.state;
-  const { roomData } = location.state;
-  console.log(currentSession, campaignData, areaData, roomData);
+  var { campaignData } = location.state;
+  var { areaData } = location.state;
+  var { roomData } = location.state;
+  // console.log(currentSession, campaignData, areaData, roomData);
 
   const notesDefault = () => {
     if (!roomData.notes) {
@@ -81,9 +81,9 @@ const SingleRoom = () => {
 
   const creatures = data?.getCreatures || [];
 
-  if (!loading) {
-    console.log(creatures)
-  };
+  // if (!loading) {
+  //   console.log(creatures)
+  // };
   // console.log(areaData);
 
 
@@ -155,7 +155,7 @@ const SingleRoom = () => {
         <Col xs={3}>
           <Row>
             <Col>
-              <RoomConnections campaign={campaignData} area={areaData} room={roomData}></RoomConnections>
+              <RoomConnections state={{ campaignData, areaData, roomData}}></RoomConnections>
             </Col>
           </Row>
         </Col>

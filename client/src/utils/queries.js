@@ -99,6 +99,7 @@ export const QUERY_ROOMS = gql`
       connections {
         _id
         name
+        blurb
       }
       is_active
     }
