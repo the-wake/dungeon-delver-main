@@ -1,6 +1,7 @@
 import React, { Component, useState, setState, useEffect } from 'react';
 import { Container, Col, Row, Button, Form, Modal, Dropdown, DropdownButton } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+
+import { Link, useLocation } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_CONNECTION } from '../../utils/mutations';
@@ -8,24 +9,30 @@ import { ADD_CONNECTION } from '../../utils/mutations';
 import { useSessionContext } from '../../utils/SessionContext.js';
 
 
-const RoomConnections = ({ campaign, area, room }) => {
+const RoomConnections = () => {
   const { currentSession, setCampaign, setArea, setRoom } = useSessionContext();
   const { currentCampaign, currentArea, currentRoom } = currentSession;
 
   const [newConnection, setConnectionValue] = useState('');
   const [addConnection, { error, data }] = useMutation(ADD_CONNECTION);
 
-  var localRooms = area.rooms;
-  var localConnections = room.connections;
+  const location = useLocation();
+  var { campaignData } = location.state;
+  var { areaData } = location.state;
+  var { roomData } = location.state;
+  console.log(location);
+
+  var localRooms = areaData.rooms;
+  var localConnections = roomData.connections;
   console.log(localRooms);
   console.log(localConnections);
-  console.log('Current room =', room)
+  console.log('Current room =', roomData)
 
   const handleConnectionSubmit = async (event) => {
     try {
       const { data } = await addConnection({
         variables: {
-          _id: room._id,
+          _id: roomData._id,
           connection: newConnection,
         },
       });
@@ -45,7 +52,7 @@ const RoomConnections = ({ campaign, area, room }) => {
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
 
-  //   if (name === 'conncetions') {
+  //   if (name === 'connections') {
   //     setConnectionValue(value);
   //   }
   // };
@@ -78,8 +85,9 @@ const RoomConnections = ({ campaign, area, room }) => {
               onClick={() => {
                 setArea({ currentArea: connection.area });
                 setRoom({ currentRoom: connection });
+                console.log(connection);
               }}
-              state={{ campaignData: campaign, areaData: area, roomData: connection }}>
+              state={{ campaignData, areaData, roomData: connection }}>
               {connection.name}
             </Link>
           </Row>
