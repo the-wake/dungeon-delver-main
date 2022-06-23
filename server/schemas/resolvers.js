@@ -268,7 +268,8 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOneAndUpdate({ _id, user }, { $push: { connections: connection } }, { new: true });
+      const room = await Room.findOneAndUpdate({ _id, user }, { $push: { connections: connection } }, { new: true }).populate('connections');
+      console.log(connection);
       console.log(room);
 
       if (!room) {

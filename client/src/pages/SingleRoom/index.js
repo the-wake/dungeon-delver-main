@@ -25,7 +25,7 @@ const SingleRoom = () => {
   var { campaignData } = location.state;
   var { areaData } = location.state;
   var { roomData } = location.state;
-  console.log(currentSession, campaignData, areaData, roomData);
+  // console.log(currentSession, campaignData, areaData, roomData);
 
   const notesDefault = () => {
     if (!roomData.notes) {
@@ -81,9 +81,9 @@ const SingleRoom = () => {
 
   const creatures = data?.getCreatures || [];
 
-  if (!loading) {
-    console.log(creatures)
-  };
+  // if (!loading) {
+  //   console.log(creatures)
+  // };
   // console.log(areaData);
 
 

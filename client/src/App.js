@@ -99,7 +99,7 @@ function App() {
                 <Route path="*" element={<Home />} />
               </Routes>
             }
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       </SessionProvider>

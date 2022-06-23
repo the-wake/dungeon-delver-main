@@ -24,9 +24,9 @@ const RoomConnections = () => {
 
   var localRooms = areaData.rooms;
   var localConnections = roomData.connections;
-  console.log(localRooms);
-  console.log(localConnections);
-  console.log('Current room =', roomData)
+  // console.log(localRooms);
+  // console.log(localConnections);
+  // console.log('Current room =', roomData)
 
   const handleConnectionSubmit = async (event) => {
     try {
@@ -37,7 +37,7 @@ const RoomConnections = () => {
         },
       });
 
-      console.log(data);
+      // console.log(data);
 
       setConnectionValue('');
       window.location.reload();
@@ -83,9 +83,11 @@ const RoomConnections = () => {
           <Row key={pos}>
             <Link className='room-connection mt-2' to={`/rooms/${connection._id}`}
               onClick={() => {
+                // console.log('Original data: ', localConnections);
+                // console.log('Room connected: ', connection);
                 setArea({ currentArea: connection.area });
                 setRoom({ currentRoom: connection });
-                console.log(connection);
+                // console.log(connection);
               }}
               state={{ campaignData, areaData, roomData: connection }}>
               {connection.name}

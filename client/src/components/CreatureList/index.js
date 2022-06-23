@@ -34,8 +34,8 @@ const CreatureList = ({ campaign, area, room, creatures }) => {
   //     }
   // };
 
-  console.log(creatures);
-  console.log(room._id);
+  // console.log(creatures);
+  // console.log(room._id);
 
   if (!room) {
     return <h4>Please select a room first.</h4>
@@ -46,7 +46,7 @@ const CreatureList = ({ campaign, area, room, creatures }) => {
   }
 
   const creatureList = creatures.filter(creature => creature.room._id === room._id);
-  console.log(creatureList);
+  // console.log(creatureList);
 
   return (
     <Container>
