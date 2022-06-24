@@ -21,8 +21,8 @@ export const QUERY_CAMPAIGNS = gql`
 `;
 
 export const QUERY_SINGLE_CAMPAIGN = gql`
-  query getCampaign($_id: ID!) {
-    getCampaign(_id: $_id) {
+  query getCampaign($campaignId: ID!) {
+    getCampaign(campaignId: $campaignId) {
       _id
       name
       areas {
@@ -61,8 +61,8 @@ export const QUERY_AREAS = gql`
 `;
 
 export const QUERY_SINGLE_AREA = gql`
-  query getArea($_id: ID!) {
-    getArea(_id: $_id) {
+  query getArea($areaId: ID!) {
+    getArea(areaId: $areaId) {
       _id
       name
       type
@@ -81,8 +81,8 @@ export const QUERY_SINGLE_AREA = gql`
 `;
 
 export const QUERY_ROOMS = gql`
-  query getRooms($area: ID!) {
-    getRooms(area: $area) {
+  query getRooms($areaId: ID!) {
+    getRooms(areaId: $areaId) {
       _id
       name
       blurb
@@ -107,8 +107,8 @@ export const QUERY_ROOMS = gql`
 `;
 
 export const QUERY_SINGLE_ROOM = gql`
-  query getRoom($_id: ID!) {
-    getRoom(_id: $_id) {
+  query getRoom($roomId: ID!) {
+    getRoom(roomId: $roomId) {
       _id
       name
       blurb
@@ -120,20 +120,22 @@ export const QUERY_SINGLE_ROOM = gql`
       area {
         _id
         name
-        type
       }
       connections {
         _id
         name
+        blurb
+        creatures {
+          _id
+        }
       }
-      is_active
     }
   }
 `;
 
 export const QUERY_CREATURES = gql`
-  query getCreatures($room: ID!) {
-    getCreatures(room: $room) {
+  query getCreatrues($roomId: ID!) {
+    getCreatures(roomId: $roomId) {
       _id
       name
       hp
@@ -151,8 +153,8 @@ export const QUERY_CREATURES = gql`
 `;
 
 export const QUERY_SINGLE_CREATURE = gql`
-  query getCreature($_id: ID!) {
-    getCreature(_id: $_id) {
+  query getCreature($creatureId: ID!) {
+    getCreature(creatureId: $creatureId) {
       hp
       name
       loot

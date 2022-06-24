@@ -48,13 +48,10 @@ const CampaignList = ({ campaigns }) => {
       <Row xs={1} md={2} lg={3} className="g-4">
         {campaigns && campaigns.map((campaign, pos) => (
           <Col key={pos}>
-            {/* <Card style={{ background: "beige" }}> */}
             <Card>
-              {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
 
                 <Card.Title>
-                  {/* <Link style={{ color: "black" }} className='campaign-title' */}
                   <Link className='campaign-title'
                     to={`/campaigns/${campaign._id}`}
                     onClick={() => setCampaign({ currentCampaign: campaign })}

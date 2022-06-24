@@ -49,12 +49,12 @@ const resolvers = {
 
       return areas;
     },
-    getRooms: async (parent, { area }, { user }) => {
+    getRooms: async (parent, { areaId }, { user }) => {
       if (!user) {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const rooms = await Room.find({ area, user: user._id }).populate('user').populate('area').populate('creatures').populate('connections');
+      const rooms = await Room.find({ areaId, user: user._id }).populate('user').populate('area').populate('creatures').populate('connections');
       console.log(rooms);
 
       if (!rooms) {
@@ -110,7 +110,7 @@ const resolvers = {
         throw new AuthenticationError('Please log in first.');
       };
 
-      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('area').populate('creatures').populate('connections');
+      const room = await Room.findOne({ _id: roomId, user }).populate('user').populate('area').populate('creatures').populate({ path: 'connections', populate: { path: 'connections' } });
       console.log(room);
 
       if (!room) {

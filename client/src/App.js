@@ -7,6 +7,8 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  useQuery,
+  gql,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import SessionProvider from './utils/SessionContext.js';
@@ -66,7 +68,7 @@ const client = new ApolloClient({
 });
 
 
-
+// Could add another condition in here to render the Campaigns page if you try to drill down below it without context.
 function App() {
   return (
     <ApolloProvider client={client}>

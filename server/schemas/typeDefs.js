@@ -62,8 +62,8 @@ const typeDefs = gql`
     me: User
     getCampaigns: [Campaign]
     getAreas: [Area]
-    getRooms(area: ID!): [Room]
-    getCreatures(room: ID!): [Creature]
+    getRooms(areaId: ID!): [Room]
+    getCreatures(roomId: ID!): [Creature]
     getCampaign(campaignId: ID!): Campaign
     getArea(areaId: ID!): Area
     getRoom(roomId: ID!): Room

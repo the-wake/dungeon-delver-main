@@ -4,6 +4,7 @@ const SessionContext = createContext();
 
 export const useSessionContext = () => useContext(SessionContext);
 
+// TODO: We may want to make these not objects any more. Each should be one datum that *is* an object, in which we have a field for id and for name.
 const SessionProvider = (props) => {
   const [currentSession, setCurrentSession] = useState({
     currentCampaign: {},

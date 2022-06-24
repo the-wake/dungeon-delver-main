@@ -21,11 +21,7 @@ const SingleRoom = () => {
   const { currentCampaign, currentArea, currentRoom } = currentSession;
 
   const location = useLocation();
-  // May want/need to add more state data.
-  var { campaignData } = location.state;
-  var { areaData } = location.state;
-  var { roomData } = location.state;
-  // console.log(currentSession, campaignData, areaData, roomData);
+  var { campaignData, areaData, roomData } = location.state;
 
   const notesDefault = () => {
     if (!roomData.notes) {
@@ -76,7 +72,7 @@ const SingleRoom = () => {
   };
 
   const { loading, data } = useQuery(QUERY_CREATURES, {
-    variables: { room: roomData._id },
+    variables: { roomId: roomData._id },
   });
 
   const creatures = data?.getCreatures || [];
@@ -155,7 +151,7 @@ const SingleRoom = () => {
         <Col xs={3}>
           <Row>
             <Col>
-              <RoomConnections state={{ campaignData, areaData, roomData}}></RoomConnections>
+              <RoomConnections state={{ campaignData, areaData, roomData }}></RoomConnections>
             </Col>
           </Row>
         </Col>

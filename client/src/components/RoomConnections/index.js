@@ -3,8 +3,9 @@ import { Container, Col, Row, Button, Form, Modal, Dropdown, DropdownButton } fr
 
 import { Link, useLocation } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { ADD_CONNECTION } from '../../utils/mutations';
+import { QUERY_SINGLE_ROOM } from "../../utils/queries";
 
 import { useSessionContext } from '../../utils/SessionContext.js';
 
@@ -17,13 +18,19 @@ const RoomConnections = () => {
   const [addConnection, { error, data }] = useMutation(ADD_CONNECTION);
 
   const location = useLocation();
-  var { campaignData } = location.state;
-  var { areaData } = location.state;
-  var { roomData } = location.state;
+  var { campaignData, areaData, roomData } = location.state;
   console.log(location);
 
+  const { backupLoading, backupData } = useQuery(QUERY_SINGLE_ROOM, {
+    variables: { roomId: roomData._id}
+  });
+
+  // if (!backupLoading) {
+  //   console.log(backupData);
+  // };
+
   var localRooms = areaData.rooms;
-  var localConnections = roomData.connections;
+  var localConnections = roomData.connections// || backupData?.getRooms.connections;
   // console.log(localRooms);
   // console.log(localConnections);
   // console.log('Current room =', roomData)

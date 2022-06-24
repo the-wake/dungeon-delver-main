@@ -53,12 +53,9 @@ const RoomList = ({ campaign, area, rooms }) => {
       <Row xs={1} md={2} lg={3} className="g-4">
         {roomList && roomList.map((room, pos) => (
           <Col key={pos}>
-            {/* <Card style={{ background: "black" }}> */}
             <Card>
-              {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
               <Card.Body>
                 <Card.Title key={room._id}>
-                  {/* <Link style={{ color: "seagreen" }} className='room-title' to={`/rooms/${room._id}`} */}
                   <Link className='room-title' to={`/rooms/${room._id}`}
                     onClick={() => {
                       setArea({ currentArea: room.area });
