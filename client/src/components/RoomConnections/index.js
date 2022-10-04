@@ -33,12 +33,12 @@ const RoomConnections = () => {
     console.log(localConnections);
     // Experimenting with this to replace connection data when linking from a connection.
     // TODO: Finish this function.
-    if (localConnections && !localConnections[0].connections) {
-      console.log('The connections have disappeared!')
-      console.log(data.connections);
-      localConnections = data.connections;
-    };
-    console.log(localConnections);
+    // if (localConnections && !localConnections[0].connections) {
+    //   console.log('The connections have disappeared!')
+    //   console.log(data.connections);
+    //   localConnections = data.connections;
+    // };
+    // console.log(localConnections);
   };
 
 

@@ -131,7 +131,8 @@ const SingleRoom = () => {
       }
 
       <Row>
-        <Col xs={9}>
+        {/* Normally 9, but not using the Room Connections' 3 columns for now. */}
+        <Col xs={12}>
           <Row>
             <Col>
               <CreatureForm campaign={campaignData} area={areaData} room={roomData}></CreatureForm>
@@ -148,13 +149,13 @@ const SingleRoom = () => {
           </Row>
         </Col>
 
-        <Col xs={3}>
+        {/* <Col xs={3}>
           <Row>
             <Col>
               <RoomConnections state={{ campaignData, areaData, roomData }}></RoomConnections>
             </Col>
           </Row>
-        </Col>
+        </Col> */}
       </Row>
 
     </Container>

@@ -128,7 +128,19 @@ export const QUERY_SINGLE_ROOM = gql`
         creatures {
           _id
         }
+        connections {
+          _id
+          name
+          connections {
+            _id
+          }
+        }
       }
+      is_active
+      user {
+        username
+      }
+      notes
     }
   }
 `;
