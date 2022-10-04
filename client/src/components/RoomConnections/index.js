@@ -3,8 +3,9 @@ import { Container, Col, Row, Button, Form, Modal, Dropdown, DropdownButton } fr
 
 import { Link, useLocation } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { ADD_CONNECTION } from '../../utils/mutations';
+import { QUERY_SINGLE_ROOM } from "../../utils/queries";
 
 import { useSessionContext } from '../../utils/SessionContext.js';
 
@@ -14,23 +15,41 @@ const RoomConnections = () => {
   const { currentCampaign, currentArea, currentRoom } = currentSession;
 
   const [newConnection, setConnectionValue] = useState('');
-  const [addConnection, { error, data }] = useMutation(ADD_CONNECTION);
+  const [addConnection, { error, connectionData }] = useMutation(ADD_CONNECTION);
 
   const location = useLocation();
-  var { campaignData } = location.state;
-  var { areaData } = location.state;
-  var { roomData } = location.state;
+  var { campaignData, areaData, roomData } = location.state;
   console.log(location);
 
+  const { loading, data } = useQuery(QUERY_SINGLE_ROOM, {
+    variables: { roomId: roomData._id}
+  });
+
   var localRooms = areaData.rooms;
-  var localConnections = roomData.connections;
+  var localConnections = roomData.connections
+
+  if (!loading) {
+    console.log(data);
+    console.log(localConnections);
+    // Experimenting with this to replace connection data when linking from a connection.
+    // TODO: Finish this function.
+    // if (localConnections && !localConnections[0].connections) {
+    //   console.log('The connections have disappeared!')
+    //   console.log(data.connections);
+    //   localConnections = data.connections;
+    // };
+    // console.log(localConnections);
+  };
+
+
+  
   // console.log(localRooms);
   // console.log(localConnections);
   // console.log('Current room =', roomData)
 
   const handleConnectionSubmit = async (event) => {
     try {
-      const { data } = await addConnection({
+      const { connectionData } = await addConnection({
         variables: {
           _id: roomData._id,
           connection: newConnection,

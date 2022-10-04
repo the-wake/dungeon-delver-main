@@ -19,7 +19,7 @@ const CreatureForm = ({ campaign, area, room }) => {
   // console.log(roomOption);
 
 
-  const { currentSession, setCurrentSession, setRoom, setArea } = useSessionContext();
+  const { currentSession, setRoom, setArea } = useSessionContext();
   const { currentCampaign, currentArea, currentRoom } = currentSession;
   const [onShow, setOnShow] = useState(false);
 

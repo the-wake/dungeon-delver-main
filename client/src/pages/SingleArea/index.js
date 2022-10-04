@@ -73,7 +73,7 @@ const SingleArea = () => {
   };
 
   const { loading, data } = useQuery(QUERY_ROOMS, {
-    variables: { area: areaData._id },
+    variables: { areaId: areaData._id },
   });
 
   const rooms = data?.getRooms || [];

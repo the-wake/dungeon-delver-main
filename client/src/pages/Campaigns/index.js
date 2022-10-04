@@ -4,6 +4,8 @@ import CampaignForm from '../../components/CampaignForm';
 import CampaignList from '../../components/CampaignList';
 
 import { QUERY_CAMPAIGNS } from '../../utils/queries';
+
+import { useSessionContext } from '../../utils/SessionContext.js';
 // import { useSessionContext } from '../../utils/SessionContext.js'
 
 // import { Navigate, useParams, Link } from 'react-router-dom';
@@ -14,7 +16,7 @@ import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 
 
-const Campaigns = () => {
+const Campaigns = () => {  
   if (!Auth.loggedIn()) {
     window.location = `/login`
   }
