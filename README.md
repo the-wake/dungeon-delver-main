@@ -1,22 +1,27 @@
-# Project 3: Dungeon Delver
+# Dungeon Delver
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Welcome to Dungeon Delver — a companion app for Dungeon Masters of all shapes and sizes!
+
+![App Screenshot](https://raw.githubusercontent.com/the-wake/dungeon-delver/main/client/public/assets/images/ScreenShot1.JPG)
 ## Table of Contents:
-* [Code](#code)
-* [Demo](#demo)
-* [Authors](#authors)
-* [Features](#features)
-* [Tech](#tech)
-* [Screenshots](#screenshots)
-* [Roadmap](#roadmap)
+- [Dungeon Delver](#dungeon-delver)
+  - [Table of Contents:](#table-of-contents)
+  - [Code](#code)
+  - [Demo](#demo)
+  - [Authors](#authors)
+  - [Features](#features)
+  - [Tech](#tech)
+  - [Roadmap](#roadmap)
 
 ## Code
 
-GitHub Link: https://github.com/the-wake/dungeon-delver
+GitHub Link: https://github.com/the-wake/dungeon-delver-main
 
 ## Demo
 
-Project Live Link: https://ancient-ocean-23622.herokuapp.com/
+Project Live Link: https://dungeon-delver-main.herokuapp.com/
 
 Generic login
     Email: test@test.com
@@ -31,7 +36,7 @@ Generic login
 
 ## Features
 
-- Allows DM(Dungeon Master) to create multiple Dungeons and Dragons campaigns and choose which to have active or not
+- Allows DMs (Dungeon Masters) to create multiple Dungeons & Dragons campaigns and choose which to have active or not
 
 - Inside each campaign, the DM can create multiple dungeons which can also be set to active or inactive
 
@@ -47,17 +52,10 @@ Generic login
 
 - Mongoose, Apollo Server Express, Bcrypt, Express, GraphQL, Jsonwebtoken, Bootstrap, JWT Decode, React, React Bootstrap, React Dom, React Router Dom, React Scripts, CSS, JavaScript and Node/Nodemon
 
-
-## Screenshots
-
-![App Screenshot](https://github.com/the-wake/dungeon-delver/blob/main/client/public/assets/images/ScreenShot1.JPG) 
-
-![App Screenshot](https://github.com/the-wake/dungeon-delver/blob/main/client/public/assets/images/ScreenShot2.JPG) 
-
 ## Roadmap
 
 - Improve UI/UX.
-- Get page to re-render contents when a new item is posted.
+- More robust state management.
 - When creating a campaign, go directly into that campaign.
 - Add active/inactive toggle to all edit forms.
 - Store the SessionContext in cache, and reload it when user logs back in.
@@ -69,7 +67,6 @@ Generic login
     Show only items in the currently focused parent, or show all of them in the 
     current campaign.
 - Add GraphQL virtuals.
-- Add up-a-level links.
 - Error boundaries for handling different errors 
     (like when user needs to login to reach a page).
  
